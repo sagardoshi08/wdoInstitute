@@ -1,0 +1,7 @@
+[Thu Jul 13 10:18:25.111105 2023] [ssl:warn] [pid 12642] AH01909: wdoinstitution.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Jul 13 10:18:25.271047 2023] [ssl:warn] [pid 12642] AH01909: wdoinstitution.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Jul 13 10:18:29.497389 2023] [ssl:warn] [pid 12642] AH01909: wdoinstitution.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Jul 13 10:18:41.328643 2023] [ssl:warn] [pid 12642] AH01909: wdoinstitution.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Jul 13 10:18:48.279942 2023] [ssl:warn] [pid 12642] AH01909: wdoinstitution.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Jul 13 10:18:57.931596 2023] [authz_core:error] [pid 18573] [client 146.190.98.165:35940] AH01630: client denied by server configuration: /var/www/html/abhipatie/public/server-status
+[Thu Jul 13 10:20:19.747983 2023] [authz_core:error] [pid 18577] [client 178.62.3.65:37062] AH01630: client denied by server configuration: /var/www/html/abhipatie/public/server-status
