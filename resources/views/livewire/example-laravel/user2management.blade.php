@@ -92,7 +92,7 @@
                                         <span class="on"><b>ON</b></span><span class="off"><b>OFF</b></span>
                                             </span>
                                     </label>
-                                    
+
                                     <div class="right-menu">
                                         @if($data->login_status == 1)
                                             <div class="active">Active</div>
@@ -153,13 +153,13 @@
                                 @if(Auth::user()->role == "super_admin")
                                 <div>
                                          <div class="edit-role">
-                                            <button class="active redirect-user btn btn-info mt-2" user-id="{{$data->id}}">login</button>    
+                                            <button class="active redirect-user btn btn-info mt-2" user-id="{{$data->id}}">login</button>
                                         </div>
-                                    </div> 
+                                    </div>
                                 @endif
                             </div>
                             </a>
-                            
+
                         </div>
                         @endforeach
                     </div>
