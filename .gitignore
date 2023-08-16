@@ -18,7 +18,14 @@ public_html/hot
 
 storage/*.key
 .env
+.env.example
+.composer-lock.json
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+.ftpquota
+.gitattributes
+ISSUE_TEMPLATE.md
+*.zip
