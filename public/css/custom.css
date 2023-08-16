@@ -3457,7 +3457,7 @@ a.delete-link i.bi.bi-trash {
     width: 15%;
     position: relative;
     /* top: -123px; */
-    bottom: 57px;
+    /* bottom: 57px; */
 }
 p#text-fres {
  border: 1px solid #d5d4d4;
@@ -3711,7 +3711,7 @@ button.course_duration {
     height: 33px;
 }
 
-.form-group {
+.personal-ils .row.students-start-col .form-group{
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -4291,4 +4291,30 @@ h3.name_action{
 }
 .student-parent-d .row .students-start{
     width: 95%;
+}
+.btn-switch-role{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+span.on.directer {
+    margin-right: 31px;
+}
+span.off.directer {
+    margin-right: 31px;
+}
+.btn-switch-role .edit-role button.active.redirect-user.btn.btn-info.mt-2 {
+    background-color: #e91e63;
+}
+.btn-switch-role .location .active.redirect-user.btn.btn-info.mt-2{
+    background-color: #e91e63;
+}
+textarea#text-fres {
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #d5d4d4;
+    width: 97.5%;
+    margin: 0px 5px;
+}
+h4.freus-text{
+    border-bottom: none;
 }
