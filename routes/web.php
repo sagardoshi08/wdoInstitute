@@ -105,6 +105,7 @@ Route::get('attendence-logout', [Logout::class, 'attendence_destroy'])->name('at
 // Route::get('edit-profile/{id}', [EditProfile::class, 'index'])->name('editrofile');
 Route::post('assign-studentid', [AdminTask::class, 'getassignstudentid'])->name('getAssignStudentId');
 Route::get('viewuser/{id}', [ViewUser::class, 'viewuser'])->name('viewuser');
+Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
 Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
 Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
 Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');

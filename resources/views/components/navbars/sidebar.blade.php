@@ -126,6 +126,11 @@
             <a href="{{ route('attendance')}}" class="nav-link px-0 {{ Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management'  ? ' active bg-gradient-primary' : '' }}"> <i class=""></i>User Attendence</a>
          </li>
          @endif
+           <li class="nav-item">
+            <a href="{{ route('viewProfile')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'viewProfile' ? ' active bg-gradient-primary' : '' }}">
+            <i style="font-size: 1rem;" class="fas fa-user-circle ps-2 pe-2 text-center"></i>
+            <span class="nav-link-text ms-1">View Profile</span> </a>
+         </li>
        </ul>
     </div>
  </aside>

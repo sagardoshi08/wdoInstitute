@@ -286,4 +286,12 @@ class EditProfile extends Controller
             'message','User Updated Successfully.')
         );
     }
+    public function viewProfile()
+    {
+        $user = User::where('id',Auth::id())->first();
+        $user_data = User_data::where('user_id',Auth::id())->first();
+        $user_address = User_address::where('user_id',Auth::id())->first();
+        return view('livewire.example-laravel.viewprofile',compact('user','user_data','user_address'));
+    }
+
 }

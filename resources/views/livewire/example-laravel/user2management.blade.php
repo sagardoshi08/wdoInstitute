@@ -87,7 +87,6 @@
                                 <div class="top-card-sec d-flex align-items-center">
                                     {{-- <input type="checkbox"> --}}
 
-
                                     <div class="right-menu">
                                         @if($data->login_status == 1)
                                             <div class="active">Active</div>
