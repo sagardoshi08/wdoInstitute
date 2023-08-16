@@ -2804,8 +2804,13 @@ th {
     margin: 0;
 }
 
-.students-start-col {
-    padding: 9px 0px 10px 12px;
+.personal-ils .students-start-col {
+    border: 1px solid #d5d4d4;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px 5px;
+    padding: 0;
+    padding-bottom: 20px !important;
+    border-top: unset;
 }
 
 .manager-listing .employees-sec .card .card-body {
@@ -3452,6 +3457,18 @@ a.delete-link i.bi.bi-trash {
     width: 15%;
     position: relative;
     /* top: -123px; */
+    bottom: 57px;
+}
+p#text-fres {
+ border: 1px solid #d5d4d4;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px 5px;
+    padding: 8px;
+    padding-bottom: 20px !important;
+    border-top: unset;
+    color: #262525;
+    font-family: inherit;
+    font-size: 12px;
 }
 /* .students-start {
     width: 55%;
@@ -3469,6 +3486,7 @@ a.delete-link i.bi.bi-trash {
     height: 80px;
     background-color: #007da9;
     color: #fff;
+    border-radius: 10px 10px 0 0;
 }
 .user_name_j {
     display: flex;
@@ -3791,11 +3809,11 @@ button.rj-btn {
 }
 
 h4.card-title.text-start {
-    /* background-color: #007da9; */
-    padding: 9px 0px 0px 12px;
-    border-radius: 10px;
-    /* margin-bottom: 10px; */
-    /* border-bottom: 1px solid #d5d4d4; */
+    border: 1px solid #d5d4d4;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0px 5px;
+    /* padding: 0; */
+    padding: 10px;
     color: #007da9;
 }
 
@@ -4228,7 +4246,12 @@ div#order-listing_wrapper {
     overflow-x: scroll;
 }
 h4.freus-text {
-    text-align: center;
+    border: 1px solid #d5d4d4;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0px 5px;
+    /* padding: 0; */
+    padding: 10px;
+
 }
 .student-parent-d{
     display: flex;
@@ -4238,6 +4261,7 @@ h4.freus-text {
     height: 80px;
     background-color: #007da9;
     color: #fff;
+    border-radius: 10px 10px 0 0;
 }
 .user_name_jk {
     display: flex;
@@ -4262,3 +4286,9 @@ h3.name_action{
     padding-top: 2%;
 }
 
+.student-parent-d .students-start.col-lg-6 .students-start-col, div#workorder .students-start-col{
+    padding: 10px;
+}
+.student-parent-d .row .students-start{
+    width: 95%;
+}

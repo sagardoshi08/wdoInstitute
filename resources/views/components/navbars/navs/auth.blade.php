@@ -120,8 +120,8 @@
         </div>
     </div>
 </nav>
-@if (Session::has('previousUser'))
-  <div class="alert alert-success alert-dismissible text-white" role="alert">
+@if (Session::has('previousUser') && Auth::user()->role != "super_admin")
+  <div class="text-white ml-2" role="alert">
      <span class="text-sm btn btn-warning redirect-user" user-id="{{ Session::get('previousUser') }}">Back to Previous Login</span>
   </div>
   @endif

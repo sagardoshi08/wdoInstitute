@@ -150,8 +150,16 @@
                                     </div>
                                 </div>
                                 </div>
+                                @if(Auth::user()->role == "super_admin")
+                                <div>
+                                         <div class="edit-role">
+                                            <button class="active redirect-user btn btn-info mt-2" user-id="{{$data->id}}">login</button>    
+                                        </div>
+                                    </div> 
+                                @endif
                             </div>
-                            <a>
+                            </a>
+                            
                         </div>
                         @endforeach
                     </div>

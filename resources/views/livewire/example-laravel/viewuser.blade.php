@@ -24,15 +24,15 @@
 </div>
 <style>
 </style>
-<div class="container-fluid py-4 view">
+<div class="container-fluid py-4  view">
 <div class="row">
     <div class="name_line">
         <div class="user_name_j">
             <h3 class="col-sm-9 mt-2">
                 <b style="color: #fff">{{$user->name}}</b>
             </h3>
-                <h4 class="col-sm-4 mt-2">
-                    <b style="color: #fff">BUYER PERSONAL</b>
+                <h4 class="col-sm-4 mt-2" style="padding-left: 22px;">
+                    <b style="color: #fff ">{{ Auth::user()->role }}</b>
                 </h4>
         </div>
     </div>
@@ -40,67 +40,67 @@
 
 <div class="m-3 text-img">
    <img class="img-account-profile p-img" width="100px" height="100px" src="{{$user_data->profile_image ? asset('assets').'/'.$user_data->profile_image : asset('assets/img/images.png')}}" alt="">
-   <div class="row">
+   <div class="row personal-ils ">
     <div class="students-start col-lg-7 pl-4">
        <div class="students-text">
           <h4 class="card-title text-start">Personal Details</h4>
        </div>
        <div class="row students-start-col">
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
 
              <div class="form-group">
-                <label for="userName" class="w-15 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Name</b></label><br/>
-                <input id="userName" value="{{$user->name}}" name="name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                <label for="userName" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Name:</b></label><br/>
+                <input id="userName" value="{{$user->name}}" name="name" type="text" class= "form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="father_name" class="w-25 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Father Name</b></label>
-                <input id="father_name" value="{{$user_data->father_name}}" name="father_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Father Name" readonly>
+                <label for="father_name" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Father Name:</b></label>
+                <input id="father_name" value="{{$user_data->father_name}}" name="father_name" type="text" class= "form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Father Name" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="mother_name" class="w-25 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Mother Name</b></label>
-                <input name="mother_name" value="{{$user_data->mother_name}}" id="mother_name" type="text" class="form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Mother Name" readonly>
+                <label for="mother_name" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Mother Name:</b></label>
+                <input name="mother_name" value="{{$user_data->mother_name}}" id="mother_name" type="text" class="form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Mother Name" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="email" class="w-30 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Email Address</b></label><br />
-                <input type="text" id="email" value="{{$user->email}}" name="email" class="form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Email Address" readonly>
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Email Address:</b></label><br />
+                <input type="text" id="email" value="{{$user->email}}" name="email" class="form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Email Address" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="dob" class="w-35 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Date Of Birth</b></label><br />
-                <input class="required form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$user_data->date_of_birth}}" name="date_of_birth" readonly>
+                <label for="dob" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Date Of Birth:</b></label><br />
+                <input class="required form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$user_data->date_of_birth}}" name="date_of_birth" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="phone" class="w-35 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Phone Number</b></label><br />
-                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user_data->phone_number}}" placeholder="Enter Phone Number" name="phone_number" min="10" maxlength="10" pattern="\d*" readonly>
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Phone Number:</b></label><br />
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user_data->phone_number}}" placeholder="Enter Phone Number" name="phone_number" min="10" maxlength="10" pattern="\d*" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="alternate-phone" class="w-35 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Alternate Phone Number</b></label><br />
-                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user_data->alternate_phone_number}}" placeholder="Alternate Phone Number" name="alternate_phone_number" min="10" maxlength="10" pattern="\d*" readonly>
+                <label for="alternate-phone" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Alternate Phone Number:</b></label><br />
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user_data->alternate_phone_number}}" placeholder="Alternate Phone Number" name="alternate_phone_number" min="10" maxlength="10" pattern="\d*" readonly>
              </div>
           </div>
-          <div class="col-sm-0 mt-1">
+          <div class="col-sm-12 mt-1 col-lg-12">
              <div class="form-group">
-                <label for="role" class="w-15 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Role</b></label><br />
-                <input type="text" class="form-control w-100 shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user->role}}" name="role" readonly id="role">
+                <label for="role" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Role:</b></label><br />
+                <input type="text" class="form-control shadow appearance-none border rounded w-full py-0 px-0 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$user->role}}" name="role" readonly id="role">
              </div>
           </div>
        </div>
     </div>
-    <div class="frustration col-lg-5 pl-2">
+    <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
         <p id="text-fres" name="text" rows="4" cols="40">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</P>
-        <h4 class="freus-text">GOAL</h4>
+        <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
         <p id="text-fres" name="text" rows="4" cols="40">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</P>
     </div>
  </div>
@@ -114,11 +114,11 @@
    <div class="row">
     <div class="name_line_p">
         <div class="user_name_j">
-            <h3 class="col-sm-8 mt-3">
+            <h3 class="col-sm-7 mt-3">
                 <b style="color: #fff">Qualification Details</b>
             </h3>
-                <h4 class="col-sm-4 mt-3">
-                    <b style="color: #fff">Industry Experience</b>
+                <h4 class="col-sm-5 mt-3" style="padding-left: 29px;">
+                    <b style="color: #fff ">Industry Experience</b>
                 </h4>
         </div>
     </div>
@@ -134,25 +134,25 @@
                 <div class="form-group">
                     @php $tenth = json_decode($user_data->tenth_details); @endphp
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Board Name</b></label><br/>
-                    <input id="userName" value="{{$tenth->tenth_board_name}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$tenth->tenth_board_name}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Year</b></label><br/>
-                    <input id="userName" value="{{$tenth->tenth_qua_year}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$tenth->tenth_qua_year}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Percentage</b></label><br/>
-                    <input id="userName" value="{{$tenth->tenth_percentage}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$tenth->tenth_percentage}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Roll No</b></label><br/>
-                    <input id="userName" value="{{$tenth->tenth_roll_no}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$tenth->tenth_roll_no}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
         </div>
@@ -162,25 +162,25 @@
                 <div class="form-group">
                     @php $twelfth = json_decode($user_data->twelfth_details); @endphp
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Board Name</b></label>
-                    <input id="userName" value="{{$twelfth->twelfth_board_name}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$twelfth->twelfth_board_name}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Year</b></label><br/>
-                    <input id="userName" value="{{$twelfth->twelfth_qua_year}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$twelfth->twelfth_qua_year}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Percentage</b></label><br/>
-                    <input id="userName" value="{{$twelfth->twelfth_percentage}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$twelfth->twelfth_percentage}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Roll No</b></label><br/>
-                    <input id="userName" value="{{$twelfth->twelfth_roll_no}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{$twelfth->twelfth_roll_no}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
         </div>
@@ -190,25 +190,25 @@
                 <div class="form-group">
                     @php if($user_data->university_details != ''){ $university = json_decode($user_data->university_details); } @endphp
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>University Name</b></label><br/>
-                    <input id="userName" value="{{isset($university->university_name) ? $university->university_name : ''}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{isset($university->university_name) ? $university->university_name : ''}}" name="tenth_board_name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Year</b></label><br/>
-                    <input id="userName" value="{{isset($university->university_qua_year) ? $university->university_qua_year : ''}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{isset($university->university_qua_year) ? $university->university_qua_year : ''}}" name="tenth_qua_year" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Percentage</b></label><br/>
-                    <input id="userName" value="{{isset($university->university_percentage) ? $university->university_percentage : ''}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{isset($university->university_percentage) ? $university->university_percentage : ''}}%" name="tenth_percentage" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
             <div class="col-sm-6 mt-3">
                 <div class="form-group">
                     <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Roll No</b></label><br/>
-                    <input id="userName" value="{{isset($university->university_roll_no) ? $university->university_roll_no : ''}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                    <input id="userName" value="{{isset($university->university_roll_no) ? $university->university_roll_no : ''}}" name="tenth_roll_no" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                 </div>
             </div>
         </div>
@@ -243,7 +243,7 @@
         </div>
 
         <div class="row">
-            <div class="students-start col-lg-11 p-0">
+            <div class="students-start p-0">
                {{-- <div class="students-text">
                   <h4 class="card-title text-start">Industry Experience</h4>
                </div> --}}
@@ -255,7 +255,7 @@
                      <div class="col-sm-6 mt-3">
                         <div class="form-group">
                            <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Industry Name</b></label><br/>
-                           <input id="userName" value="{{$data->industry_name}}" name="name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                           <input id="userName" value="{{$data->industry_name}}" name="name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                         </div>
                      </div>
                      <div class="col-sm-6 mt-3">
@@ -283,7 +283,7 @@
                      <div class="col-sm-3 mt-3">
                         <div class="form-group">
                            <label for="userName" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Industry Name</b></label><br/>
-                           <input id="userName" value="" name="industry_name[]" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                           <input id="userName" value="" name="industry_name[]" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                         </div>
                      </div>
                      <div class="col-sm-3 mt-3">
@@ -316,22 +316,22 @@
             <h3 class="col-sm-6 mt-3">
                 <b style="color: #fff">Permanent Address</b>
             </h3>
-                <h4 class="col-sm-6 mt-3">
+                <h4 class="col-sm-6 mt-3" style="padding-left: 20px;">
                     <b style="color: #fff">Current Address  </b>
                 </h4>
         </div>
     </div>
-        <div class="students-start">
+        {{-- <div class="students-start"> --}}
            {{-- <div class="students-text">
               <h4 class="card-title text-start">Address</h4>
            </div> --}}
            <div class="student-parent-d">
-            <div class="row students-start-col col-lg-6 pl-2">
+            <div class="row students-start-col students-start">
                 {{-- <h5 class="text-start"><span>Permanent Address</span></h5> --}}
                 <div class="col-sm-4 mt-3">
                     <div class="form-group">
                         <label for="userName" class="w-35 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Street</b></label><br/>
-                        <input id="street" value="{{isset($user_address->p_street) ? $user_address->p_street : ''}}" name="street" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly id="p_street">
+                        <input id="street" value="{{isset($user_address->p_street) ? $user_address->p_street : ''}}" name="street" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly id="p_street">
                     </div>
                 </div>
                 <div class="col-sm-4 mt-3">
@@ -359,12 +359,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row students-start-col col-lg-6 pl-2">
+            <div class="row students-start-col students-start">
                 {{-- <h5 class="text-start"><span>Current Address</span></h5> --}}
                 <div class="col-sm-4 mt-3">
                     <div class="form-group">
                         <label for="userName" class="w-35 block text-gray-700 text-sm font-bold mb-0 text-start"><b>Street</b></label>
-                        <input id="userName" value="{{isset($user_address->c_street) ? $user_address->c_street : '' }}" name="name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" readonly>
+                        <input id="userName" value="{{isset($user_address->c_street) ? $user_address->c_street : '' }}" name="name" type="text" class= "form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder=" - " readonly>
                     </div>
                 </div>
                 <div class="col-sm-4 mt-3">
@@ -393,7 +393,7 @@
                 </div>
             </div>
             </div>
-        </div>
+        {{-- </div> --}}
      </div>
 
  </div>
@@ -896,12 +896,11 @@
                var days = 6;
                var month_days = 26;
             }
-               start = moment($('#start_time').val(), 'h:mm A').format('HH');
-               end = moment($('#end_time').val(), 'h:mm A').format('HH');
-               diff_in_min = end-start;
-               $('#days_working_hour').val(Math.abs(diff_in_min));
-               $('#month_working_hour').val(Math.abs(month_days*diff_in_min));
-               $('#week_working_hour').val(Math.abs(days*diff_in_min));
+            var hours = parseInt($("#end_time").val().split(':')[0], 10) - parseInt($("#start_time").val().split(':')[0], 10);
+            if(hours < 0) hours = 24 + hours;
+               $('#days_working_hour').val(Math.abs(hours));
+               $('#month_working_hour').val(Math.abs(month_days*hours));
+               $('#week_working_hour').val(Math.abs(days*hours));
 
          }
       });
@@ -963,12 +962,11 @@
              var days = 6;
              var month_days = 26;
            }
-            start = moment($('#start_time').val(), 'h:mm A').format('HH');
-            end = moment($('#end_time').val(), 'h:mm A').format('HH');
-            diff_in_min = end-start;
-            $('#days_working_hour').val(Math.abs(diff_in_min));
-            $('#month_working_hour').val(Math.abs(month_days*diff_in_min));
-            $('#week_working_hour').val(Math.abs(days*diff_in_min));
+           var hours = parseInt($("#end_time").val().split(':')[0], 10) - parseInt($("#start_time").val().split(':')[0], 10);
+            if(hours < 0) hours = 24 + hours;
+            $('#days_working_hour').val(Math.abs(hours));
+            $('#month_working_hour').val(Math.abs(month_days*hours));
+            $('#week_working_hour').val(Math.abs(days*hours));
 
       }
 
@@ -981,12 +979,11 @@
              var days = 6;
              var month_days = 26;
            }
-            start = moment($('#start_time').val(), 'h:mm A').format('HH');
-            end = moment($('#end_time').val(), 'h:mm A').format('HH');
-            diff_in_min = end-start;
-            $('#days_working_hour').val(Math.abs(diff_in_min));
-            $('#month_working_hour').val(Math.abs(month_days*diff_in_min));
-            $('#week_working_hour').val(Math.abs(days*diff_in_min));
+           var hours = parseInt($("#end_time").val().split(':')[0], 10) - parseInt($("#start_time").val().split(':')[0], 10);
+            if(hours < 0) hours = 24 + hours;
+            $('#days_working_hour').val(Math.abs(hours));
+            $('#month_working_hour').val(Math.abs(month_days*hours));
+            $('#week_working_hour').val(Math.abs(days*hours));
          }
 
 
