@@ -29,3 +29,6 @@ Homestead.json
 .gitattributes
 ISSUE_TEMPLATE.md
 *.zip
+composer.lock
+package-lock.json
+
