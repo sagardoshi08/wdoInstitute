@@ -4373,3 +4373,15 @@ textarea#text-fres01 {
 .light-mon{
     margin-left: 13%;
 }
+.light-mon .form-group {
+    /* height: 50px; */
+    font-size: 16px;
+    /* background-color: transparent; */
+    box-shadow: unset !important;
+    color: #5b5b5b;
+    overflow: hidden;
+    /* padding-left: 11px; */
+}
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after{
+    margin-right: 7px;
+}

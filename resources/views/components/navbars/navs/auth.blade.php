@@ -1,5 +1,56 @@
 <link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.theme.css')}}"/>
 <link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.structure.css')}}"/>
+<style>
+    .ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix{
+        background-color: #fff;
+    }
+    button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+}
+button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+    background-color: #07294d;
+    text-align: center;
+    left: -4px;
+    width: 300px;
+    top: -4px;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 0.7em 1em;
+}
+aside#sidenav-main {
+    z-index: 99;
+}
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+    background-color: #fff;
+    border: 1px solid #8e846b;
+}
+.ui-dialog .ui-dialog-title{
+    float: unset;
+}
+.ui-widget-content{
+    border: none;
+    background: none;
+}
+div#countdownDisplay {
+    color: #e91e63;
+}
+.ui-dialog .ui-dialog-buttonpane{
+    padding: 0.3em 2.2em 0.5em 0.4em;
+}
+div#idletimer_warning_dialog {
+    font-weight: 700;
+}
+p{
+    font-weight: 500;
+}
+</style>
 <div class="container-fluid mt-3 custom-header">
 <nav class="navbar navbar-expand-lg bg-dark rounded px-0">
 
@@ -151,9 +202,9 @@
 
     $(document).idleTimeout({
         redirectUrl: "{{url('attendence-logout')}}", // redirect to this url
-        idleTimeLimit: 130, // 15 seconds
+        idleTimeLimit: 15, // 15 seconds
         activityEvents: 'click keypress scroll wheel mousewheel', // separate each event with a space
-        dialogDisplayLimit: 30, // Time to display the warning dialog before logout (and optional callback) in seconds
+        dialogDisplayLimit: 10000, // Time to display the warning dialog before logout (and optional callback) in seconds
         sessionKeepAliveTimer: false // Set to false to disable pings.
     });
 
@@ -182,7 +233,7 @@
   //       console.log("event",event);
 	// 			attendence_expireSession();
   //     }
-	// 		attendence_expireSession();  
+	// 		attendence_expireSession();
 	// 	/*end track attendence working hours*/
 	// @endif
   </script>
