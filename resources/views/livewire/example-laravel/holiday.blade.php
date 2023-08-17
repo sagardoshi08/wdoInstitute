@@ -89,19 +89,23 @@ div.dataTables_wrapper div.dataTables_length label{
          @csrf
         <!-- Modal body -->
         <div class="modal-body">
-         <div class="form-group">
-            <label for="remark" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Add Holiday</b></label>
-            <input type="text" name="holiday_name" required>
-         </div>
-         <div class="form-group">
-            <label for="remark" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Date</b></label>
-            <input type="date" name="date" required>
-         </div>
+            <div class="row sect-jaylo">
+                <h4 class="section-heading"></h4>
+                <div class="mb-4 col-sm-12 col-md-6 create-edit-validation">
+                   <label for="userName" class="w-200 block text-gray-700 text-sm font-bold mb-2 text-start">Title<span class="det-alert">*</span></label><br>
+                   <input name="holiday_name" type="text" class="w-100 required shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid" placeholder="Title" aria-required="true" aria-invalid="false">
+                </div>
+
+                <div class="mb-4 col-sm-12 col-md-6 create-edit-validation">
+                    <label for="dob" class="w-200 block text-gray-700 text-sm font-bold mb-2 text-start">Date<span class="det-alert">*</span></label><br>
+                    <input class="form-control required w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="date" aria-required="true">
+                 </div>
+            </div>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger close" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
       </div>

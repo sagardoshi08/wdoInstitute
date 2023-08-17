@@ -4392,3 +4392,11 @@ textarea#text-fres01 {
 .students-text.jgba h4.card-title.text-start {
     border: none;
 }
+.table-responsive button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sect-jaylo input {
+    box-shadow: unset !important;
+}
