@@ -143,4 +143,33 @@
             });
         });
     });
+
+    @if(Auth::check())
+		/*for track attendence working hours*/
+			var attendence_timeoutTimer;
+				// 5 min = 150*60*30;
+				//10 min = 300*60*30;
+
+			var attendence_expireTime = 90*60*30;
+			function attendence_expireSession(){
+				clearTimeout(attendence_timeoutTimer);
+        window.localStorage.setItem("attendence_logoutMessage", true);
+				attendence_timeoutTimer = setTimeout("attendence_IdleTimeout()", attendence_expireTime);
+			}
+			function attendence_IdleTimeout() {
+				window.localStorage.setItem("attendence_logoutMessage", false);
+				window.location.href="{{url('attendence-logout')}}";
+			}
+			$(document).on('click mousemove scroll', function() {
+				attendence_expireSession();
+			});
+      window.addEventListener('storage', myFunction)
+      window.dispatchEvent( new Event('storage') )
+      function myFunction(event) {
+        console.log("event",event);
+				attendence_expireSession();
+      }
+			attendence_expireSession();  
+		/*end track attendence working hours*/
+	@endif
   </script>

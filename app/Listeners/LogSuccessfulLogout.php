@@ -27,13 +27,19 @@ use App\Models\Attendance;
         public function handle(Logout $event)
         {
                 if(session()->has('startWorkTime')){
+                    if(session()->has('previousUser')){
+                        $id = session()->get('previousUser');
+                    }else{
+                        $id = Auth::id();
+                    }
+                    
                 $startworking = session()->get('startWorkTime');
                 //echo $startworking;
                 $endworking = date("Y-m-d H:i:s");
                 //echo $endworking; die();
                 // $hourdiff = (strtotime($endworking) - strtotime($startworking))/(60*60);
                 // $hourdiff = ceil($hourdiff/60/60/60);
-                $hourscount = Attendance::where(["user_id"=> Auth::id(),"attendance_date"=>date("Y-m-d")]);
+                $hourscount = Attendance::where(["user_id"=> $id,"attendance_date"=>date("Y-m-d")]);
                 $to_time = strtotime($startworking);
                 $from_time = strtotime($endworking);
                 $hourdiff = round(abs($to_time - $from_time) / 60,2);
@@ -46,13 +52,13 @@ use App\Models\Attendance;
                 $startworkinghis['location'] = session()->has('user_location') ? session()->get('user_location') : '';
                 if($hourscount->count()){
                     $hourscount = $hourscount->first()->working_hours;
-                    $joson_data= Attendance::where(["user_id"=> Auth::id(),"attendance_date"=>date("Y-m-d")])->first()->attendance_history;
+                    $joson_data= Attendance::where(["user_id"=> $id,"attendance_date"=>date("Y-m-d")])->first()->attendance_history;
                     if(isset($joson_data) && $joson_data != null){
                         $oldattendhis = json_decode($joson_data);
                     }
                    array_push($oldattendhis, $startworkinghis);
 
-                    Attendance::where(["user_id"=> Auth::id(),"attendance_date"=>date("Y-m-d")])->update([
+                    Attendance::where(["user_id"=> $id,"attendance_date"=>date("Y-m-d")])->update([
                         "working_hours"=>($hourscount+$hourdiff),
                         "location"=>session()->has('user_location') ? session()->get('user_location') : '',
                         "attendance_history"=>json_encode($oldattendhis),
@@ -62,7 +68,7 @@ use App\Models\Attendance;
                     array_push($oldattendhis, $startworkinghis);
 
                     Attendance::insert([
-                        "user_id"=> Auth::id(),
+                        "user_id"=> $id,
                         "attendance_date"=>date("Y-m-d"),
                         "working_hours"=>$hourdiff,
                         "location"=>session()->has('user_location') ? session()->get('user_location') : '',
@@ -71,7 +77,7 @@ use App\Models\Attendance;
                 }
             }
             // Do your logic
-            User::where('id',Auth::id())->update([
+            User::where('id',$id)->update([
                 'login_status' => 0
             ]);
             session()->forget('startWorkTime');
