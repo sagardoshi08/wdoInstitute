@@ -202,9 +202,9 @@ p{
 
     $(document).idleTimeout({
         redirectUrl: "{{url('attendence-logout')}}", // redirect to this url
-        idleTimeLimit: 15, // 15 seconds
+        idleTimeLimit: 180, // 15 seconds
         activityEvents: 'click keypress scroll wheel mousewheel', // separate each event with a space
-        dialogDisplayLimit: 10000, // Time to display the warning dialog before logout (and optional callback) in seconds
+        dialogDisplayLimit: 30, // Time to display the warning dialog before logout (and optional callback) in seconds
         sessionKeepAliveTimer: false // Set to false to disable pings.
     });
 
