@@ -4385,3 +4385,10 @@ textarea#text-fres01 {
 .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after{
     margin-right: 7px;
 }
+.students-text.jgba {
+    display: flex;
+    justify-content: space-between;
+}
+.students-text.jgba h4.card-title.text-start {
+    border: none;
+}
