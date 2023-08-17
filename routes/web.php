@@ -31,6 +31,8 @@ use App\Http\Livewire\Auth\SuperAdmin;
 use App\Http\Livewire\Auth\ApplyJob;
 use App\Http\Controllers\PDFController;
 use App\Http\Livewire\ExampleLaravel\UserAttendence;
+use App\Http\Livewire\ExampleLaravel\HolidayManagement;
+use App\Http\Livewire\ExampleLaravel\UserSallery;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,11 +108,14 @@ Route::get('attendence-logout', [Logout::class, 'attendence_destroy'])->name('at
 Route::post('assign-studentid', [AdminTask::class, 'getassignstudentid'])->name('getAssignStudentId');
 Route::get('viewuser/{id}', [ViewUser::class, 'viewuser'])->name('viewuser');
 Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
+Route::get('holiday', [HolidayManagement::class, 'holiday'])->name('holiday');
+Route::get('user-sallery', [UserSallery::class, 'userSallery'])->name('userSallery');
 Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
 Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
 Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');
 Route::post('update-reassigntask', [AdminTask::class, 'update_reassign_task'])->name('updateReassignTask');
 Route::post('delete-user', [UserManagement::class, 'userDelete'])->name('deleteUser');
+Route::post('holiday-delete', [HolidayManagement::class, 'holidayDelete'])->name('holidayDelete');
 // Route::get('add', StudentCreate::class)->name('add');
 
 //student
@@ -140,6 +145,7 @@ Route::get('pending-user', [EditController::class,'allpendingUser'])->name('user
 Route::get('reject-user', [EditController::class,'allrejectUser'])->name('user.allrejectUser');
 Route::get('defect-user', [EditController::class,'alldefectUser'])->name('user.alldefectUser');
 Route::post('change-job-status', [EditController::class ,'jobStatusChange'])->name('jobStatusChange');
+Route::post('holiday-leave', [HolidayManagement::class ,'holideLeave'])->name('holideLeave');
 Route::post('change-job-defect', [EditController::class ,'jobStatusDefect'])->name('jobStatusDefect');
 Route::post('send-offer-letter', [EditController::class ,'sendOfferLetter'])->name('sendOfferLetter');
 Route::post('mail-offer-letter', [EditController::class ,'mailOfferLetter'])->name('mailOfferLetter');

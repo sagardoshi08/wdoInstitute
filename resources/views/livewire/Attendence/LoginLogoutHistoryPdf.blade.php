@@ -239,7 +239,7 @@
                         $('#total-working-hour').val(data.total_working_hour);
                         $('#total-active-hour').val(data.total_active_hour);
                         $('#total-due-hour').val(data.total_due_hour);
-                        $('#total-extra-hour').val(data.total_extra_hour); 
+                        $('#total-extra-hour').val(data.total_extra_hour);
                         //$('#history-data').html(data);
                         $("#attendance-table").dataTable().fnDestroy()
                         $('#attendance-table').DataTable({

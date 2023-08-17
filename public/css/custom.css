@@ -33,6 +33,9 @@
 
 .btn.btn-link.bg-dark {
     background-color: #e63673 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn.btn-link {
@@ -2983,6 +2986,7 @@ h5.text-start {
 .table-responsive .dataTables_wrapper .dataTables_length select {
     font-size: 1rem;
     margin-left: 10px;
+    margin-right: 10px;
     max-width: 80px;
     padding: 5px 8px;
     border: 1px solid #c1c1c1;
@@ -4291,4 +4295,11 @@ h3.name_action{
 }
 .student-parent-d .row .students-start{
     width: 95%;
+}
+.students-text h4.card-title.text-start {
+    border: none;
+}
+.students-text.jgba {
+    display: flex;
+    justify-content: space-between;
 }
