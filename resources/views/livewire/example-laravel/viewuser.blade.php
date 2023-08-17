@@ -29,7 +29,7 @@
     <div class="name_line">
         <div class="user_name_j">
             <h3 class="col-sm-9 mt-2">
-                <b style="color: #fff">{{$user->name}}</b>
+                <b style="color: #fff";>{{$user->name}}</b>
             </h3>
                 <h4 class="col-sm-4 mt-2" style="padding-left: 22px;">
                     <b style="color: #fff ">{{ Auth::user()->role }}</b>
@@ -99,9 +99,9 @@
     </div>
     <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
-        <p id="text-fres" name="text" rows="4" cols="40">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</P>
+        <textarea id="text-fres" name="text" rows="4" cols="40"></textarea>
         <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-        <p id="text-fres" name="text" rows="4" cols="40">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</P>
+        <textarea id="text-fres" name="text" rows="4" cols="40"></textarea>
     </div>
  </div>
 

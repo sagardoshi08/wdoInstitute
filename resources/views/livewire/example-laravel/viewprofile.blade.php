@@ -28,11 +28,11 @@
 <div class="row">
     <div class="name_line">
         <div class="user_name_j">
-            <h3 class="col-sm-9 mt-2">
+            <h4 class="col-sm-9 mt-2">
                 <b style="color: #fff">{{$user->name}}</b>
-            </h3>
+            </h4>
                 <h4 class="col-sm-4 mt-2" style="padding-left: 22px;">
-                    <b style="color: #fff ">{{ Auth::user()->role }}</b>
+                    <b style="color: #fff ">{{($user->role == 'super_admin') ? 'Super Admin' : $user->role}}</b>
                 </h4>
         </div>
     </div>

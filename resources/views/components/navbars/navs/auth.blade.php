@@ -1,3 +1,56 @@
+<link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.theme.css')}}"/>
+<link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.structure.css')}}"/>
+<style>
+    .ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix{
+        background-color: #fff;
+    }
+    button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+}
+button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+    background-color: #07294d;
+    text-align: center;
+    left: -4px;
+    width: 300px;
+    top: -4px;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 0.7em 1em;
+}
+aside#sidenav-main {
+    z-index: 99;
+}
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+    background-color: #fff;
+    border: 1px solid #8e846b;
+}
+.ui-dialog .ui-dialog-title{
+    float: unset;
+}
+.ui-widget-content{
+    border: none;
+    background: none;
+}
+div#countdownDisplay {
+    color: #e91e63;
+}
+.ui-dialog .ui-dialog-buttonpane{
+    padding: 0.3em 2.2em 0.5em 0.4em;
+}
+div#idletimer_warning_dialog {
+    font-weight: 700;
+}
+p{
+    font-weight: 500;
+}
+</style>
 <div class="container-fluid mt-3 custom-header">
 <nav class="navbar navbar-expand-lg bg-dark rounded px-0">
 
@@ -125,7 +178,10 @@
      <span class="text-sm btn btn-warning redirect-user" user-id="{{ Session::get('previousUser') }}">Back to Previous Login</span>
   </div>
   @endif
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="{{asset('js/store.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-idleTimeout.js')}}" type="text/javascript"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $(document).on('click', '.redirect-user', function() {
@@ -138,9 +194,46 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    window.location.href = 'https://wdoinstitution.com/dashboard';
+                    window.location.href = "{{route('dashboard')}}";
                 }
             });
         });
     });
+
+    $(document).idleTimeout({
+        redirectUrl: "{{url('attendence-logout')}}", // redirect to this url
+        idleTimeLimit: 180, // 15 seconds
+        activityEvents: 'click keypress scroll wheel mousewheel', // separate each event with a space
+        dialogDisplayLimit: 30, // Time to display the warning dialog before logout (and optional callback) in seconds
+        sessionKeepAliveTimer: false // Set to false to disable pings.
+    });
+
+  //   @if(Auth::check())
+	// 	/*for track attendence working hours*/
+	// 		var attendence_timeoutTimer;
+	// 			// 5 min = 150*60*30;
+	// 			//10 min = 300*60*30;
+
+	// 		var attendence_expireTime = 90*60*30;
+	// 		function attendence_expireSession(){
+	// 			clearTimeout(attendence_timeoutTimer);
+  //       window.localStorage.setItem("attendence_logoutMessage", true);
+	// 			attendence_timeoutTimer = setTimeout("attendence_IdleTimeout()", attendence_expireTime);
+	// 		}
+	// 		function attendence_IdleTimeout() {
+	// 			window.localStorage.setItem("attendence_logoutMessage", false);
+	// 			window.location.href="{{url('attendence-logout')}}";
+	// 		}
+	// 		$(document).on('click mousemove scroll', function() {
+	// 			attendence_expireSession();
+	// 		});
+  //     window.addEventListener('storage', myFunction)
+  //     window.dispatchEvent( new Event('storage') )
+  //     function myFunction(event) {
+  //       console.log("event",event);
+	// 			attendence_expireSession();
+  //     }
+	// 		attendence_expireSession();
+	// 	/*end track attendence working hours*/
+	// @endif
   </script>

@@ -60,7 +60,7 @@ div.dataTables_wrapper div.dataTables_length label{
                                 <td>{{ $holi->holiday_name }}</td>
                                 <td>{{ $holi->date }}</td>
                                 <td>
-                                    <button type="button" delete-id="{{$holi->id}}" class="btn mb-0 btn-success btn-link bg-dark"><i class="fa fa-trash"></i></button>
+                                    <button type="button" delete-id="{{$holi->id}}" class="btn btn-danger btn-md icon-btn ms-2 w-4 delete-link btn mb-0 btn-success btn-link bg-dark"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -91,11 +91,11 @@ div.dataTables_wrapper div.dataTables_length label{
         <div class="modal-body">
          <div class="form-group">
             <label for="remark" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Add Holiday</b></label>
-            <input type="text" name="holiday_name" >
+            <input type="text" name="holiday_name" required>
          </div>
          <div class="form-group">
             <label for="remark" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Date</b></label>
-            <input type="date" name="date" >
+            <input type="date" name="date" required>
          </div>
         </div>
         <!-- Modal footer -->
