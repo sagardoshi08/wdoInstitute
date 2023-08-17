@@ -2791,13 +2791,13 @@ th {
     padding-bottom: 20px !important;
 }
 
-.add-user-form.view-form .students-text {
+/* .add-user-form.view-form .students-text {
     background-color: #f0f2f5;
     padding: 9px 0px 10px 12px;
     border-radius: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #d5d4d4;
-}
+} */
 
 .add-user-form .students-text .text-start {
     border: 1px;
@@ -3529,8 +3529,9 @@ div .student-create-edit {
 
 .m-3.text-img {
     display: flex;
-    align-items: center;
-    gap: 4px;
+    /* align-items: center; */
+    gap: 30px;
+    /* flex-direction: column; */
 }
 
 i.material-icons.icon-center {
@@ -4269,11 +4270,12 @@ h4.freus-text {
     align-items: center;
     /* margin-right: 16%; */
     margin-top: 1%;
+    margin-left: 20%;
 
 }
 h3.name_sk {
     margin-left: 41%;
-    margin-top: 2.5%;
+    padding-top: 2%;
 }
 
 @media (max-width:768px){
@@ -4317,4 +4319,57 @@ textarea#text-fres {
 }
 h4.freus-text{
     border-bottom: none;
+}
+.navbar-vertical .navbar-brand > img, .navbar-vertical .navbar-brand-img{
+    max-height: 3rem;
+}
+.personal-till .students-start-col .form-group {
+    display: flex;
+}
+.personal-till .students-start-col .form-group p{
+    margin: 0;
+}
+.personal-till h4.card-title.text-start {
+    border: 1px solid #d5d4d4;
+    border-radius: 10px 10px 0px 0px;
+    margin: -1px -1px 0px -1px;
+    /* padding: 0; */
+    padding: 10px;
+    color: #007da9;
+}
+.personal-till .students-start-col {
+    border: 1px solid #d5d4d4;
+    border-radius: 0px 0px 10px 10px;
+    margin: -1px -1px -21px -1px;
+    /* padding: 0; */
+    padding-bottom: 20px !important;
+    border-top: unset;
+}
+.name-adm{
+    position: relative;
+    left: 2%;
+    bottom: 14%;
+
+}
+textarea#text-fres01 {
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #d5d4d4;
+    width: 97%;
+    margin: 0px 5px;
+}
+.name_line .user_name_j h3 b {
+    margin-left: 34%;
+}
+.name_line .user_name_j h4 b{
+    margin-left: 5%;
+}
+
+.name_line_p .user_name_j h3 b{
+    margin-left: 34%;
+}
+.name_line_p .user_name_j h4 b{
+    margin-left: 5%;
+}
+.light-mon{
+    margin-left: 13%;
 }
