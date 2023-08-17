@@ -170,7 +170,7 @@
                                             @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager' || auth()->user()->role == 'Admin')
                                             <div class="">
                                                 <select name="teamleader_user" id="teamleader-dropdown" class="w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                                <option value="">Select 
+                                                <option value="">Select
                                                     Team Leader
                                                 </option>
                                                     @foreach($team_laeder as $data)
