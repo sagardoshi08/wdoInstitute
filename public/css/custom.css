@@ -2983,6 +2983,7 @@ h5.text-start {
 .table-responsive .dataTables_wrapper .dataTables_length select {
     font-size: 1rem;
     margin-left: 10px;
+    margin-right: 10px;
     max-width: 80px;
     padding: 5px 8px;
     border: 1px solid #c1c1c1;

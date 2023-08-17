@@ -84,12 +84,7 @@
                                 <div class="card align-items-center">
                                     <div class="top-card-sec d-flex align-items-center">
                                         {{-- <input type="checkbox"> --}}
-                                        <label class="switch">
-                                            <input id="{{$data->id}}" class="singleuser-status" type="checkbox" {{$data->status == 0 ? 'checked' :  ''}} value="{{$data->status}}">
-                                            <span class="slider round">
-                                            <span class="on">ON</span><span class="off">OFF</span>
-                                                </span>
-                                        </label>
+
                                         <div class="right-menu">
                                             @if($data->login_status == 1)
                                                 <div class="active">Active</div>
@@ -144,6 +139,21 @@
                                         </div>
                                     </div>
                                     </div>
+                                    <div class="btn-switch-role">
+
+                                        <div class="edit-role">
+                                           <button class="active redirect-user btn btn-info mt-2" user-id="{{$data->id}}">login</button>
+                                       </div>
+                                       <label class="switch">
+                                           <input id="{{$data->id}}" class="singleuser-status" type="checkbox" {{$data->status == 0 ? 'checked' :  ''}} value="{{$data->status}}">
+                                           <span class="slider round">
+                                           <span class="on directer"><br><b>Enable</b></span><span class="off directer"><br><b>Disable</b></span>
+                                               </span>
+                                       </label>
+                                       <div class="location">
+                                           <button class="active redirect-user btn btn-info mt-2">location</button>
+                                       </div>
+                               </div>
                                 </div>
                                 </a>
                             </div>
