@@ -1,3 +1,5 @@
+<link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.theme.css')}}"/>
+<link type="text/css" rel="stylesheet" href="{{asset('css/jquery-ui.structure.css')}}"/>
 <div class="container-fluid mt-3 custom-header">
 <nav class="navbar navbar-expand-lg bg-dark rounded px-0">
 
@@ -125,7 +127,10 @@
      <span class="text-sm btn btn-warning redirect-user" user-id="{{ Session::get('previousUser') }}">Back to Previous Login</span>
   </div>
   @endif
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="{{asset('js/store.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-idleTimeout.js')}}" type="text/javascript"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $(document).on('click', '.redirect-user', function() {
@@ -144,32 +149,40 @@
         });
     });
 
-    @if(Auth::check())
-		/*for track attendence working hours*/
-			var attendence_timeoutTimer;
-				// 5 min = 150*60*30;
-				//10 min = 300*60*30;
+    $(document).idleTimeout({
+        redirectUrl: "{{url('attendence-logout')}}", // redirect to this url
+        idleTimeLimit: 130, // 15 seconds
+        activityEvents: 'click keypress scroll wheel mousewheel', // separate each event with a space
+        dialogDisplayLimit: 30, // Time to display the warning dialog before logout (and optional callback) in seconds
+        sessionKeepAliveTimer: false // Set to false to disable pings.
+    });
 
-			var attendence_expireTime = 90*60*30;
-			function attendence_expireSession(){
-				clearTimeout(attendence_timeoutTimer);
-        window.localStorage.setItem("attendence_logoutMessage", true);
-				attendence_timeoutTimer = setTimeout("attendence_IdleTimeout()", attendence_expireTime);
-			}
-			function attendence_IdleTimeout() {
-				window.localStorage.setItem("attendence_logoutMessage", false);
-				window.location.href="{{url('attendence-logout')}}";
-			}
-			$(document).on('click mousemove scroll', function() {
-				attendence_expireSession();
-			});
-      window.addEventListener('storage', myFunction)
-      window.dispatchEvent( new Event('storage') )
-      function myFunction(event) {
-        console.log("event",event);
-				attendence_expireSession();
-      }
-			attendence_expireSession();  
-		/*end track attendence working hours*/
-	@endif
+  //   @if(Auth::check())
+	// 	/*for track attendence working hours*/
+	// 		var attendence_timeoutTimer;
+	// 			// 5 min = 150*60*30;
+	// 			//10 min = 300*60*30;
+
+	// 		var attendence_expireTime = 90*60*30;
+	// 		function attendence_expireSession(){
+	// 			clearTimeout(attendence_timeoutTimer);
+  //       window.localStorage.setItem("attendence_logoutMessage", true);
+	// 			attendence_timeoutTimer = setTimeout("attendence_IdleTimeout()", attendence_expireTime);
+	// 		}
+	// 		function attendence_IdleTimeout() {
+	// 			window.localStorage.setItem("attendence_logoutMessage", false);
+	// 			window.location.href="{{url('attendence-logout')}}";
+	// 		}
+	// 		$(document).on('click mousemove scroll', function() {
+	// 			attendence_expireSession();
+	// 		});
+  //     window.addEventListener('storage', myFunction)
+  //     window.dispatchEvent( new Event('storage') )
+  //     function myFunction(event) {
+  //       console.log("event",event);
+	// 			attendence_expireSession();
+  //     }
+	// 		attendence_expireSession();  
+	// 	/*end track attendence working hours*/
+	// @endif
   </script>
