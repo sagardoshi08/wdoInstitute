@@ -143,7 +143,7 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    window.location.href = 'https://wdoinstitution.com/dashboard';
+                    window.location.href = "{{route('dashboard')}}";
                 }
             });
         });
