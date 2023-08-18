@@ -4392,5 +4392,9 @@ textarea#text-fres01 {
 }
 .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after{
     margin-right: 7px;
-
+}
+.table-responsive button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
