@@ -57,15 +57,6 @@ td {
             </div>
         </div>
         <div class="row students-start-col">
-            <div class="showing-results input-group input-group-outline d-flex mt-0 custom-showing align-items-center justify-content-end">
-
-                <div class="print header-btn ms-2">
-                    <span class="nav-link mb-0 ml-2 active " data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i class="fa fa-print" aria-hidden="true"></i></span>
-                </div>
-                <div class="export header-btn ms-2">
-                    <span class="nav-link mb-0  active" data-bs-toggle="tooltip" data-bs-placement="top" title="Export CSV"><i class="fas fa-file-export"></i></span>
-                </div>
-            </div>
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table align-items-center mb-0" id="attendance-table">
