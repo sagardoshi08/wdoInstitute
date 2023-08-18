@@ -247,8 +247,7 @@ p{
       if (validNavigation==0){
           store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) - 1));
           console.log("activeTabCounts",parseInt(store.get('activeTabCounts')))
-          debugger 
-          if(parseInt(store.get('activeTabCounts')) < 0){
+          if(parseInt(store.get('activeTabCounts')) <= 0){ 
             $.ajax({
                 type: 'get',
                 url: "{{url('attendence-logout')}}",
