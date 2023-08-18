@@ -22,17 +22,41 @@ class AssignUsers extends Component
     public function render()
     {
 
-        $user_admin = User::where('role','Admin')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $user_manager = User::where('role','Manager')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $user_teamlead = User::where('role','Team Leader')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $user_employee = User::where('role','Employee')->where('job_status',Null)->orWhere('job_status','Approved')->get();
+        $user_admin = User::where('role','Admin')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $user_manager = User::where('role','Manager')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $user_teamlead = User::where('role','Team Leader')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $user_employee = User::where('role','Employee')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
         $user_data = User_data::where('user_id',FacadesAuth::id())->first();
         $assign = AssignTask::select('student_id')->get()->toArray();
         $students = Student::whereIn('id',$assign)->get();
-        $admin = User::where('role','Admin')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $manager = User::where('role','Manager')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $team_leader = User::where('role','Team Leader')->where('job_status',Null)->orWhere('job_status','Approved')->get();
-        $employee = User::where('role','Employee')->where('job_status',Null)->orWhere('job_status','Approved')->get();
+        $admin = User::where('role','Admin')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $manager = User::where('role','Manager')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $team_leader = User::where('role','Team Leader')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
+        $employee = User::where('role','Employee')->where(function($query) {
+            $query->where('job_status', Null)
+                  ->orWhere('job_status','Approved');
+        })->get();
 
         return view(
             'livewire.example-laravel.assign-taskmanagement',

@@ -55,9 +55,9 @@ class Logout extends Component
         //         ]);
         //     } 
         // }
-        User::where('id',Auth::id())->update(['login_status'=>0]);
+       User::where('id',Auth::id())->update(['login_status'=>0]);
         Auth::logout();
-        // session()->forget('startWorkTime');
+        //  session()->forget('startWorkTime');
         // session()->forget('workedminutes');
         return redirect('/');
     }
@@ -115,5 +115,9 @@ class Logout extends Component
     public function render()
     {
         return view('livewire.auth.logout');
+    }
+
+    public function remainingLogout(){
+        
     }
 }
