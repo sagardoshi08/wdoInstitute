@@ -4296,9 +4296,9 @@ h3.name_action{
 .student-parent-d .row .students-start{
     width: 95%;
 }
-.students-text h4.card-title.text-start {
+/* .students-text h4.card-title.text-start {
     border: none;
-}
+} */
 .students-text.jgba {
     display: flex;
     justify-content: space-between;
