@@ -1,4 +1,8 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
+
 @include('components.include.header')
+
 
 <style>
        .table-responsive .dataTables_wrapper .dataTables_length{
@@ -22,6 +26,23 @@ div.dataTables_wrapper div.dataTables_length label{
     justify-content: flex-end;
     margin-right: 8%;
 }
+th.sorting_asc {
+    text-align: center;
+}
+th.sorting {
+    text-align: center;
+}
+td.mb-0.text-sm.sorting_1 {
+    text-align: center;
+}
+td.mb-0.text-sm {
+    text-align: center;
+    color: #344767;
+}
+td {
+    text-align: center;
+}
+
 </style>
 
 <div class="row">
@@ -50,7 +71,7 @@ div.dataTables_wrapper div.dataTables_length label{
                     <table class="table align-items-center mb-0" id="attendance-table">
                         <thead>
                             <tr class="bg-dark">
-                                <th>Sr no.</th>
+                                <th style="width: 100px;">Sr no.</th>
                                 <th>Holiday Name</th>
                                 <th>Date</th>
                                 @if(auth()->user()->role == 'super_admin')
@@ -61,9 +82,9 @@ div.dataTables_wrapper div.dataTables_length label{
                         <tbody id="history-data">
                             @foreach($Holiday as $key=>$holi)
                             <tr id="holiday-{{$holi->id}}">
-                                <td>{{($key+1)}}</td>
-                                <td>{{ $holi->holiday_name }}</td>
-                                <td>{{ $holi->date }}</td>
+                                <td class="mb-0 text-sm">{{($key+1)}}</td>
+                                <td class="mb-0 text-sm">{{ $holi->holiday_name }}</td>
+                                <td class="mb-0 text-sm">{{ $holi->date }}</td>
                                 @if(auth()->user()->role == 'super_admin')
                                 <td>
                                     <button type="button" delete-id="{{$holi->id}}" class="btn btn-danger btn-md icon-btn ms-2 w-4 delete-link btn mb-0 btn-success btn-link bg-dark"><i class="fa fa-trash"></i></button>
