@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+use App\Mail\UserLogout;
+use Illuminate\Support\Facades\Mail;
 
 class Logout extends Component
 {
@@ -118,6 +121,26 @@ class Logout extends Component
     }
 
     public function remainingLogout(){
-        
+        $user = Attendance::select('attendance.*','users.login_status','users.id as user_iid','users.name','users.email','users.offer_datils')->leftjoin('users','users.id','=','attendance.user_id')->where(["attendance.attendance_date"=>date("Y-m-d"),'users.login_status'=>1])->get();
+
+        foreach($user as $data1){
+            $history =  json_decode($data1->attendance_history);
+            foreach($history as $key=>$data){
+                if($data->end_time == ''){
+                    $start  = new Carbon($data->start_time);
+                    $end    = new Carbon(date("Y-m-d H:i:s"));
+                    $to_time = strtotime($data->start_time);
+                    $from_time = strtotime(date("Y-m-d H:i:s"));
+                    if($start->diff($end)->format('%h') >= 5){
+                        $mailData = [
+                            'name' => $data1->name
+                        ];
+                
+                        Mail::to($data1->email)->send(new UserLogout($mailData));
+                    }
+                }
+            }
+        }
+
     }
 }
