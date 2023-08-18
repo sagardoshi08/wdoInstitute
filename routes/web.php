@@ -109,7 +109,6 @@ Route::post('assign-studentid', [AdminTask::class, 'getassignstudentid'])->name(
 Route::get('viewuser/{id}', [ViewUser::class, 'viewuser'])->name('viewuser');
 Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
 Route::get('holiday', [HolidayManagement::class, 'holiday'])->name('holiday');
-Route::get('user-sallery', [UserSallery::class, 'userSallery'])->name('userSallery');
 Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
 Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
 Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');
@@ -168,4 +167,8 @@ Route::get('admin-defect-user', [EditController::class,'defectadminData'])->name
 Route::get('manager-defect-user', [EditController::class,'defectmanagerData'])->name('user.alldefectmanagerData');
 Route::get('teamleader-defect-user', [EditController::class,'defectteamleaderData'])->name('user.alldefectteamleaderData');
 Route::get('employee-defect-user', [EditController::class,'defectemployeeData'])->name('user.alldefectemployeeData');
+
+//User Salary
+Route::get('user-salary', [UserSallery::class, 'userSallery'])->name('userSallery');
+
 });

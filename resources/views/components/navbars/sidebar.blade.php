@@ -143,7 +143,7 @@
          <li class="nav-item">
             <a href="{{ route('userSallery')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'userSallery' ? ' active bg-gradient-primary' : '' }}">
             <i style="font-size: 1rem;" class="fa fa-calendar ps-2 pe-2 text-center"></i>
-            <span class="nav-link-text ms-1">User Sallery</span> </a>
+            <span class="nav-link-text ms-1">User Salary</span> </a>
          </li>
          @endif
        </ul>
