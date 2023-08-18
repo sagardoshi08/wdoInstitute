@@ -66,6 +66,7 @@ Route::get('apply-job', [ApplyJob::class, 'view'])->name('Apply-job');
 Route::post('apply-job-create', [UserManagement::class, 'applyJobCreate'])->name('applyJobCreate');
 Route::post('job-email-validation', [ApplyJob::class, 'job_email_validation'])->name('JobEmailValidation');
 Route::get('attendance-clone', [UserAttendence::class,'attendanceClone'])->name('attendanceClone');
+Route::get('remaining-logout', [Logout::class,'remainingLogout'])->name('remainingLogout');
 
 Route::group(['middleware' => 'auth'], function () {
 Route::get('dashboard', Dashboard::class)->name('dashboard');

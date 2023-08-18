@@ -63,17 +63,24 @@
           </li>
 
           <li class="">
-             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ Route::currentRouteName() == 'all-active-user' ||  Route::currentRouteName() == 'attendance'  ? ' active bg-gradient-primary' : '' }}">
+             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ Route::currentRouteName() == 'all-active-user' ||  Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userSallery'  ? ' active bg-gradient-primary' : '' }}">
              <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center"></i>
              <span class="ms-1 d-sm-inline">User Profile</span>
              </a>
-             <ul class="collapse {{ Route::currentRouteName() == 'add' || Route::currentRouteName() == 'all-active-user' || Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management' ? 'show' : '' }} nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+             <ul class="collapse {{ Route::currentRouteName() == 'add' || Route::currentRouteName() == 'all-active-user' || Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userSallery' || Route::currentRouteName() == 'user2-management' ? 'show' : '' }} nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
              <li class="w-100">
                  <a href="{{ route('all-active-user')}}" class="nav-link px-0 {{ Route::currentRouteName() == 'all-active-user' || Route::currentRouteName() == 'user2-management' ? ' active bg-gradient-primary' : '' }}"> <i class="" ></i>All Active User</a>
               </li>
               <li class="w-100">
                  <a href="{{ route('attendance')}}" class="nav-link px-0 {{ Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management'  ? ' active bg-gradient-primary' : '' }}"> <i class=""></i>User Attendence</a>
               </li>
+              @if(auth()->user()->role == 'super_admin')
+              <li class="nav-item">
+                 <a href="{{ route('userSallery')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'userSallery' ? ' active bg-gradient-primary' : '' }}">
+                 <i style="font-size: 1rem;" class="ps-2 pe-2 text-center"></i>
+                 <span class="nav-link-text ms-1">User Salary</span> </a>
+              </li>
+              @endif
               {{-- <li class="w-100">
                 <a href="{{ route('userSalary')}}" class="nav-link px-0 {{ Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management'  ? ' active bg-gradient-primary' : '' }}"> <i class=""></i>User Salary</a>
              </li> --}}
@@ -134,18 +141,13 @@
             <i style="font-size: 1rem;" class="fas fa-user-circle ps-2 pe-2 text-center"></i>
             <span class="nav-link-text ms-1">View Profile</span> </a>
          </li>
-         @if(auth()->user()->role == 'super_admin')
+         {{-- @if(auth()->user()->role == 'super_admin') --}}
          <li class="nav-item">
             <a href="{{ route('holiday')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'holiday' ? ' active bg-gradient-primary' : '' }}">
             <i style="font-size: 1rem;" class="fa fa-calendar ps-2 pe-2 text-center"></i>
             <span class="nav-link-text ms-1">Holiday</span> </a>
          </li>
-         <li class="nav-item">
-            <a href="{{ route('userSallery')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'userSallery' ? ' active bg-gradient-primary' : '' }}">
-            <i style="font-size: 1rem;" class="fa fa-calendar ps-2 pe-2 text-center"></i>
-            <span class="nav-link-text ms-1">User Salary</span> </a>
-         </li>
-         @endif
+         {{-- @endif --}}
        </ul>
     </div>
  </aside>
