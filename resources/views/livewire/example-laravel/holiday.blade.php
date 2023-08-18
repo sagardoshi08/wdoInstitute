@@ -14,7 +14,7 @@
     }
     .card .students-start-col .showing-results {
     position: absolute;
-    top: 15%;
+    top: 11%;
 }
 div.dataTables_wrapper div.dataTables_length label{
     display: flex;
@@ -29,8 +29,11 @@ div.dataTables_wrapper div.dataTables_length label{
         <div class="students-text jgba">
             <h4 class="card-title text-start">Holiday List</h4>
             <div class="me-3 my-3 text-start mt-n3">
-                <div class="text-end"><button wire:click="bank()" class="btn bg-dark mb-0 my-auto rounded-pill text-white add-holiday-btn" status="Reject">Add</button></div>
-                            </div>
+                @if(auth()->user()->role == 'super_admin')
+                <div class="text-end"><button wire:click="bank()" class="btn bg-dark mb-0 my-auto rounded-pill text-white add-holiday-btn"      status="Reject">Add</button>
+                </div>
+                @endif
+            </div>
         </div>
         <div class="row students-start-col">
             <div class="showing-results input-group input-group-outline d-flex mt-0 custom-showing align-items-center justify-content-end">
@@ -46,11 +49,13 @@ div.dataTables_wrapper div.dataTables_length label{
                 <div class="table-responsive">
                     <table class="table align-items-center mb-0" id="attendance-table">
                         <thead>
-                            <tr>
+                            <tr class="bg-dark">
                                 <th>Sr no.</th>
                                 <th>Holiday Name</th>
                                 <th>Date</th>
+                                @if(auth()->user()->role == 'super_admin')
                                 <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody id="history-data">
@@ -59,9 +64,11 @@ div.dataTables_wrapper div.dataTables_length label{
                                 <td>{{($key+1)}}</td>
                                 <td>{{ $holi->holiday_name }}</td>
                                 <td>{{ $holi->date }}</td>
+                                @if(auth()->user()->role == 'super_admin')
                                 <td>
                                     <button type="button" delete-id="{{$holi->id}}" class="btn btn-danger btn-md icon-btn ms-2 w-4 delete-link btn mb-0 btn-success btn-link bg-dark"><i class="fa fa-trash"></i></button>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -85,7 +92,7 @@ div.dataTables_wrapper div.dataTables_length label{
           <h4 class="modal-title remark-modal-title"></h4>
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
-        <form id="remark-form" action="{{route('holideLeave')}}" method="POST">
+        <form id="remark-form" action="{{route('holideLeave')}}" method="POST" name="registration">
          @csrf
         <!-- Modal body -->
         <div class="modal-body">
@@ -93,19 +100,19 @@ div.dataTables_wrapper div.dataTables_length label{
                 <h4 class="section-heading"></h4>
                 <div class="mb-4 col-sm-12 col-md-6 create-edit-validation">
                    <label for="userName" class="w-200 block text-gray-700 text-sm font-bold mb-2 text-start">Title<span class="det-alert">*</span></label><br>
-                   <input name="holiday_name" type="text" class="w-100 required shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid" placeholder="Title" aria-required="true" aria-invalid="false">
+                   <input name="holiday_name" id="holiday_name" type="text" class="w-100 required shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid" placeholder="Title" >
                 </div>
 
                 <div class="mb-4 col-sm-12 col-md-6 create-edit-validation">
                     <label for="dob" class="w-200 block text-gray-700 text-sm font-bold mb-2 text-start">Date<span class="det-alert">*</span></label><br>
-                    <input class="form-control required w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="date" aria-required="true">
+                    <input class="form-control required w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" name="date" id="date" >
                  </div>
             </div>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger close" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" name="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
       </div>
@@ -155,3 +162,33 @@ div.dataTables_wrapper div.dataTables_length label{
             }
         });
      </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+<script>
+  // Wait for the DOM to be ready
+$(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("form[name='registration']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      holiday_name: "required",
+      date: "required",
+    },
+    // Specify validation error messages
+    messages: {
+        holiday_name: "Please enter Holiday Name",
+        date: "Please enter Date",
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+ </script>
