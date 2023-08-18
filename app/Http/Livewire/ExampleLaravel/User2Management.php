@@ -75,34 +75,38 @@ class User2Management extends Component
             $user = User::where('role', '!=', 'super_admin')
                 ->where('role', 'like', '%' . $this->search . '%')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',Null)
-                ->orWhere('job_status','Approved')
-                ->get();
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
         }elseif (auth()->user()->role == 'Admin') {
              $user = User::where('role', '!=', 'super_admin')
                 ->where('role', '!=', 'Admin')
                 ->where('role', 'like', '%' . $this->search . '%')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',Null)
-                ->orWhere('job_status','Approved')
-                ->get();
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
         }elseif (auth()->user()->role == 'Manager') {
              $user = User::where('role', '!=', 'super_admin')
                 ->where('role', '!=', 'Admin')
                  ->where('role', '!=', 'Manager')
                 ->where('role', 'like', '%' . $this->search . '%')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',null)
-                ->orWhere('job_status','Approved')
-                ->get();
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
         }else{
             $user = User::where('role', 'Employee')
                 ->orWhere('role', 'Other')
                 ->where('role', 'like', '%' . $this->search . '%')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',null)
-                ->orWhere('job_status','Approved')
-                ->get();
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
         }
 
         return view(

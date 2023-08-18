@@ -73,9 +73,10 @@ class AdminManagement extends Component
 
             $user = User::where('role','Admin')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',Null)
-                ->orWhere('job_status','Approved')
-                ->paginate($this->perPage);
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
 
         return view(
             'livewire.example-laravel.adminmanagement',

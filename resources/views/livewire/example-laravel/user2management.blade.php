@@ -159,7 +159,7 @@
                                         <div class="location">
                                             <button class="active redirect-user btn btn-info mt-2">location</button>
                                         </div>
-                                    </div>
+                                </div>
                                 @endif
                             </div>
                             </a>

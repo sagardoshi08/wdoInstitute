@@ -23,7 +23,10 @@
                <a class="nav-link active nav-button"  href="{{ route('user2-management')}}" id="nav-home-tab" data-bs-target="#nav-basic" aria-controls="nav-home">
                   <div>
                      <span> All Users</span>
-                     <bdi>{{DB::table('users')->where('role','!=','super_admin')->where('job_status',Null)->orWhere('job_status','Approved')->count()}}</bdi>
+                     <bdi>{{DB::table('users')->where('role','!=','super_admin')->where(function($query) {
+                                $query->where('job_status', Null)
+                                    ->orWhere('job_status','Approved');
+                            })->count()}}</bdi>
                   </div>
                   <label class="switch">
                   <input role="all_user" type="checkbox" {{$role_status->all_user == 0 ? 'checked' : ''}} value="{{$role_status->all_user}}" class="all_user">
@@ -33,7 +36,10 @@
                <a class="nav-link active nav-button"  href="{{ route('admin-management')}}" id="nav-home-tab" data-bs-target="#nav-basic" aria-controls="nav-home">
                   <div>
                      <span> Admin</span>
-                     <bdi>{{DB::table('users')->where('role','Admin')->where('job_status',Null)->orWhere('job_status','Approved')->count()}}</bdi>
+                     <bdi>{{DB::table('users')->where('role','Admin')->where(function($query) {
+                                $query->where('job_status', Null)
+                                    ->orWhere('job_status','Approved');
+                            })->count()}}</bdi>
                   </div>
                   <label class="switch">
                   <input role="Admin" type="checkbox" {{$role_status->Admin == 0 ? 'checked' : ''}} value="{{$role_status->Admin}}" class="admin">
@@ -45,7 +51,10 @@
                <a class="nav-link active nav-button"  href="{{ route('manager-management')}}" id="nav-home-tab" data-bs-target="#nav-basic" aria-controls="nav-home">
                   <div>
                      <span> Manager</span>
-                     <bdi>{{DB::table('users')->where('role','Manager')->where('job_status',Null)->orWhere('job_status','Approved')->count()}}</bdi>
+                     <bdi>{{DB::table('users')->where('role','Manager')->where(function($query) {
+                                $query->where('job_status', Null)
+                                    ->orWhere('job_status','Approved');
+                            })->count()}}</bdi>
                   </div>
                   <label class="switch">
                   <input role="Manager" type="checkbox" {{$role_status->Manager == 0 ? 'checked' : ''}} value="{{$role_status->Manager}}" class="manager">
@@ -57,7 +66,10 @@
                <a class="nav-link active nav-button"  href="{{ route('teamleader-management')}}" id="nav-home-tab" data-bs-target="#nav-basic" aria-controls="nav-home">
                   <div>
                      <span> Team Leader</span>
-                     <bdi>{{DB::table('users')->where('role','Team Leader')->where('job_status',Null)->orWhere('job_status','Approved')->count()}}</bdi>
+                     <bdi>{{DB::table('users')->where('role','Team Leader')->where(function($query) {
+                                $query->where('job_status', Null)
+                                    ->orWhere('job_status','Approved');
+                            })->count()}}</bdi>
                   </div>
                   <label class="switch">
                   <input role="Team_Leader" type="checkbox" {{$role_status->Team_Leader == 0 ? 'checked' : ''}} value="{{$role_status->Team_Leader}}" class="teamleader">
@@ -69,7 +81,10 @@
                <a class="nav-link active nav-button"  href="{{ route('emoloyee-management')}}" id="nav-home-tab" data-bs-target="#nav-basic" aria-controls="nav-home">
                   <div>
                      <span>Employee</span>
-                     <bdi>{{DB::table('users')->where('role','Employee')->where('job_status',Null)->orWhere('job_status','Approved')->count()}}</bdi>
+                     <bdi>{{DB::table('users')->where('role','Employee')->where(function($query) {
+                                $query->where('job_status', Null)
+                                    ->orWhere('job_status','Approved');
+                            })->count()}}</bdi>
                   </div>
                   <label class="switch">
                   <input role="Employee" type="checkbox" {{$role_status->Employee == 0 ? 'checked' : ''}} value="{{$role_status->Employee}}" class="employee">

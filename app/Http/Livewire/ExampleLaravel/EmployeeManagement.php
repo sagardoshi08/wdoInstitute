@@ -73,9 +73,10 @@ class EmployeeManagement extends Component
 
             $user = User::where('role','Employee')
                 ->where('name', 'like', '%' . $this->search_name . '%')
-                ->where('job_status',Null)
-                ->orWhere('job_status','Approved')
-                ->get();
+                ->where(function($query) {
+                    $query->where('job_status', Null)
+                        ->orWhere('job_status','Approved');
+                })->get();
 
         return view(
             'livewire.example-laravel.employee',
