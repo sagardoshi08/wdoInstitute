@@ -322,4 +322,46 @@ class UserAttendence extends Component
                 
         }
     }
-}
+
+    public function updateUserActivity(){
+        $status = User::select('login_status')->where(['id'=>Auth::id()])->first();
+        if($status && $status->login_status == 0){
+            Auth::logout();
+            echo json_encode(array('success'=>false, 'message'=> "Session expire logout."));
+            exit();
+        } 
+        Attendance::where(['user_id'=>Auth::id()])->update(['last_activity_time'=>date("Y-m-d H:i:s")]);
+        echo json_encode(array('success'=>true));
+        exit();
+    }
+
+    public function updateLoginStatus(){
+        $userId = User::select('id')->where(['login_status'=>1])->get();
+        foreach($userId as $UI){
+            $attendance = Attendance::select('id','attendance_history','last_activity_time','working_hours')->where(['user_id'=>$UI->id])->orderBy('id','DESC')->first();
+            $to = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+            $from = Carbon::createFromFormat('Y-m-d H:i:s', $attendance->last_activity_time);
+    
+            $diffInMinutes = $to->diffInMinutes($from);
+            if($diffInMinutes >= 5){
+                $to = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+                $from = "";
+        
+                $oldattendhis = json_decode($attendance->attendance_history);
+                foreach($oldattendhis as $key=>$data){
+                    if($data->end_time == ''){
+                        $from = Carbon::createFromFormat('Y-m-d H:i:s', $data->start_time);
+                        $oldattendhis[$key]->end_time = date('Y-m-d H:i:s');
+                    }
+                }
+                $hourdiff = $to->diffInMinutes($from);
+                Attendance::where(['id'=>$attendance->id])->update([
+                    'attendance_history'=>json_encode($oldattendhis),
+                    "working_hours"=>($attendance->working_hours+$hourdiff),
+                    "is_cronjob_logout"=>1
+                ]);
+                User::where(array('id'=>$UI->id))->update(['login_status'=>0]);
+            }
+        } 
+    }
+} 

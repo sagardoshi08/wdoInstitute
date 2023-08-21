@@ -183,6 +183,7 @@ p{
 <script src="{{asset('js/store.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/jquery-idleTimeout.js')}}" type="text/javascript"></script>
   <script type="text/javascript">
+    var updateActivity = null;
     $(document).ready(function() {
       $(document).on('click', '.redirect-user', function() {
             $.ajax({
@@ -244,7 +245,8 @@ p{
   }
 
   window.addEventListener('beforeunload', (event) => {
-      if (validNavigation==0){
+    clearInterval(updateActivity);
+      /*if (validNavigation==0){
           store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) - 1));
           console.log("activeTabCounts",parseInt(store.get('activeTabCounts')))
           if(parseInt(store.get('activeTabCounts')) <= 0){ 
@@ -256,7 +258,7 @@ p{
             }); 
           }
           endSession();
-      }
+      }*/ 
   })
 
   var validNavigation = 0;
@@ -297,5 +299,13 @@ p{
   // Wire up the events as soon as the DOM tree is ready
   $(document).ready(function() {
       bindDOMEvents(); 
+      updateActivity = setInterval(() => {
+        $.get('{{ route("update-user-activity") }}',function(res){
+          if(res.success == false){
+            window.location.href="/";
+          }
+        },'JSON');
+      }, 5000);
   });
   </script>
+ 
