@@ -123,12 +123,14 @@
          // Search header
          
          $(document).ready(function() {
-         
-         $(".fa-search").click(function() {
-         $(".search-box").toggle();
-         $("input[type='text']").focus();
-         });
-         
+			 $(".fa-search").click(function() {
+				$(".search-box").toggle();
+				$("input[type='text']").focus();
+			 });
+				
+			if (localStorage.getItem("activeTabCounts") != null) {
+				localStorage.removeItem("activeTabCounts");
+			}
          });
          
          

@@ -84,3 +84,9 @@
                     </div>
                 </div>
             </div>
+			
+<script>
+	if (localStorage.getItem("activeTabCounts") != null) {
+		localStorage.removeItem("activeTabCounts");
+	}
+</script>
