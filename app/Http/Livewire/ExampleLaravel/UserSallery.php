@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ExampleLaravel;
 use App\Http\Controllers\Controller;
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Attendance;
 use App\Models\Holiday;
 use App\Models\RoleStatus;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,7 @@ use Auth;
 
 class UserSallery extends Controller
 {
+
     public function userSallery()
     {
         $all_user = User::where('role','!=','super_admin')->where(function($query) {

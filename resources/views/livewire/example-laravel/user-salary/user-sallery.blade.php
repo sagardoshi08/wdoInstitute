@@ -108,6 +108,21 @@
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Role
                                                 </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Year
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Month
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Working hours
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Active Hours
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Due Hours
+                                                </th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -131,6 +146,31 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{ $user->role }}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm"></h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"></h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"></h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"></h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"></h6>
                                                    </div>
                                                 </td>
                                              </tr>
@@ -202,6 +242,21 @@
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Role
                                                 </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Year
+                                               </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Month
+                                               </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Working hours
+                                               </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Active Hours
+                                               </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Due Hours
+                                               </th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -227,6 +282,31 @@
                                                       <h6 class="mb-0 text-sm">{{ $user->role }}</h6>
                                                    </div>
                                                 </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"></h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                  <div class="d-flex flex-column justify-content-end">
+                                                     <h6 class="mb-0 text-sm"></h6>
+                                                  </div>
+                                               </td>
+                                               <td>
+                                                  <div class="d-flex flex-column justify-content-end">
+                                                     <h6 class="mb-0 text-sm"></h6>
+                                                  </div>
+                                               </td>
+                                               <td>
+                                                  <div class="d-flex flex-column justify-content-end">
+                                                     <h6 class="mb-0 text-sm"></h6>
+                                                  </div>
+                                               </td>
+                                               <td>
+                                                  <div class="d-flex flex-column justify-content-end">
+                                                     <h6 class="mb-0 text-sm"></h6>
+                                                  </div>
+                                               </td>
                                              </tr>
                                              @endforeach
                                              @else
@@ -279,6 +359,21 @@
                                              <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                 Role
                                              </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Year
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Month
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Working hours
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Active Hours
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Due Hours
+                                            </th>
                                           </tr>
                                        </thead>
                                        <tbody>
@@ -304,6 +399,31 @@
                                                    <h6 class="mb-0 text-sm">{{ $user->role }}</h6>
                                                 </div>
                                              </td>
+                                             <td>
+                                                <div class="d-flex flex-column justify-content-end">
+                                                   <h6 class="mb-0 text-sm"></h6>
+                                                </div>
+                                             </td>
+                                             <td>
+                                               <div class="d-flex flex-column justify-content-end">
+                                                  <h6 class="mb-0 text-sm"></h6>
+                                               </div>
+                                            </td>
+                                            <td>
+                                               <div class="d-flex flex-column justify-content-end">
+                                                  <h6 class="mb-0 text-sm"></h6>
+                                               </div>
+                                            </td>
+                                            <td>
+                                               <div class="d-flex flex-column justify-content-end">
+                                                  <h6 class="mb-0 text-sm"></h6>
+                                               </div>
+                                            </td>
+                                            <td>
+                                               <div class="d-flex flex-column justify-content-end">
+                                                  <h6 class="mb-0 text-sm"></h6>
+                                               </div>
+                                            </td>
                                           </tr>
                                           @endforeach
                                           @else
@@ -356,6 +476,21 @@
                                           <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                              Role
                                           </th>
+                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Year
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Month
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Working hours
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Active Hours
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Due Hours
+                                         </th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -381,6 +516,31 @@
                                                 <h6 class="mb-0 text-sm">{{ $user->role }}</h6>
                                              </div>
                                           </td>
+                                          <td>
+                                             <div class="d-flex flex-column justify-content-end">
+                                                <h6 class="mb-0 text-sm"></h6>
+                                             </div>
+                                          </td>
+                                          <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
                                        </tr>
                                        @endforeach
                                        @else
@@ -432,6 +592,21 @@
                                           <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                              Role
                                           </th>
+                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Year
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Month
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Working hours
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Active Hours
+                                         </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Due Hours
+                                         </th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -457,6 +632,31 @@
                                                 <h6 class="mb-0 text-sm">{{ $user->role }}</h6>
                                              </div>
                                           </td>
+                                          <td>
+                                             <div class="d-flex flex-column justify-content-end">
+                                                <h6 class="mb-0 text-sm"></h6>
+                                             </div>
+                                          </td>
+                                          <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
+                                         <td>
+                                            <div class="d-flex flex-column justify-content-end">
+                                               <h6 class="mb-0 text-sm"></h6>
+                                            </div>
+                                         </td>
                                        </tr>
                                        @endforeach
                                        @else
@@ -492,31 +692,31 @@
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             }
         });
-   
+
         var dataTable_manager = $('.sample_data1').DataTable({
             "oLanguage": {
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             }
         });
-   
+
         var dataTable_teamlead = $('.sample_data2').DataTable({
             "oLanguage": {
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             }
         });
-   
+
         var dataTable_employee = $('.sample_data3').DataTable({
             "oLanguage": {
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             }
         });
-   
+
         var dataTable_alluser = $('.sample_data4').DataTable({
             "oLanguage": {
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             }
         });
-   
+
         $(document).on('click', '.admin-btn-tab', function() {
             $('.admin-btn-tab').addClass('active');
             $('#nav-basic').addClass('active show');
@@ -529,7 +729,7 @@
             $('.all-btn-tab').removeClass('active');
             $('#nav-basic1').removeClass('active show');
         });
-   
+
         $(document).on('click', '.manager-btn-tab', function() {
             $('.manager-btn-tab').addClass('active');
             $('#nav-college').addClass('active show');
@@ -542,7 +742,7 @@
             $('.all-btn-tab').removeClass('active');
             $('#nav-basic1').removeClass('active show');
         });
-   
+
         $(document).on('click', '.teamlead-btn-tab', function() {
             $('.teamlead-btn-tab').addClass('active');
             $('#nav-nsp').addClass('active show');
@@ -555,7 +755,7 @@
             $('.all-btn-tab').removeClass('active');
             $('#nav-basic1').removeClass('active show');
         });
-   
+
         $(document).on('click', '.employee-btn-tab', function() {
             $('.employee-btn-tab').addClass('active');
             $('#nav-bank').addClass('active show');
