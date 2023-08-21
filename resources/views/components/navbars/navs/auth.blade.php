@@ -235,5 +235,67 @@ p{
   //     }
 	// 		attendence_expireSession();
 	// 	/*end track attendence working hours*/
-	// @endif
+	// @endif  
+
+  if(store.get('activeTabCounts')){
+      store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) + 1));
+  }else{
+      store.set('activeTabCounts', 1); 
+  }
+
+  window.addEventListener('beforeunload', (event) => {
+      if (validNavigation==0){
+          store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) - 1));
+          console.log("activeTabCounts",parseInt(store.get('activeTabCounts')))
+          if(parseInt(store.get('activeTabCounts')) <= 0){ 
+            $.ajax({
+                type: 'get',
+                url: "{{url('attendence-logout')}}",
+                success: function(data) {
+                }
+            }); 
+          }
+          endSession();
+      }
+  })
+
+  var validNavigation = 0;
+
+  function endSession() {
+    console.log("Browser or Broswer tab closed");
+  }
+
+  function bindDOMEvents() {
+      //  unload works on both closing tab and on refreshing tab.
+      // Attach the event keypress to exclude the F5 refresh
+      $(document).keydown(function(e){
+          var key=e.which || e.keyCode;
+          if (key == 116){
+              validNavigation = 1;
+          }
+      });
+
+      // Attach the event click for all links in the page
+      $("a").bind("click", function(event){
+        if (event.ctrlKey || event.metaKey || event.currentTarget.href.indexOf("#") > -1) {}else{
+          store.set('activeTabCounts', parseInt(store.get('activeTabCounts')) - 1);
+        }  
+        validNavigation = 1;
+      });
+ 
+      // Attach the event submit for all forms in the page
+      $("form").bind("submit", function(){
+          validNavigation = 1;
+      });
+
+      // Attach the event click for all inputs in the page
+      $("input[type=submit]").bind("click", function(){
+          validNavigation = 1;
+      });
+  }
+
+  // Wire up the events as soon as the DOM tree is ready
+  $(document).ready(function() {
+      bindDOMEvents(); 
+  });
   </script>

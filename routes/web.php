@@ -149,6 +149,7 @@ Route::post('holiday-leave', [HolidayManagement::class ,'holideLeave'])->name('h
 Route::post('change-job-defect', [EditController::class ,'jobStatusDefect'])->name('jobStatusDefect');
 Route::post('send-offer-letter', [EditController::class ,'sendOfferLetter'])->name('sendOfferLetter');
 Route::post('mail-offer-letter', [EditController::class ,'mailOfferLetter'])->name('mailOfferLetter');
+Route::post('user-attendance-history', [UserAttendence::class ,'userAttendanceHistory'])->name('userAttendanceHistory');
 
 Route::get('all-pending-user', [EditController::class,'pendingUserData'])->name('user.allPendingUserData');
 Route::get('admin-pending-user', [EditController::class,'pendingadminData'])->name('user.allPendingadminData');

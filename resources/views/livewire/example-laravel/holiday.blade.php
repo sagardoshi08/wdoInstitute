@@ -18,7 +18,7 @@
     }
     .card .students-start-col .showing-results {
     position: absolute;
-    top: 11%;
+    top: 19%;
 }
 div.dataTables_wrapper div.dataTables_length label{
     display: flex;

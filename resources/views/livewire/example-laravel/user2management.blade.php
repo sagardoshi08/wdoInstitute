@@ -82,6 +82,7 @@
                         @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$data->id)->first(); @endphp
                         <div class="offset-md-0 offset-sm-1 card-main">
                             <div class="right-menu d-none"><button class="active redirect-user" user-id="{{$data->id}}">login</button></div>
+                            <span class="history-btn" id="{{$data->id}}"><i class="fa fa-history" aria-hidden="true" style="font-size:24px; position: relative; top: 40px; z-index: 999; left: 10px; cursor: pointer;"></i></span>
                             <a href="{{ route('viewuser',$data->id)}}">
                             <div class="card align-items-center">
                                 <div class="top-card-sec d-flex align-items-center">
@@ -174,6 +175,29 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="attendance-history">
+   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title remark-modal-title">Attendance history</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+         </div>
+         <form id="attendance-history-form" action="" method="POST" style="overflow-y: scroll;">
+            @csrf
+            <!-- Modal body -->
+            <input type="hidden" name="user_id" class="user-id" value="">
+            <div class="modal-body">
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger close" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -192,6 +216,30 @@
                         $this.val(data);
                     }
                 });
+        });
+
+        $(document).on('click', '.close', function() {
+            $('#attendance-history').modal('hide');
+        });
+
+        $(document).on('click', '.history-btn', function() {
+            $('.user-id').val($(this).attr('id'));
+        
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('userAttendanceHistory') }}",
+                    data: {
+                        'id': $(this).attr('id'),
+                        'status': $(this).val(),
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'html',
+                    success: function(data) {
+                        $('.modal-body').html(data);
+                        $('#attendance-history').modal('show');
+                    }
+                });
+            
         });
 
         $(document).on('click', '.delete-link', function() {
