@@ -247,8 +247,7 @@ p{
       if (validNavigation==0){
           store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) - 1));
           console.log("activeTabCounts",parseInt(store.get('activeTabCounts')))
-          debugger
-          if(parseInt(store.get('activeTabCounts')) == 0){
+          if(parseInt(store.get('activeTabCounts')) <= 0){ 
             $.ajax({
                 type: 'get',
                 url: "{{url('attendence-logout')}}",
@@ -277,10 +276,13 @@ p{
       });
 
       // Attach the event click for all links in the page
-      $("a").bind("click", function(){
-          validNavigation = 1;
+      $("a").bind("click", function(event){
+        if (event.ctrlKey || event.metaKey || event.currentTarget.href.indexOf("#") > -1) {}else{
+          store.set('activeTabCounts', parseInt(store.get('activeTabCounts')) - 1);
+        }  
+        validNavigation = 1;
       });
-
+ 
       // Attach the event submit for all forms in the page
       $("form").bind("submit", function(){
           validNavigation = 1;
@@ -290,7 +292,6 @@ p{
       $("input[type=submit]").bind("click", function(){
           validNavigation = 1;
       });
-
   }
 
   // Wire up the events as soon as the DOM tree is ready
