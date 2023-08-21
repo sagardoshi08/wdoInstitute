@@ -293,26 +293,33 @@ class UserAttendence extends Component
         $user = Attendance::where(["attendance_date"=>date("Y-m-d"),'user_id'=>$request->id])->get()->first();
         echo '<div class="form-group">
         <label for="fname" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start"><b>Date</b></label>
-           <input type="text" id="attendance-date" class="border-0" name="attendance" value="'.$user->attendance_date.'" readOnly>
+           <input type="text" id="attendance-date" class="border-0" value="'.$user->attendance_date.'" readOnly>
         </div><br>';
         foreach(json_decode($user->attendance_history) as $data){
             if($data->end_time){
                 $endtime = date('H:i A',strtotime($data->end_time));
-                $boder = 'border-0';
             }else{
                 $endtime = ''; 
-                $boder = '';
             }
             echo '<div class="d-flex mb-2" style="justify-content: space-between;">
             <div>
                 <label for="login_time" class="w-100 block text-gray-700 text-sm font-bold text-start"><b>Login Time</b></label>
-                    <input type="text" id="login_time" class="border-0" name="login_time" value="'.date('H:i A',strtotime($data->start_time)).'" readOnly>
-                </div>
-                <div>
-                <label for="logout_time" class="w-100 block text-gray-700 text-sm font-bold text-start"><b>Logout Time</b></label>
-                    <input type="text" id="logout_time" class="'.$boder.'" name="logout_time" value="'.$endtime.'">
-                </div>
-            </div>';
+                    <input type="text" id="login_time" class="border-0" value="'.date('H:i A',strtotime($data->start_time)).'" readOnly>
+                </div>';
+                if($data->end_time){
+                    echo '<div>
+                    <label for="logout_time" class="w-100 block text-gray-700 text-sm font-bold text-start"><b>Logout Time</b></label>
+                        <input type="text" id="logout_time" class="border-0" value="'.$endtime.'" readOnly>
+                    </div>
+                </div>';
+                }else{
+                    echo '<div>
+                    <label for="logout_time" class="w-100 block text-gray-700 text-sm font-bold text-start"><b>Logout Time</b></label>
+                        <input type="time" name="end_time" id="logout_time" class="" name="logout_time">
+                    </div>
+                </div>';
+                }
+                
         }
     }
 }
