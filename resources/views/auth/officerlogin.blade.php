@@ -306,6 +306,9 @@ $(".fa-search").click(function() {
    $("input[type='text']").focus();
  });
 
+if (localStorage.getItem("activeTabCounts") != null) {
+		localStorage.removeItem("activeTabCounts");
+	}
 });
 
 @if(Request::segment(1)=="sign-in")

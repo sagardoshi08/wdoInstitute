@@ -133,7 +133,10 @@
         // Search header
 
         $(document).ready(function() {
-
+			if (localStorage.getItem("activeTabCounts") != null) {
+				localStorage.removeItem("activeTabCounts");
+			}
+			
             $(".fa-search").click(function() {
                 $(".search-box").toggle();
                 $("input[type='text']").focus();

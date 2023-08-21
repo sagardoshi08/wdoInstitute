@@ -89,7 +89,6 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-
    var validator = $('#login-form').validate({
         rules:{
             email: {
@@ -131,6 +130,10 @@ $(document).ready(function() {
             $('.login_btn').attr('disabled',true);
         }
     });
+	
+	if (localStorage.getItem("activeTabCounts") != null) {
+		localStorage.removeItem("activeTabCounts");
+	}
 });
 </script>
 <script type="text/javascript">
