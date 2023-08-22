@@ -82,7 +82,7 @@
                         @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$data->id)->first(); @endphp
                         <div class="offset-md-0 offset-sm-1 card-main">
                             <div class="right-menu d-none"><button class="active redirect-user" user-id="{{$data->id}}">login</button></div>
-                            <span class="history-btn" id="{{$data->id}}"><i class="fa fa-history" aria-hidden="true" style="font-size:24px; position: relative; top: 40px; z-index: 999; left: 10px; cursor: pointer;"></i></span>
+
                             <a href="{{ route('viewuser',$data->id)}}">
                             <div class="card align-items-center">
                                 <div class="top-card-sec d-flex align-items-center">
@@ -224,7 +224,7 @@
 
         $(document).on('click', '.history-btn', function() {
             $('.user-id').val($(this).attr('id'));
-        
+
                 $.ajax({
                     type: 'POST',
                     url: "{{ route('userAttendanceHistory') }}",
@@ -239,7 +239,7 @@
                         $('#attendance-history').modal('show');
                     }
                 });
-            
+
         });
 
         $(document).on('click', '.delete-link', function() {
