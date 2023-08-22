@@ -13,24 +13,24 @@
 
 <script>
 
-    var timeoutTimer;
-        // 5 min = 150*60*30;
-        //10 min = 300*60*30;
+    // var timeoutTimer;
+    //     // 5 min = 150*60*30;
+    //     //10 min = 300*60*30;
 
-    var expireTime = 900*60*900;
-    function expireSession(){
-        clearTimeout(timeoutTimer);
-        timeoutTimer = setTimeout("IdleTimeout()", expireTime);
-    }
-    function IdleTimeout() {
-        localStorage.setItem("logoutMessage", true);
-        window.location.href="{{url('attendence-logout')}}";
-    }
-    $(document).on('click mousemove scroll', function() {
-        expireSession();
-    });
-    expireSession();
-    window.onload = function(){	
+    // var expireTime = 900*60*900;
+    // function expireSession(){
+    //     clearTimeout(timeoutTimer);
+    //     timeoutTimer = setTimeout("IdleTimeout()", expireTime);
+    // }
+    // function IdleTimeout() {
+    //     localStorage.setItem("logoutMessage", true);
+    //     window.location.href="{{url('attendence-logout')}}";
+    // }
+    // $(document).on('click mousemove scroll', function() {
+    //     expireSession();
+    // });
+    // expireSession();
+    window.onload = function(){
 
 $(function(){
 //   $('#datepicker').datepicker();
