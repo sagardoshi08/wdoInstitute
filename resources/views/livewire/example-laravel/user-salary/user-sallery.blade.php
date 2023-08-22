@@ -1,4 +1,9 @@
 @include('components.include.header')
+<style>
+   div.dataTables_wrapper div.dataTables_filter {
+      text-align: left;
+   }
+</style>
 <div>
    <!-- Navbar -->
    <!-- End Navbar -->
@@ -24,8 +29,6 @@
                                     ->orWhere('job_status','Approved');
                             })->count()}}</bdi>
                      </button>
-                     @endif
-                     @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin')
                      <button class="nav-link nav-button manager-btn-tab" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-college" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                      <span> Manager</span>
                      <bdi>{{DB::table('users')->where('role','Manager')->where(function($query) {
@@ -33,8 +36,6 @@
                                     ->orWhere('job_status','Approved');
                             })->count()}}</bdi>
                      </button>
-                     @endif
-                     @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager')
                      <button class="nav-link nav-button teamlead-btn-tab" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-nsp" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                      <span> Team Leader</span>
                      <bdi>{{DB::table('users')->where('role','Team Leader')->where(function($query) {
@@ -42,8 +43,6 @@
                                     ->orWhere('job_status','Approved');
                             })->count()}}</bdi>
                      </button>
-                     @endif
-                     @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager' || auth()->user()->role == 'Team Leader')
                      <button class="nav-link nav-button employee-btn-tab" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                      <span> Employee</span>
                      <bdi>{{DB::table('users')->where('role','Employee')->where(function($query) {
@@ -55,7 +54,6 @@
                   </div>
                </nav>
                <div class="" id="nav-tabContent">
-                  @if(auth()->user()->role == 'super_admin')
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
                      <div class="accordion-body">
                         <div class="row">
@@ -82,7 +80,7 @@
                                  </div>
                               </div>
                               @endif
-                              <h2>{{count($alluser)}} All Users</h2>
+                              @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
                                     <div class="custom-container">
@@ -123,6 +121,15 @@
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                     Due Hours
                                                 </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Payable Amount
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Deducted Amount
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Action
+                                                </th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -150,27 +157,42 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm"></h6>
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"></h6>
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"></h6>
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_ours}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"></h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->active_ours}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"></h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                              </tr>
@@ -189,6 +211,7 @@
                         </div>
                      </div>
                   </div>
+                  @if(auth()->user()->role == 'super_admin')
                   <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
                      <div class="accordion-body">
                         <div class="row">
@@ -257,6 +280,15 @@
                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Due Hours
                                                </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Payable Amount
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Deducted Amount
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Action
+                                                </th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -283,30 +315,45 @@
                                                    </div>
                                                 </td>
                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"></h6>
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
-                                                  <div class="d-flex flex-column justify-content-end">
-                                                     <h6 class="mb-0 text-sm"></h6>
-                                                  </div>
-                                               </td>
-                                               <td>
-                                                  <div class="d-flex flex-column justify-content-end">
-                                                     <h6 class="mb-0 text-sm"></h6>
-                                                  </div>
-                                               </td>
-                                               <td>
-                                                  <div class="d-flex flex-column justify-content-end">
-                                                     <h6 class="mb-0 text-sm"></h6>
-                                                  </div>
-                                               </td>
-                                               <td>
-                                                  <div class="d-flex flex-column justify-content-end">
-                                                     <h6 class="mb-0 text-sm"></h6>
-                                                  </div>
-                                               </td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->active_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                   </div>
+                                                </td>
                                              </tr>
                                              @endforeach
                                              @else
@@ -324,8 +371,6 @@
                      </div>
                   </div>
                </div>
-               @endif
-               @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin')
                <div class="tab-pane fade" id="nav-college" role="tabpanel" aria-labelledby="nav-college-tab">
                   <div class="accordion-body">
                      <div class="row">
@@ -374,6 +419,15 @@
                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                 Due Hours
                                             </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Payable Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Deducted Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Action
+                                             </th>
                                           </tr>
                                        </thead>
                                        <tbody>
@@ -400,30 +454,45 @@
                                                 </div>
                                              </td>
                                              <td>
-                                                <div class="d-flex flex-column justify-content-end">
-                                                   <h6 class="mb-0 text-sm"></h6>
-                                                </div>
-                                             </td>
-                                             <td>
-                                               <div class="d-flex flex-column justify-content-end">
-                                                  <h6 class="mb-0 text-sm"></h6>
-                                               </div>
-                                            </td>
-                                            <td>
-                                               <div class="d-flex flex-column justify-content-end">
-                                                  <h6 class="mb-0 text-sm"></h6>
-                                               </div>
-                                            </td>
-                                            <td>
-                                               <div class="d-flex flex-column justify-content-end">
-                                                  <h6 class="mb-0 text-sm"></h6>
-                                               </div>
-                                            </td>
-                                            <td>
-                                               <div class="d-flex flex-column justify-content-end">
-                                                  <h6 class="mb-0 text-sm"></h6>
-                                               </div>
-                                            </td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->active_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                   </div>
+                                                </td>
                                           </tr>
                                           @endforeach
                                           @else
@@ -441,8 +510,6 @@
                   </div>
                </div>
             </div>
-            @endif
-            @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager')
             <div class="tab-pane fade" id="nav-nsp" role="tabpanel" aria-labelledby="nav-nsp-tab">
                <div class="accordion-body">
                   <div class="row">
@@ -491,6 +558,15 @@
                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                              Due Hours
                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Payable Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Deducted Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Action
+                                             </th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -517,30 +593,45 @@
                                              </div>
                                           </td>
                                           <td>
-                                             <div class="d-flex flex-column justify-content-end">
-                                                <h6 class="mb-0 text-sm"></h6>
-                                             </div>
-                                          </td>
-                                          <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->active_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                   </div>
+                                                </td>
                                        </tr>
                                        @endforeach
                                        @else
@@ -557,8 +648,6 @@
                   </div>
                </div>
             </div>
-            @endif
-            @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager' || auth()->user()->role == 'Team Leader')
             <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
                <div class="accordion-body">
                   <div class="row">
@@ -607,6 +696,15 @@
                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                              Due Hours
                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Payable Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Deducted Amount
+                                             </th>
+                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                Action
+                                             </th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -633,30 +731,45 @@
                                              </div>
                                           </td>
                                           <td>
-                                             <div class="d-flex flex-column justify-content-end">
-                                                <h6 class="mb-0 text-sm"></h6>
-                                             </div>
-                                          </td>
-                                          <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
-                                         <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                               <h6 class="mb-0 text-sm"></h6>
-                                            </div>
-                                         </td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->active_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6>
+                                                   </div>
+                                                </td>
                                        </tr>
                                        @endforeach
                                        @else

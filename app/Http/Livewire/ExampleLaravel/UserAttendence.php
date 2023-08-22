@@ -3,6 +3,7 @@ namespace App\Http\Livewire\ExampleLaravel;
 use Livewire\Component;
 use App\Models\Attendance;
 use App\Models\User;
+use App\Models\Holiday;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -172,8 +173,9 @@ class UserAttendence extends Component
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $total_days= Carbon::now()->month($request->month)->daysInMonth - $daysForExtraCoding;
-
+            $holiday = Holiday::whereMonth('date', $request->month)->count();
+            $total_days= Carbon::now()->month($request->month)->daysInMonth - $daysForExtraCoding -$holiday;
+            
         }elseif($request->to_date == '' && $request->form_date){
             $month = date('m', strtotime($request->form_date));
             $dt = Carbon::create($request->form_date);
@@ -181,7 +183,9 @@ class UserAttendence extends Component
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding);
+            $holiday = Holiday::whereMonth('date', now()->month($month))->count();
+            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding -  $holiday);
+           
 
         }elseif($request->to_date && $request->form_date == ''){
             $month = date('m', strtotime($request->to_date));
@@ -190,17 +194,18 @@ class UserAttendence extends Component
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-
-            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding);
-
+            $holiday = Holiday::whereMonth('date', now()->month($month))->count();
+            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding - $holiday);
+        
         }else{
             $dt = Carbon::create($request->form_date);
             $dt2 = Carbon::create($request->to_date);
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-
-            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding);
+            $holiday = 0;
+            $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding-$holiday);
+           
         }
        
         $total_working_hour = intval($total_days)*intval($offer_letter->days_working_hour);

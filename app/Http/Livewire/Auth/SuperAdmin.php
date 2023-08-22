@@ -98,7 +98,12 @@ class SuperAdmin extends Component
                         ]);
                     }
                 }
-                return redirect('/dashboard')->with('status', $role.' Login Successfully!');
+                if($role == 'super_admin'){
+                    $user = 'Super Admin';
+                }else{
+                    $user = $role; 
+                }
+                return redirect('/dashboard')->with('status', $user.' Login Successfully!');
             }else{
                 throw ValidationException::withMessages([
                     'email' => 'Your provided credentials could not be verified.'
