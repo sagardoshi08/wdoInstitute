@@ -61,6 +61,7 @@ Route::get('documentation', [Login::class, 'documentation'])->name('Documentatio
 Route::post('store', [SuperAdmin::class, 'store'])->name('loginprocess');
 Route::post('save-location', [UserAttendence::class, 'saveLocation'])->name('save-location');
 // Route::get('sign-up', Register::class)->middleware('guest')->name('register');
+Route::get('salary-management', [UserSallery::class, 'salarymanagement'])->name('Salary-Management');
 
 Route::get('apply-job', [ApplyJob::class, 'view'])->name('Apply-job');
 Route::post('apply-job-create', [UserManagement::class, 'applyJobCreate'])->name('applyJobCreate');
@@ -104,7 +105,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     // Route::get('manager-task', ManagerTask::class)->name('manager-task');
     // Route::get('teamleader-task', TeamleaderTask::class)->name('teamleader-task');
     // Route::get('employee-task', EmployeeTask::class)->name('employee-task');
-    Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students'); 
+    Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students');
     Route::post('edit-profile', [EditProfile::class, 'updateprofile'])->name('updateProfile');
     Route::get('admindashboard', AdminDashboard::class)->name('admindashboard');
     Route::post('create-assigntask', [AdminTask::class, 'assigntask'])->name('createAssignTask');
@@ -122,6 +123,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     Route::post('delete-user', [UserManagement::class, 'userDelete'])->name('deleteUser');
     Route::post('holiday-delete', [HolidayManagement::class, 'holidayDelete'])->name('holidayDelete');
     // Route::get('add', StudentCreate::class)->name('add');
+    Route::get('viewsalary', [UserSallery::class, 'viewSalary'])->name('viewSalary');
 
     //student
     Route::get('students', StudentDetail::class)->name('Student Detail');
