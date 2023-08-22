@@ -157,12 +157,14 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                       {{-- <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6> --}}
+                                                       <h6 class="mb-0 text-sm">{{ date('Y') }}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                      {{-- <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6> --}}
+                                                      <h6 class="mb-0 text-sm">{{ date('m') }}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
