@@ -301,11 +301,11 @@ p{
       bindDOMEvents(); 
       updateActivity = setInterval(() => {
         $.get('{{ route("update-user-activity") }}',function(res){
-          if(res.success == false){
-            window.location.href="/";
+          if(res.success == false){ 
+            window.location.href="{{url('attendence-logout')}}";
           }
         },'JSON');
       }, 5000);
   });
   </script>
- 
+  

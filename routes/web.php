@@ -104,7 +104,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     // Route::get('manager-task', ManagerTask::class)->name('manager-task');
     // Route::get('teamleader-task', TeamleaderTask::class)->name('teamleader-task');
     // Route::get('employee-task', EmployeeTask::class)->name('employee-task');
-    Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students');
+    Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students'); 
     Route::post('edit-profile', [EditProfile::class, 'updateprofile'])->name('updateProfile');
     Route::get('admindashboard', AdminDashboard::class)->name('admindashboard');
     Route::post('create-assigntask', [AdminTask::class, 'assigntask'])->name('createAssignTask');
