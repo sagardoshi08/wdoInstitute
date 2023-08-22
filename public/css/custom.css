@@ -3092,9 +3092,9 @@ h5.text-start {
     right: 0;
 }
 
-.dataTables_wrapper {
+/* .dataTables_wrapper {
     overflow: hidden;
-}
+} */
 
 td.completed-task,
 td.assign-list,
