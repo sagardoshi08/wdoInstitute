@@ -68,109 +68,113 @@ Route::post('job-email-validation', [ApplyJob::class, 'job_email_validation'])->
 Route::get('attendance-clone', [UserAttendence::class,'attendanceClone'])->name('attendanceClone');
 Route::get('remaining-logout', [Logout::class,'remainingLogout'])->name('remainingLogout');
 
-Route::group(['middleware' => 'auth'], function () {
-Route::get('dashboard', Dashboard::class)->name('dashboard');
-Route::get('profile', UserProfile::class)->name('profile');
-Route::get('user-management', UserManagement::class)->name('user-management');
-Route::get('banks', BankDetail::class)->name('Bank Detail');
-Route::get('export', [UserManagement::class ,'export'])->name('export');
-Route::get('all-active-admin', AdminManagement::class)->name('admin-management');
-Route::get('all-active-manager', ManagerManagement::class)->name('manager-management');
-Route::get('all-active-teamleader', TeamleaderManagement::class)->name('teamleader-management');
-Route::get('all-active-emoloyee', EmployeeManagement::class)->name('emoloyee-management');
-Route::get('all-active-users', User2Management::class)->name('user2-management');
-
-Route::get('attendance', UserAttendence::class)->name('attendance');
-Route::get('login-logout-log/{id}', [UserAttendence::class,'viewLoginLogoutHistory'])->name('login-logout-log');
-Route::post('filter-attend-history', [UserAttendence::class,'filterAttendanceHistory'])->name('filterAttendanceHistory');
-
-Route::post('change-user-login', [Login::class,'changeUserLogin'])->name('changeUserLogin');
-
-Route::get('edit-management', [EditManagement::class,'show'])->name('edit-management');
-Route::post('role-status', [UserManagement::class, 'roleStatus'])->name('roleStatus');
-Route::post('user-status', [UserManagement::class, 'userStatus'])->name('userStatus');
-Route::post('user-create', [UserManagement::class, 'createuser'])->name('createUser');
-Route::get('edit-profile',[EditProfile::class,'show'])->name('edit-profile');
-Route::get('edit-user/{id}', [EditController::class, 'index'])->name('edituser');
-Route::post('user-update', [EditController::class, 'updateuser'])->name('updateUser');
-Route::post('email-validation', [EditController::class, 'email_validation'])->name('EmailValidation');
-Route::get('assign-task', AssignUsers::class)->name('assign-task');
-// Route::get('admin-task', AdminTask::class)->name('admin-task');
-// Route::get('manager-task', ManagerTask::class)->name('manager-task');
-// Route::get('teamleader-task', TeamleaderTask::class)->name('teamleader-task');
-// Route::get('employee-task', EmployeeTask::class)->name('employee-task');
-Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students');
-Route::post('edit-profile', [EditProfile::class, 'updateprofile'])->name('updateProfile');
-Route::get('admindashboard', AdminDashboard::class)->name('admindashboard');
-Route::post('create-assigntask', [AdminTask::class, 'assigntask'])->name('createAssignTask');
-Route::get('logout', [Logout::class, 'destroy'])->name('Logout');
-Route::get('attendence-logout', [Logout::class, 'attendence_destroy'])->name('attendence-logout');
-// Route::get('edit-profile/{id}', [EditProfile::class, 'index'])->name('editrofile');
-Route::post('assign-studentid', [AdminTask::class, 'getassignstudentid'])->name('getAssignStudentId');
-Route::get('viewuser/{id}', [ViewUser::class, 'viewuser'])->name('viewuser');
-Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
-Route::get('holiday', [HolidayManagement::class, 'holiday'])->name('holiday');
-Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
-Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
-Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');
-Route::post('update-reassigntask', [AdminTask::class, 'update_reassign_task'])->name('updateReassignTask');
-Route::post('delete-user', [UserManagement::class, 'userDelete'])->name('deleteUser');
-Route::post('holiday-delete', [HolidayManagement::class, 'holidayDelete'])->name('holidayDelete');
-// Route::get('add', StudentCreate::class)->name('add');
-
-//student
-Route::get('students', StudentDetail::class)->name('Student Detail');
-Route::get('student-create', StudentCreate::class)->name('add');
-Route::get('student_export', [StudentDetail::class ,'export'])->name('student_export');
-Route::post('student-store', [StudentCreate::class, 'store'])->name('studentStore');
-Route::get('student-edit/{id}', [StudentCreate::class ,'editnew'])->name('studentEdit');
-Route::post('student-update', [StudentCreate::class, 'update'])->name('studentUpdate');
-Route::post('get-branchname', [StudentCreate::class, 'getBranchName'])->name('getBranchName');
-Route::post('get-coursename', [StudentCreate::class, 'getCourseName'])->name('getCourseName');
-Route::post('get-ifsccode', [StudentCreate::class, 'getIfscode'])->name('getIfscCode');
-Route::post('get-courseyear', [StudentCreate::class, 'getCourseYear'])->name('getCourseYear');
-Route::post('delete-student', [StudentCreate::class, 'deletestudent'])->name('deletestudent');
+Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])->name('update-login-status');
 
 
-//college
-Route::get('colleges', CollegeDetail::class)->name('college');
-Route::post('colleges/store', [CollegeDetail::class ,'store'])->name('collegeStore');
-Route::get('colleges-create', [CollegeDetail::class,'createCollege'])->name('collegeCreate');
-Route::get('colleges-edit/{id}', [CollegeDetail::class,'edit'])->name('collegeEdit');
+    Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('profile', UserProfile::class)->name('profile');
+    Route::get('user-management', UserManagement::class)->name('user-management');
+    Route::get('banks', BankDetail::class)->name('Bank Detail');
+    Route::get('export', [UserManagement::class ,'export'])->name('export');
+    Route::get('all-active-admin', AdminManagement::class)->name('admin-management');
+    Route::get('all-active-manager', ManagerManagement::class)->name('manager-management');
+    Route::get('all-active-teamleader', TeamleaderManagement::class)->name('teamleader-management');
+    Route::get('all-active-emoloyee', EmployeeManagement::class)->name('emoloyee-management');
+    Route::get('all-active-users', User2Management::class)->name('user2-management');
 
-//User
-Route::get('all-user', [EditController::class,'allUser'])->name('user.allUser');
-Route::get('all-active-user', [EditController::class,'allActiveuser'])->name('all-active-user');
-Route::get('pending-user', [EditController::class,'allpendingUser'])->name('user.allpendingUser');
-Route::get('reject-user', [EditController::class,'allrejectUser'])->name('user.allrejectUser');
-Route::get('defect-user', [EditController::class,'alldefectUser'])->name('user.alldefectUser');
-Route::post('change-job-status', [EditController::class ,'jobStatusChange'])->name('jobStatusChange');
-Route::post('holiday-leave', [HolidayManagement::class ,'holideLeave'])->name('holideLeave');
-Route::post('change-job-defect', [EditController::class ,'jobStatusDefect'])->name('jobStatusDefect');
-Route::post('send-offer-letter', [EditController::class ,'sendOfferLetter'])->name('sendOfferLetter');
-Route::post('mail-offer-letter', [EditController::class ,'mailOfferLetter'])->name('mailOfferLetter');
-Route::post('user-attendance-history', [UserAttendence::class ,'userAttendanceHistory'])->name('userAttendanceHistory');
+    Route::get('attendance', UserAttendence::class)->name('attendance');
+    Route::get('login-logout-log/{id}', [UserAttendence::class,'viewLoginLogoutHistory'])->name('login-logout-log');
+    Route::post('filter-attend-history', [UserAttendence::class,'filterAttendanceHistory'])->name('filterAttendanceHistory');
+    // User Activity time update.
+    Route::get('update-user-activity', [UserAttendence::class, 'updateUserActivity'])->name('update-user-activity');
 
-Route::get('all-pending-user', [EditController::class,'pendingUserData'])->name('user.allPendingUserData');
-Route::get('admin-pending-user', [EditController::class,'pendingadminData'])->name('user.allPendingadminData');
-Route::get('manager-pending-user', [EditController::class,'pendingmanagerData'])->name('user.allPendingmanagerData');
-Route::get('teamleader-pending-user', [EditController::class,'pendingteamleaderData'])->name('user.allPendingteamleaderData');
-Route::get('employee-pending-user', [EditController::class,'pendingemployeeData'])->name('user.allPendingemployeeData');
+    Route::post('change-user-login', [Login::class,'changeUserLogin'])->name('changeUserLogin');
 
-Route::get('all-reject-user', [EditController::class,'rejectUserData'])->name('user.allrejectUserData');
-Route::get('admin-reject-user', [EditController::class,'rejectadminData'])->name('user.allrejectadminData');
-Route::get('manager-reject-user', [EditController::class,'rejectmanagerData'])->name('user.allrejectmanagerData');
-Route::get('teamleader-reject-user', [EditController::class,'rejectteamleaderData'])->name('user.allrejectteamleaderData');
-Route::get('employee-reject-user', [EditController::class,'rejectemployeeData'])->name('user.allrejectemployeeData');
+    Route::get('edit-management', [EditManagement::class,'show'])->name('edit-management');
+    Route::post('role-status', [UserManagement::class, 'roleStatus'])->name('roleStatus');
+    Route::post('user-status', [UserManagement::class, 'userStatus'])->name('userStatus');
+    Route::post('user-create', [UserManagement::class, 'createuser'])->name('createUser');
+    Route::get('edit-profile',[EditProfile::class,'show'])->name('edit-profile');
+    Route::get('edit-user/{id}', [EditController::class, 'index'])->name('edituser');
+    Route::post('user-update', [EditController::class, 'updateuser'])->name('updateUser');
+    Route::post('email-validation', [EditController::class, 'email_validation'])->name('EmailValidation');
+    Route::get('assign-task', AssignUsers::class)->name('assign-task');
+    // Route::get('admin-task', AdminTask::class)->name('admin-task');
+    // Route::get('manager-task', ManagerTask::class)->name('manager-task');
+    // Route::get('teamleader-task', TeamleaderTask::class)->name('teamleader-task');
+    // Route::get('employee-task', EmployeeTask::class)->name('employee-task');
+    Route::get('students-details/{id}', [AdminTask::class, 'students'])->name('students'); 
+    Route::post('edit-profile', [EditProfile::class, 'updateprofile'])->name('updateProfile');
+    Route::get('admindashboard', AdminDashboard::class)->name('admindashboard');
+    Route::post('create-assigntask', [AdminTask::class, 'assigntask'])->name('createAssignTask');
+    Route::get('logout', [Logout::class, 'destroy'])->name('Logout');
+    Route::get('attendence-logout', [Logout::class, 'attendence_destroy'])->name('attendence-logout');
+    // Route::get('edit-profile/{id}', [EditProfile::class, 'index'])->name('editrofile');
+    Route::post('assign-studentid', [AdminTask::class, 'getassignstudentid'])->name('getAssignStudentId');
+    Route::get('viewuser/{id}', [ViewUser::class, 'viewuser'])->name('viewuser');
+    Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
+    Route::get('holiday', [HolidayManagement::class, 'holiday'])->name('holiday');
+    Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
+    Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
+    Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');
+    Route::post('update-reassigntask', [AdminTask::class, 'update_reassign_task'])->name('updateReassignTask');
+    Route::post('delete-user', [UserManagement::class, 'userDelete'])->name('deleteUser');
+    Route::post('holiday-delete', [HolidayManagement::class, 'holidayDelete'])->name('holidayDelete');
+    // Route::get('add', StudentCreate::class)->name('add');
+
+    //student
+    Route::get('students', StudentDetail::class)->name('Student Detail');
+    Route::get('student-create', StudentCreate::class)->name('add');
+    Route::get('student_export', [StudentDetail::class ,'export'])->name('student_export');
+    Route::post('student-store', [StudentCreate::class, 'store'])->name('studentStore');
+    Route::get('student-edit/{id}', [StudentCreate::class ,'editnew'])->name('studentEdit');
+    Route::post('student-update', [StudentCreate::class, 'update'])->name('studentUpdate');
+    Route::post('get-branchname', [StudentCreate::class, 'getBranchName'])->name('getBranchName');
+    Route::post('get-coursename', [StudentCreate::class, 'getCourseName'])->name('getCourseName');
+    Route::post('get-ifsccode', [StudentCreate::class, 'getIfscode'])->name('getIfscCode');
+    Route::post('get-courseyear', [StudentCreate::class, 'getCourseYear'])->name('getCourseYear');
+    Route::post('delete-student', [StudentCreate::class, 'deletestudent'])->name('deletestudent');
 
 
-Route::get('all-defect-user', [EditController::class,'defectUserData'])->name('user.alldefectUserData');
-Route::get('admin-defect-user', [EditController::class,'defectadminData'])->name('user.alldefectadminData');
-Route::get('manager-defect-user', [EditController::class,'defectmanagerData'])->name('user.alldefectmanagerData');
-Route::get('teamleader-defect-user', [EditController::class,'defectteamleaderData'])->name('user.alldefectteamleaderData');
-Route::get('employee-defect-user', [EditController::class,'defectemployeeData'])->name('user.alldefectemployeeData');
+    //college
+    Route::get('colleges', CollegeDetail::class)->name('college');
+    Route::post('colleges/store', [CollegeDetail::class ,'store'])->name('collegeStore');
+    Route::get('colleges-create', [CollegeDetail::class,'createCollege'])->name('collegeCreate');
+    Route::get('colleges-edit/{id}', [CollegeDetail::class,'edit'])->name('collegeEdit');
 
-//User Salary
-Route::get('user-salary', [UserSallery::class, 'userSallery'])->name('userSallery');
+    //User
+    Route::get('all-user', [EditController::class,'allUser'])->name('user.allUser');
+    Route::get('all-active-user', [EditController::class,'allActiveuser'])->name('all-active-user');
+    Route::get('pending-user', [EditController::class,'allpendingUser'])->name('user.allpendingUser');
+    Route::get('reject-user', [EditController::class,'allrejectUser'])->name('user.allrejectUser');
+    Route::get('defect-user', [EditController::class,'alldefectUser'])->name('user.alldefectUser');
+    Route::post('change-job-status', [EditController::class ,'jobStatusChange'])->name('jobStatusChange');
+    Route::post('holiday-leave', [HolidayManagement::class ,'holideLeave'])->name('holideLeave');
+    Route::post('change-job-defect', [EditController::class ,'jobStatusDefect'])->name('jobStatusDefect');
+    Route::post('send-offer-letter', [EditController::class ,'sendOfferLetter'])->name('sendOfferLetter');
+    Route::post('mail-offer-letter', [EditController::class ,'mailOfferLetter'])->name('mailOfferLetter');
+    Route::post('user-attendance-history', [UserAttendence::class ,'userAttendanceHistory'])->name('userAttendanceHistory');
 
+    Route::get('all-pending-user', [EditController::class,'pendingUserData'])->name('user.allPendingUserData');
+    Route::get('admin-pending-user', [EditController::class,'pendingadminData'])->name('user.allPendingadminData');
+    Route::get('manager-pending-user', [EditController::class,'pendingmanagerData'])->name('user.allPendingmanagerData');
+    Route::get('teamleader-pending-user', [EditController::class,'pendingteamleaderData'])->name('user.allPendingteamleaderData');
+    Route::get('employee-pending-user', [EditController::class,'pendingemployeeData'])->name('user.allPendingemployeeData');
+
+    Route::get('all-reject-user', [EditController::class,'rejectUserData'])->name('user.allrejectUserData');
+    Route::get('admin-reject-user', [EditController::class,'rejectadminData'])->name('user.allrejectadminData');
+    Route::get('manager-reject-user', [EditController::class,'rejectmanagerData'])->name('user.allrejectmanagerData');
+    Route::get('teamleader-reject-user', [EditController::class,'rejectteamleaderData'])->name('user.allrejectteamleaderData');
+    Route::get('employee-reject-user', [EditController::class,'rejectemployeeData'])->name('user.allrejectemployeeData');
+
+
+    Route::get('all-defect-user', [EditController::class,'defectUserData'])->name('user.alldefectUserData');
+    Route::get('admin-defect-user', [EditController::class,'defectadminData'])->name('user.alldefectadminData');
+    Route::get('manager-defect-user', [EditController::class,'defectmanagerData'])->name('user.alldefectmanagerData');
+    Route::get('teamleader-defect-user', [EditController::class,'defectteamleaderData'])->name('user.alldefectteamleaderData');
+    Route::get('employee-defect-user', [EditController::class,'defectemployeeData'])->name('user.alldefectemployeeData');
+
+    //User Salary
+    Route::get('user-salary', [UserSallery::class, 'userSallery'])->name('userSallery');
 });

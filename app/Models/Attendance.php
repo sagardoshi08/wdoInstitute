@@ -19,6 +19,8 @@ class Attendance extends Model
         'location',
         'attendance_history',
         'status',
+        'last_activity_time',
+        'is_cronjob_logout',
         'created_at',
         'updated_at',
     ];

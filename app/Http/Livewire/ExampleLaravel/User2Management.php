@@ -72,7 +72,8 @@ class User2Management extends Component
     {
 
         if(auth()->user()->role == 'super_admin'){
-            $user = User::where('role', 'like', '%' . $this->search . '%')
+            $user = User::where('role', '!=', 'super_admin')
+                ->where('role', 'like', '%' . $this->search . '%')
                 ->where('name', 'like', '%' . $this->search_name . '%')
                 ->where(function($query) {
                     $query->where('job_status', Null)

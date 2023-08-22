@@ -41,7 +41,7 @@ class UserAttendence extends Component
                 $Attendance = $Attendance->whereBetween('attendance_date', [ date('Y-m-d', strtotime('-6 months')), date('Y-m-d')]);
             } elseif($request->time_interval == 'one_year'){
                 $Attendance = $Attendance->whereBetween('attendance_date', [date('Y-m-d', strtotime('-1 year')), date('Y-m-d')]);
-            } elseif($request->time_interval == 'two_years'){
+            } elseif($request->time_interval == 'two_years'){ 
                 $Attendance = $Attendance->whereBetween('attendance_date', [date('Y-m-d', strtotime('-2 years')), date('Y-m-d')]);
             }
             $Attendance = $Attendance->paginate(10);
@@ -94,7 +94,7 @@ class UserAttendence extends Component
 					// $latelogin = round(($latelogin) / 60,2);
 					// $latelogin = round(($latelogin) / 60);
 					$latelogin = ($total_second)  < 0 ? $this->mintoHour(abs($latelogin))." Fast" : $this->mintoHour(abs($latelogin))." Late" ;
-                }
+                }                
             }else{
                 $details='';
                 $latelogin ="";
@@ -202,7 +202,7 @@ class UserAttendence extends Component
 
             $total_days= abs($dt2->diffInDays($dt) - $daysForExtraCoding);
         }
-
+       
         $total_working_hour = intval($total_days)*intval($offer_letter->days_working_hour);
         $result = array();
         foreach($attendece as $key1=>$atten){
@@ -215,7 +215,7 @@ class UserAttendence extends Component
             foreach($decode_data as $atten_details){
                 $Attendance = $atten_details->attendance_history != null && $atten_details->attendance_history != "" ? json_decode($atten_details->attendance_history) : '';
                 $active_hours += $atten_details->working_hours;
-
+               
                 if($Attendance != ''){
                     foreach($Attendance as $key=>$data_details){
                         $autolog = $data_details->autologout == 0 ? "No" : "Yes";
@@ -259,7 +259,7 @@ class UserAttendence extends Component
         foreach($user as $data){
             if($data->offer_datils){
                 $day =  Carbon::now()->format('l');
-
+                
                 $offerDetails = json_decode($data->offer_datils);
                 if($offerDetails->Days == "Monday to Friday"){
                   if($day != 'Saturday' && $day != 'Sunday'){
@@ -320,6 +320,48 @@ class UserAttendence extends Component
                 </div>';
                 }
                 
-        }
+        } 
     }
-}
+
+    public function updateUserActivity(){
+        $status = User::select('login_status')->where(['id'=>Auth::id()])->first();
+        if($status && $status->login_status == 0){
+            session()->forget('startWorkTime');
+            echo json_encode(array('success'=>false, 'message'=> "Session expire logout."));
+            exit();
+        } 
+        Attendance::where(['user_id'=>Auth::id()])->update(['last_activity_time'=>date("Y-m-d H:i:s")]);
+        echo json_encode(array('success'=>true));
+        exit();
+    }
+
+    public function updateLoginStatus(){
+        $userId = User::select('id')->where(['login_status'=>1])->get();
+        foreach($userId as $UI){
+            $attendance = Attendance::select('id','attendance_history','last_activity_time','working_hours')->where(['user_id'=>$UI->id])->orderBy('id','DESC')->first();
+            $to = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+            $from = Carbon::createFromFormat('Y-m-d H:i:s', $attendance->last_activity_time);
+    
+            $diffInMinutes = $to->diffInMinutes($from);
+            if($diffInMinutes >= 3){ 
+                $to = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+                $from = "";
+        
+                $oldattendhis = json_decode($attendance->attendance_history);
+                foreach($oldattendhis as $key=>$data){
+                    if($data->end_time == ''){
+                        $from = Carbon::createFromFormat('Y-m-d H:i:s', $data->start_time);
+                        $oldattendhis[$key]->end_time = date('Y-m-d H:i:s');
+                    }
+                }
+                $hourdiff = $to->diffInMinutes($from);
+                Attendance::where(['id'=>$attendance->id])->update([
+                    'attendance_history'=>json_encode($oldattendhis),
+                    "working_hours"=>($attendance->working_hours+$hourdiff),
+                    "is_cronjob_logout"=>1
+                ]);
+                User::where(array('id'=>$UI->id))->update(['login_status'=>0]);
+            }
+        } 
+    }
+} 
