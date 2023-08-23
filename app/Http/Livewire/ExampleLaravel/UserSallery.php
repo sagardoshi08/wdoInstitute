@@ -205,10 +205,10 @@ class UserSallery extends Controller
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
+            $holiday = Holiday::whereMonth('date', now()->month)->whereYear('date', '=', now()->year)->count();
             $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
             $data['working_ours'] = $data->offer_datils ? $month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', now()->month)->whereYear('attendance_date', '=', now()->year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $data_attendance){
@@ -222,8 +222,7 @@ class UserSallery extends Controller
 
             $data['EXTRA_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) < 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
 
-            $data['to_date']= Carbon::now()->endOfMonth()->format('Y/m/d');
-            $data['form_date'] = Carbon::now()->startOfMonth()->format('Y/m/d');  
+            $data['month']= Carbon::now()->month;  
 
 
             //echo '<pre>'; print_r($data); die();
