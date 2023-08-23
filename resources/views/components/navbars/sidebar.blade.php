@@ -131,14 +131,23 @@
           </li>
           @if(auth()->user()->role == 'Employee')
           <li class="w-100">
-            <a href="{{ route('attendance')}}" class="nav-link px-0 {{ Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management'  ? ' active bg-gradient-primary' : '' }}"> <i class=""></i>User Attendence</a>
+            <a href="{{ route('attendance')}}" class=" nav-link px-0 {{ Route::currentRouteName() == 'attendance' || Route::currentRouteName() == 'user2-management'  ? ' active bg-gradient-primary' : '' }}">
+            <i style="font-size: 1rem;" class="fa fa-clock-o ps-2 pe-2 text-center"></i>
+            <span class="nav-link-text ms-1">User Attendence</span> </a>
          </li>
          @endif
            <li class="nav-item">
             <a href="{{ route('viewProfile')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'viewProfile' ? ' active bg-gradient-primary' : '' }}">
-            <i style="font-size: 1rem;" class="fas fa-user-circle ps-2 pe-2 text-center"></i>
+            <i style="font-size: 1rem;" class="fa fa-user-circle ps-2 pe-2 text-center"></i>
             <span class="nav-link-text ms-1">View Profile</span> </a>
          </li>
+         @if(auth()->user()->role == 'Employee')
+         <li class="nav-item">
+            <a href="{{ route('userSallery')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'userSallery' ? ' active bg-gradient-primary' : '' }}">
+            <i style="font-size: 1rem;" class="fa fa-money ps-2 pe-2 text-center"></i>
+            <span class="nav-link-text ms-1">User Salary</span> </a>
+         </li>
+         @endif
          {{-- @if(auth()->user()->role == 'super_admin') --}}
          <li class="nav-item">
             <a href="{{ route('holiday')}}" class="nav-link px-0 align-middle nav-link px-0 {{ Route::currentRouteName() == 'holiday' ? ' active bg-gradient-primary' : '' }}">
