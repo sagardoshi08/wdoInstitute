@@ -146,7 +146,7 @@ class UserAttendence extends Component
         $workinghour = $offer_letter != '' ? $offer_letter->days_working_hour : '-';
         $attendece = Attendance::where('user_id',$request->user_id);
         if($request->month){
-            $attendece = $attendece->whereMonth('attendance_date',$request->month);
+            $attendece = $attendece->whereMonth('attendance_date',$request->month)->whereYear('attendance_date', '=', now()->year);
         }
         if($request->form_date != '' && $request->to_date == ''){
             $attendece =  $attendece->whereDate('attendance_date', '>=', $request->form_date);
