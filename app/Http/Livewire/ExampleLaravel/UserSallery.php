@@ -59,7 +59,7 @@ class UserSallery extends Controller
                 }
             }
 
-            $houyr_amount = $all->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $all->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $all_user[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
@@ -95,7 +95,7 @@ class UserSallery extends Controller
                 }
             }
 
-            $houyr_amount = $admindata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $admindata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $user_admin[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
@@ -130,7 +130,7 @@ class UserSallery extends Controller
                 }
             }
 
-            $houyr_amount = $managerdata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $managerdata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $user_manager[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
@@ -165,7 +165,7 @@ class UserSallery extends Controller
                 }
             }
 
-            $houyr_amount = $teamleaddata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $teamleaddata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $user_teamlead[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
@@ -200,7 +200,7 @@ class UserSallery extends Controller
                 }
             }
 
-            $houyr_amount = $employeedata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $employeedata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $user_employee[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
@@ -257,7 +257,7 @@ class UserSallery extends Controller
             }
             $data['active_ours'] = $this->mintoHour($active_hours);
 
-            $houyr_amount = $data->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+            $houyr_amount = $data->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
             $data['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
 
