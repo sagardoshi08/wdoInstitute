@@ -184,12 +184,12 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->payable_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->deduted_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
@@ -343,17 +343,17 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->payable_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->deduted_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                              </tr>
@@ -482,17 +482,17 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->payable_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->deduted_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                           </tr>
@@ -621,17 +621,17 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->payable_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->deduted_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                        </tr>
@@ -759,17 +759,17 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->payable_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">0</h6>
+                                                      <h6 class="mb-0 text-sm">{{$user->deduted_amount}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><a href="" target="_blank"><i class="fa fa-eye"></i></a></h6>
+                                                      <h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6>
                                                    </div>
                                                 </td>
                                        </tr>

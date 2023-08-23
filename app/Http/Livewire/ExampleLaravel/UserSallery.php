@@ -51,13 +51,21 @@ class UserSallery extends Controller
             $holiday = Holiday::whereMonth('date', now()->month)->count();
             $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
             $all_user[$key]['working_ours'] = $all->offer_datils ? $month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$all->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$all->id)->whereMonth('attendance_date', now()->month)->whereYear('attendance_date', '=', now()->year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $all_attendance){
                     $active_hours += $all_attendance->working_hours;
                 }
             }
+
+            $houyr_amount = $all->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $all_user[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $all_user[$key]['deduted_amount'] = $all->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ;
+
             $all_user[$key]['active_ours'] = $this->mintoHour($active_hours);
             $all_user[$key]['due_ours'] = $all->offer_datils ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
@@ -86,6 +94,14 @@ class UserSallery extends Controller
                     $active_hours += $admindata_attendance->working_hours;
                 }
             }
+
+            $houyr_amount = $admindata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $user_admin[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $user_admin[$key]['deduted_amount'] = $admindata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ;
+
             $user_admin[$key]['active_ours'] = $this->mintoHour($active_hours);
             $user_admin[$key]['due_ours'] = $admindata->offer_datils ? $this->mintoHour(abs($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
@@ -113,6 +129,14 @@ class UserSallery extends Controller
                     $active_hours += $managerdata_attendance->working_hours;
                 }
             }
+
+            $houyr_amount = $managerdata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $user_manager[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $user_manager[$key]['deduted_amount'] = $managerdata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ;
+
             $user_manager[$key]['active_ours'] = $this->mintoHour($active_hours);
             $user_manager[$key]['due_ours'] = $managerdata->offer_datils ? $this->mintoHour(abs($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
@@ -140,6 +164,14 @@ class UserSallery extends Controller
                     $active_hours += $teamleaddata_attendance->working_hours;
                 }
             }
+
+            $houyr_amount = $teamleaddata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $user_teamlead[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $user_teamlead[$key]['deduted_amount'] = $teamleaddata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ;
+
             $user_teamlead[$key]['active_ours'] = $this->mintoHour($active_hours);
             $user_teamlead[$key]['due_ours'] = $teamleaddata->offer_datils ? $this->mintoHour(abs($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
@@ -167,6 +199,14 @@ class UserSallery extends Controller
                     $active_hours += $employeedata_attendance->working_hours;
                 }
             }
+
+            $houyr_amount = $employeedata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $user_employee[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $user_employee[$key]['deduted_amount'] = $employeedata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ; 
+
             $user_employee[$key]['active_ours'] = $this->mintoHour($active_hours);
             $user_employee[$key]['due_ours'] =  $employeedata->offer_datils ? $this->mintoHour(abs($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
@@ -217,6 +257,12 @@ class UserSallery extends Controller
             }
             $data['active_ours'] = $this->mintoHour($active_hours);
 
+            $houyr_amount = $data->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 0;
+
+            $data['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+
+            $data['deduted_amount'] = $data->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            ; 
 
              $data['due_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
 

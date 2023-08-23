@@ -157,13 +157,13 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="phone" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Payable Amount</b></label><br />
-                                 <p>0</p>
+                                 <p>{{$data->payable_amount}}</p>
                               </div>
                            </div>
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="role" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Deducted Amount</b></label><br />
-                                 <p>0</p>
+                                 <p>{{$data->deduted_amount}}</p>
                               </div>
                            </div>
                         </div>
