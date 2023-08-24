@@ -4251,7 +4251,7 @@ div#order-listing_wrapper {
 h4.freus-text {
     border: 1px solid #d5d4d4;
     border-radius: 10px 10px 0px 0px;
-    margin: 0px 5px;
+    margin: -1px 0px;
     /* padding: 0; */
     padding: 10px;
 
@@ -4415,3 +4415,7 @@ textarea#text-fres01 {
     position: absolute;
 } */
 
+.personal-ils textarea#frustrations {
+    border: 1px solid #d5d4d4;
+    border-radius: 0px 0px 0px 0px;
+}
