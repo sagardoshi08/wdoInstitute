@@ -100,8 +100,8 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                           <h4 class="card-title text-start">Filter</h4>
                       </div>
                       <div class="row students-start-col">
-                  
-                  
+
+
                       </div>
                   </div> -->
             </div>
@@ -177,8 +177,8 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                           <h4 class="card-title text-start">Filter</h4>
                       </div>
                       <div class="row students-start-col">
-                  
-                  
+
+
                       </div>
                   </div> -->
             </div>
@@ -343,7 +343,7 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                $('#attendance-table').DataTable().draw();
                }
            });
-   
+
        $('#common-back').addClass('d-none');
        $(document).on('change', '.filter-month,#fromdate,#todate', function() {
            $.ajax({

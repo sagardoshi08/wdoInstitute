@@ -4275,10 +4275,14 @@ h4.freus-text {
     margin-left: 20%;
 
 }
-h3.name_sk {
-    margin-left: 41%;
-    padding-top: 2%;
+
+h3.name_sk b {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2.5%;
 }
+
 
 @media (max-width:768px){
     .student-parent-d{
@@ -4357,10 +4361,16 @@ h4.freus-text{
     border-top: unset;
 }
 .name-adm{
+    bottom: 26%;
+    width: 17%;
     position: relative;
-    left: 2%;
-    bottom: 14%;
-
+    left: 1%;
+}
+h3.name-adm.ministration {
+    bottom: 18%;
+    width: 17%;
+    position: relative;
+    left: 1%;
 }
 textarea#text-fres01 {
     border-radius: 0px 0px 10px 10px;
@@ -4401,4 +4411,7 @@ textarea#text-fres01 {
     align-items: center;
     justify-content: center;
 }
+/* h3.name-adm b.img-name {
+    position: absolute;
+} */
 
