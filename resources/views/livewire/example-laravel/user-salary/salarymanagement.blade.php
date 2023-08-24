@@ -174,25 +174,25 @@ return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="userName" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Off day</b></label><br />
-                                 <p>{{ date('Y') }}</p>
+                                 <p>{{ $data->off_day }}</p>
                               </div>
                            </div>
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="father_name" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Holiday</b></label>
-                                 <p>{{$data->month}}</p>
+                                 <p>{{ $data->holiday }}</p>
                               </div>
                            </div>
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="mother_name" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Leave</b></label>
-                                 <p>{{ $data->working_ours}}</p>
+                                 <p>-</p>
                               </div>
                            </div>
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="email" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Extra work</b></label><br />
-                                 <p>{{$data->active_ours}}</p>
+                                 <p>{{$data->EXTRA_ours}}</p>
                               </div>
                            </div>
                         </div>

@@ -70,13 +70,15 @@ class UserSallery extends Controller
             }
 
             $houyr_amount = $all->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
+            $all_user[$key]['working_days'] = $month_working;
+            $all_user[$key]['total_salary'] = $all->offer_datils ? number_format($offer_details->basic) : '-';
 
             $all_user[$key]['payable_amount'] = $all->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $all_user[$key]['deduted_amount'] = $all->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-';
+            $all_user[$key]['deduted_amount'] = $all->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0 ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-';
 
             $all_user[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $all_user[$key]['due_ours'] = $all->offer_datils ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $all_user[$key]['due_ours'] = $all->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
          
         //echo '<pre>'; print_r( $attendance ); die();
@@ -106,13 +108,17 @@ class UserSallery extends Controller
 
             $houyr_amount = $admindata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
+            $user_admin[$key]['working_days'] = $month_working;
+
+            $user_admin[$key]['total_salary'] = $admindata->offer_datils ? number_format($offer_details->basic) : '-';
+
             $user_admin[$key]['payable_amount'] = $admindata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_admin[$key]['deduted_amount'] = $admindata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-' 
+            $user_admin[$key]['deduted_amount'] = $admindata->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0 ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-' 
             ;
 
             $user_admin[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_admin[$key]['due_ours'] = $admindata->offer_datils ? $this->mintoHour(abs($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_admin[$key]['due_ours'] = $admindata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
 
         $user_manager = User::where('role','Manager')->where(function($query) {
@@ -140,14 +146,16 @@ class UserSallery extends Controller
             }
 
             $houyr_amount = $managerdata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
+            $user_manager[$key]['working_days'] = $month_working;
+            $user_manager[$key]['total_salary'] = $managerdata->offer_datils ? number_format($offer_details->basic) : '-';
 
             $user_manager[$key]['payable_amount'] = $managerdata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_manager[$key]['deduted_amount'] = $managerdata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
+            $user_manager[$key]['deduted_amount'] = $managerdata->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0  ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ;
 
             $user_manager[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_manager[$key]['due_ours'] = $managerdata->offer_datils ? $this->mintoHour(abs($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_manager[$key]['due_ours'] = $managerdata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
 
         $user_teamlead = User::where('role','Team Leader')->where(function($query) {
@@ -175,14 +183,16 @@ class UserSallery extends Controller
             }
 
             $houyr_amount = $teamleaddata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
+            $user_teamlead[$key]['working_days'] = $month_working;
+            $user_teamlead[$key]['total_salary'] = $teamleaddata->offer_datils ? number_format($offer_details->basic) : '-';
 
             $user_teamlead[$key]['payable_amount'] = $teamleaddata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_teamlead[$key]['deduted_amount'] = $teamleaddata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
+            $user_teamlead[$key]['deduted_amount'] = $teamleaddata->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0  ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ;
 
             $user_teamlead[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_teamlead[$key]['due_ours'] = $teamleaddata->offer_datils ? $this->mintoHour(abs($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_teamlead[$key]['due_ours'] = $teamleaddata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
 
         $user_employee = User::where('role','Employee')->where(function($query) {
@@ -210,14 +220,16 @@ class UserSallery extends Controller
             }
 
             $houyr_amount = $employeedata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
+            $user_employee[$key]['working_days'] = $month_working;
+            $user_employee[$key]['total_salary'] = $employeedata->offer_datils ? number_format($offer_details->basic) : '-';
 
             $user_employee[$key]['payable_amount'] = $employeedata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-'; 
 
-            $user_employee[$key]['deduted_amount'] = $employeedata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
+            $user_employee[$key]['deduted_amount'] = $employeedata->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0  ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ; 
 
             $user_employee[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_employee[$key]['due_ours'] =  $employeedata->offer_datils ? $this->mintoHour(abs($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_employee[$key]['due_ours'] =  $employeedata->offer_datils  && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
 
         $user_data = User_data::where('user_id',Auth::id())->first();
@@ -288,7 +300,8 @@ class UserSallery extends Controller
 
             $data['month']= $month1;  
             $data['year']= $year;  
-
+            $data['holiday']= $holiday; 
+            $data['off_day']= $daysForExtraCoding; 
 
         //echo '<pre>'; print_r($data); die();
         return view('livewire.example-laravel.user-salary.salarymanagement',compact('user_data','data','filter','offer_letter'));

@@ -144,6 +144,12 @@
                                                     Due Hours
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Working Days
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Total salary
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Payable Amount
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
@@ -202,6 +208,16 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_days}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->total_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
@@ -305,6 +321,12 @@
                                                    Due Hours
                                                </th>
                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Working Days
+                                                </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Total salary
+                                                </th>
+                                               <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Payable Amount
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
@@ -361,6 +383,16 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_days}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->total_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
@@ -444,6 +476,12 @@
                                                 Due Hours
                                             </th>
                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Working Days
+                                             </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Total salary
+                                                </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Payable Amount
                                              </th>
                                              <th class="text-uppercase text-xxs font-weight-bolder text-start">
@@ -500,6 +538,16 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_days}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->total_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
@@ -583,14 +631,20 @@
                                              Due Hours
                                          </th>
                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Working Days
+                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Total salary
+                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Payable Amount
-                                             </th>
-                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                Deducted Amount
-                                             </th>
-                                             <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                Action
-                                             </th>
+                                          </th>
+                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Deducted Amount
+                                          </th>
+                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Action
+                                          </th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -639,6 +693,16 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_days}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->total_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
@@ -721,6 +785,12 @@
                                              Due Hours
                                          </th>
                                          <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Working Days
+                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                             Total salary
+                                          </th>
+                                         <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Payable Amount
                                              </th>
                                              <th class="text-uppercase text-xxs font-weight-bolder text-start">
@@ -777,6 +847,16 @@
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->due_ours}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{ $user->working_days}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->total_salary}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>
