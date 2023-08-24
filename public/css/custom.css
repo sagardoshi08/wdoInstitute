@@ -4329,8 +4329,8 @@ span.off.directer {
 textarea#text-fres {
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #d5d4d4;
-    width: 97.5%;
-    margin: 0px 5px;
+    width: 100%;
+    margin: 0px 0px;
 }
 h4.freus-text{
     border-bottom: none;
@@ -4447,14 +4447,14 @@ a.ml-2.btn-primary.cleri{
 textarea#frustrations{
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #d5d4d4;
-    width: 97%;
-    margin: 0px 5px;
+    width: 100%;
+    margin: 0px 0px;
 }
 textarea#goal{
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #d5d4d4;
-    width: 97%;
-    margin: 0px 5px;
+    width: 100%;
+    margin: 0px 0px;
 }
 
 
