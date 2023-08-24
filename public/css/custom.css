@@ -4361,10 +4361,9 @@ h4.freus-text{
     border-top: unset;
 }
 .name-adm{
-    bottom: 26%;
-    width: 17%;
-    position: relative;
-    left: 1%;
+    position: absolute;
+    bottom: 28%;
+    left: 5%;
 }
 h3.name-adm.ministration {
     bottom: 18%;
@@ -4411,9 +4410,9 @@ textarea#text-fres01 {
     align-items: center;
     justify-content: center;
 }
-/* h3.name-adm b.img-name {
-    position: absolute;
-} */
+h3.name-adm b.img-name {
+    position: relative;
+}
 .row.personal-till.rial {
     display: flex;
     flex-wrap: nowrap;
@@ -4427,7 +4426,7 @@ textarea#text-fres01 {
 
 a.ml-2.btn-primary.cleri{
     position: absolute;
-    right: -85px;
+    right: -97px;
     /* top: 33px; */
     padding: 7px;
     border-radius: 5rem !important;
