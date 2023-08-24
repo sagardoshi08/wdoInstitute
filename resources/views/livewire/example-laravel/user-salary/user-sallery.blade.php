@@ -20,7 +20,7 @@
 <div>
    <!-- Navbar -->
    <!-- End Navbar -->
-   <div class="py-4 assign-task-tab">
+   <div class="container-fluid py-4 assign-task-tab">
       <!-- New Dashboard Starts -->
       <div class="main-dashboard mb-5">
          <div class="main-dashboard-inner">
@@ -75,7 +75,7 @@
                </form>
                <div class="" id="nav-tabContent">
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
-                     {{-- <div class="accordion-body"> --}}
+                     <div class="accordion-body">
                         <div class="row">
                            <div class="col-md-12">
                            </div>
@@ -103,18 +103,14 @@
                               @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
-                                    <a href="{{ route('userSallery')}}" class="ml-2 btn-primary cleri">Clear Filter</a>
                                     <div class="custom-container">
-
                                        <div class=" justify-content-between d-flex">
-
                                           <div class="print header-btn ms-2">
                                              <span class="nav-link mb-0 ml-2 active " data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i class="fa fa-print" aria-hidden="true"></i></span>
                                           </div>
                                           <div class="export header-btn ms-2">
                                              <a href="{{route('export')}}"> <span class="nav-link mb-0  active" data-bs-toggle="tooltip" data-bs-placement="top" title="Export CSV"><i class="fas fa-file-export"></i></span></a>
                                           </div>
-
                                        </div>
                                     </div>
                                     <div class="table-responsive p-0">
@@ -181,13 +177,13 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6> 
                                                        {{-- <h6 class="mb-0 text-sm">{{ date('Y') }}</h6>--}}
                                                     </div>
                                                  </td>
                                                  <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6> 
                                                       {{-- <h6 class="mb-0 text-sm">{{ date('m') }}</h6>--}}
                                                    </div>
                                                 </td>
@@ -218,7 +214,7 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',[$user->id,$filter_date])}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                              </tr>
@@ -236,7 +232,7 @@
                            </div>
                         </div>
                      </div>
-                  {{-- </div> --}}
+                  </div>
                   @if(auth()->user()->role == 'super_admin')
                   <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
                      <div class="accordion-body">
@@ -377,7 +373,7 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',[$user->id,$filter_date])}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                              </tr>
@@ -516,7 +512,7 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',[$user->id,$filter_date])}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                           </tr>
@@ -655,7 +651,7 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6></h6>
+                                                      <h6 class="mb-0 text-sm"><h6 class="mb-0 text-sm"><a href="{{route('viewSalary',[$user->id,$filter_date])}}"><i class="fa fa-eye"></i></a></h6></h6>
                                                    </div>
                                                 </td>
                                        </tr>
@@ -793,7 +789,7 @@
                                                 </td>
                                                 <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm"><a href="{{route('viewSalary',$user->id)}}"><i class="fa fa-eye"></i></a></h6>
+                                                      <h6 class="mb-0 text-sm"><a href="{{route('viewSalary',[$user->id,$filter_date])}}"><i class="fa fa-eye"></i></a></h6>
                                                    </div>
                                                 </td>
                                        </tr>
@@ -922,5 +918,10 @@
             $('#nav-college').removeClass('active show');
             $('#nav-nsp').removeClass('active show');
         });
+
+        $(document).on('change', '.month_salary_inp', function() {
+           $('.submit-btn').click();
+        });
+
    });
 </script>
