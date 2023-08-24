@@ -25,6 +25,7 @@
 <style>
 </style>
 <div class="container-fluid py-4  view">
+    <input type="hidden" value="{{$user->id}}" id="abcd">
 <div class="row">
     <div class="name_line">
         <div class="user_name_j">
@@ -99,9 +100,11 @@
     </div>
     <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
-        <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->frustrations}}</textarea>
+        <textarea id="frustrations" name="frustrations" value="{{$user_data->frustrations}}" rows="4" cols="39"></textarea>
+        {{-- <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->frustrations}}</textarea> --}}
         <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-        <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->goal}}</textarea>
+        <textarea id="goal" name="goal" value="{{$user_data->goal}}" rows="4" cols="39"></textarea>
+        {{-- <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->goal}}</textarea> --}}
     </div>
  </div>
 
@@ -969,3 +972,24 @@
 
    });
 </script>
+<script>
+    $(document).on('change', '#frustrations,#goal', function(){
+        $.ajax({
+          type:"post",
+          url:"{{ route('textabout') }}",
+          data: {
+                        'id' : $('#abcd').val(),
+                      'frustrations' : $('#frustrations').val(),
+                      'goal' : $('#goal').val(),
+                      "_token": "{{ csrf_token() }}"
+                   },
+
+          datatype:"json",
+
+          success:function(data)
+          {
+              //do something with response data
+          }
+        });
+    });
+    </script>
