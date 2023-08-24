@@ -160,9 +160,6 @@ class UserAttendence extends Component
         if($request->to_date == '' && $request->form_date == '' && $request->month == ''){
             $attendece =  $attendece->where('attendance_date',date("Y-m-d"));
         }
-        if($request->year){
-            $attendece =  $attendece->whereYear('attendance_date', '=', $request->year);
-        }
         $attendece = $attendece->get();
         // Carbon::setWeekendDays([
         //     Carbon::SATURDAY,

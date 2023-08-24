@@ -4360,27 +4360,18 @@ h4.freus-text{
     padding-bottom: 20px !important;
     border-top: unset;
 }
-/* .name-adm{
+.name-adm{
     bottom: 26%;
     width: 17%;
     position: relative;
     left: 1%;
-} */
-h3.name-adm{
-    width: 16%;
-    position: relative;
-    top: -18%;
-    left: 2%;
 }
-b.img-name{
-    position: absolute;
-}
-/* h3.name-adm.ministration {
+h3.name-adm.ministration {
     bottom: 18%;
     width: 17%;
     position: relative;
     left: 1%;
-} */
+}
 textarea#text-fres01 {
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #d5d4d4;

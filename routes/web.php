@@ -117,6 +117,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     Route::get('viewuser', [EditProfile::class, 'viewProfile'])->name('viewProfile');
     Route::get('holiday', [HolidayManagement::class, 'holiday'])->name('holiday');
     Route::post('remove-task', [AdminTask::class, 'removetask'])->name('removeTask');
+    Route::post('text-about', [EditController::class, 'textabout'])->name('textabout');
     Route::post('get-reassign-user', [AdminTask::class, 'getreassigneuser'])->name('getReassigneUser');
     Route::post('change-permisssion', [AdminTask::class, 'change_permission'])->name('changePermission');
     Route::post('update-reassigntask', [AdminTask::class, 'update_reassign_task'])->name('updateReassignTask');

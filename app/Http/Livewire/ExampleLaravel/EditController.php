@@ -742,4 +742,13 @@ class EditController extends Controller
         );
     }
 
+    public function textabout(Request $request)
+    {
+        $user = [
+            'frustrations' => $request->frustrations,
+            'goal' => $request->goal,
+        ];
+        User::where('id',$request->id)->update($user);
+        echo json_encode(true);
+    }
 }

@@ -113,7 +113,7 @@
                         <textarea id="text-fres01" name="text" rows="4" cols="40"></textarea>
                     </div>
                 </div>
-                <h3 class="name-adm">
+                <h3 class="name-adm ministration">
                     <b class="img-name">{{ $data->name }}</b>
                 </h3>
                 <div class="name_line_p">
