@@ -107,9 +107,9 @@ return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
             </div>
             <div class="frustration col-lg-4 p-0">
                <h4 class="freus-text">FRUSTRATIONS</h4>
-               <textarea id="text-fres01" name="text" rows="4" cols="40"></textarea>
+               <textarea id="text-fres" name="text" rows="4" cols="39" readonly>{{$data->frustrations}}</textarea>
                <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-               <textarea id="text-fres01" name="text" rows="4" cols="40"></textarea>
+               <textarea id="text-fres" name="text" rows="4" cols="39" readonly>{{$data->goal}}</textarea>
             </div>
          </div>
          <h3 class="name-adm">
