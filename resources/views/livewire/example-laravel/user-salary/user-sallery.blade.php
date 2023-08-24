@@ -6,16 +6,16 @@
    .month-header-btn{
       width: 20%;
       position: relative;
-      top: 162px;
-      z-index: 9999;
+      top: 79px;
+      z-index: 9;
       left: 327px;
    }
-   .clear-fil{
+   /* .clear-fil{
       position: relative;
       top: 129px;
       z-index: 9999;
       left: 616px;
-   }
+   } */
 </style>
 <div>
    <!-- Navbar -->
@@ -69,9 +69,10 @@
                <form  method="GET" action="{{ route('userSallery') }}">
                   <div class="month-header-btn header-btn">
                      <input type="month" name="month_salary_inp" class="form-control form-control month_salary_inp w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline " value="{{$filter_date}}">
+                     <a href="{{ route('userSallery')}}" class="ml-2 btn-primary cleri">Clear Filter</a>
                   </div>
                   <button type="submit" class="btn-primary d-none submit-btn">Submit</button>
-                  <a href="{{ route('userSallery')}}" class="ml-2 btn-primary clear-fil">Clear Filter</a>
+
                </form>
                <div class="" id="nav-tabContent">
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
@@ -103,6 +104,7 @@
                               @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
+                                    <a href="{{ route('userSallery')}}" class="ml-2 btn-primary cleri">Clear Filter</a>
                                     <div class="custom-container">
                                        <div class=" justify-content-between d-flex">
                                           <div class="print header-btn ms-2">

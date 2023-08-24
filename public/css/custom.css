@@ -4415,3 +4415,24 @@ textarea#text-fres01 {
     position: absolute;
 } */
 
+a.ml-2.btn-primary.cleri{
+    position: absolute;
+    right: -85px;
+    /* top: 33px; */
+    padding: 7px;
+    border-radius: 5rem !important;
+    color: #fff;
+    font-size: 0.875rem;
+}
+.month-header-btn.header-btn input {
+    box-shadow: unset !important;
+    position: absolute;
+}
+.row.personal-till.add-to {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.row.personal-till.add-to .students-start-col{
+    border: none;
+}
+
