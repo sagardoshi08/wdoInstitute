@@ -4415,7 +4415,31 @@ textarea#text-fres01 {
     position: absolute;
 } */
 
+<<<<<<< HEAD
 .personal-ils textarea#frustrations {
     border: 1px solid #d5d4d4;
     border-radius: 0px 0px 0px 0px;
 }
+=======
+a.ml-2.btn-primary.cleri{
+    position: absolute;
+    right: -85px;
+    /* top: 33px; */
+    padding: 7px;
+    border-radius: 5rem !important;
+    color: #fff;
+    font-size: 0.875rem;
+}
+.month-header-btn.header-btn input {
+    box-shadow: unset !important;
+    position: absolute;
+}
+.row.personal-till.add-to {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.row.personal-till.add-to .students-start-col{
+    border: none;
+}
+
+>>>>>>> 66637a26b797dbe48f197d27a99021e8aac054fb
