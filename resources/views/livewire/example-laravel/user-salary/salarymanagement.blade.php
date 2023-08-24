@@ -47,6 +47,7 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                         <div class="row students-start-col">
                            <input type="hidden" value="{{$data->id}}" id="user-id">
                            <input type="hidden" value="{{$data->month}}" id="current-month">
+                           <input type="hidden" value="{{$data->year}}" id="filter-year">
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
                                  <label for="userName" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Name</b></label><br />
@@ -313,6 +314,7 @@ return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
                url: "{{ route('filterAttendanceHistory') }}",
                data: {
                    'month': $('#current-month').val(),
+                   'year' :  $('#filter-year').val(),
                    'form_date': $('#fromdate').val(),
                    'to_date': $('#todate').val(),
                    'user_id': $('#user-id').val(),

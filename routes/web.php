@@ -123,7 +123,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     Route::post('delete-user', [UserManagement::class, 'userDelete'])->name('deleteUser');
     Route::post('holiday-delete', [HolidayManagement::class, 'holidayDelete'])->name('holidayDelete');
     // Route::get('add', StudentCreate::class)->name('add');
-    Route::get('viewsalary/{id}', [UserSallery::class, 'viewSalary'])->name('viewSalary');
+    Route::get('viewsalary/{id}/{month}', [UserSallery::class, 'viewSalary'])->name('viewSalary');
 
     //student
     Route::get('students', StudentDetail::class)->name('Student Detail');

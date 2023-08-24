@@ -26,8 +26,17 @@ use Auth;
 class UserSallery extends Controller
 {
 
-    public function userSallery()
+    public function userSallery(Request $request)
     {
+        $filter = $request->month_salary_inp; 
+        if(isset($filter)){
+           $month = date("m",strtotime($filter));
+           $year = date("Y",strtotime($filter));
+        }else{
+            $month =now()->month;
+            $year = now()->year;
+        }
+        //echo '<pre>'; print_r($year); die();
         if(Auth::user()->role == 'super_admin'){
             $all_user = User::where(function($query) {
                 $query->where('job_status', Null)
@@ -39,19 +48,20 @@ class UserSallery extends Controller
                       ->orWhere('job_status','Approved');
             })->get();
         }
+        
         foreach($all_user as $key=>$all){
             $offer_details = $all->offer_datils ? json_decode($all->offer_datils) : '';
-            $all_user[$key]['year_salary'] = $all->offer_datils ? number_format($offer_details->basic * 12) : '-';
-            $all_user[$key]['month_salary'] = $all->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $all_user[$key]['year_salary'] = $year;
+            $all_user[$key]['month_salary'] = $month;
+            $dt = Carbon::create(now()->month($month)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
+            $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $all_user[$key]['working_ours'] = $all->offer_datils ? $month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$all->id)->whereMonth('attendance_date', now()->month)->whereYear('attendance_date', '=', now()->year)->get();
+            $attendance = Attendance::where('user_id',$all->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $all_attendance){
@@ -61,33 +71,32 @@ class UserSallery extends Controller
 
             $houyr_amount = $all->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $all_user[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $all_user[$key]['payable_amount'] = $all->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $all_user[$key]['deduted_amount'] = $all->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
-            ;
+            $all_user[$key]['deduted_amount'] = $all->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-';
 
             $all_user[$key]['active_ours'] = $this->mintoHour($active_hours);
             $all_user[$key]['due_ours'] = $all->offer_datils ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
          
-        //echo '<pre>'; print_r($all_user->toArray()); die();
+        //echo '<pre>'; print_r( $attendance ); die();
         $user_admin = User::where('role','Admin')->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
         foreach($user_admin as $key=>$admindata){
             $offer_details = $admindata->offer_datils ? json_decode($admindata->offer_datils) : '';
-            $user_admin[$key]['year_salary'] = $admindata->offer_datils ? number_format($offer_details->basic * 12) : '-';
-            $user_admin[$key]['month_salary'] = $admindata->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $user_admin[$key]['year_salary'] = $year;
+            $user_admin[$key]['month_salary'] = $month;
+            $dt = Carbon::create(now()->month($month)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
+            $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $user_admin[$key]['working_ours'] = $admindata->offer_datils ? $month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$admindata->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$admindata->id)->whereMonth('attendance_date', $month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $admindata_attendance){
@@ -97,9 +106,9 @@ class UserSallery extends Controller
 
             $houyr_amount = $admindata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $user_admin[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $user_admin[$key]['payable_amount'] = $admindata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_admin[$key]['deduted_amount'] = $admindata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            $user_admin[$key]['deduted_amount'] = $admindata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-' 
             ;
 
             $user_admin[$key]['active_ours'] = $this->mintoHour($active_hours);
@@ -112,17 +121,17 @@ class UserSallery extends Controller
         })->get();
         foreach($user_manager as $key=>$managerdata){
             $offer_details = $managerdata->offer_datils ? json_decode($managerdata->offer_datils) : '';
-            $user_manager[$key]['year_salary'] = $managerdata->offer_datils ? number_format($offer_details->basic * 12) : '-';
-            $user_manager[$key]['month_salary'] = $managerdata->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $user_manager[$key]['year_salary'] = $year;
+            $user_manager[$key]['month_salary'] = $month;
+            $dt = Carbon::create(now()->month($month)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
+            $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $user_manager[$key]['working_ours'] = $managerdata->offer_datils ? $month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$managerdata->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$managerdata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $managerdata_attendance){
@@ -132,9 +141,9 @@ class UserSallery extends Controller
 
             $houyr_amount = $managerdata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $user_manager[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $user_manager[$key]['payable_amount'] = $managerdata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_manager[$key]['deduted_amount'] = $managerdata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            $user_manager[$key]['deduted_amount'] = $managerdata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ;
 
             $user_manager[$key]['active_ours'] = $this->mintoHour($active_hours);
@@ -147,17 +156,17 @@ class UserSallery extends Controller
         })->get();
         foreach($user_teamlead as $key=>$teamleaddata){
             $offer_details = $teamleaddata->offer_datils ? json_decode($teamleaddata->offer_datils) : '';
-            $user_teamlead[$key]['year_salary'] = $teamleaddata->offer_datils ? number_format($offer_details->basic * 12) : '-';
-            $user_teamlead[$key]['month_salary'] = $teamleaddata->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $user_teamlead[$key]['year_salary'] = $year;
+            $user_teamlead[$key]['month_salary'] = $month;
+            $dt = Carbon::create(now()->month($month)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
+            $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $user_teamlead[$key]['working_ours'] = $teamleaddata->offer_datils ? $month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$teamleaddata->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$teamleaddata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $teamleaddata_attendance){
@@ -167,9 +176,9 @@ class UserSallery extends Controller
 
             $houyr_amount = $teamleaddata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $user_teamlead[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $user_teamlead[$key]['payable_amount'] = $teamleaddata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $user_teamlead[$key]['deduted_amount'] = $teamleaddata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            $user_teamlead[$key]['deduted_amount'] = $teamleaddata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ;
 
             $user_teamlead[$key]['active_ours'] = $this->mintoHour($active_hours);
@@ -182,17 +191,17 @@ class UserSallery extends Controller
         })->get();
         foreach($user_employee as $key=>$employeedata){
             $offer_details = $employeedata->offer_datils ? json_decode($employeedata->offer_datils) : '';
-            $user_employee[$key]['year_salary'] = $employeedata->offer_datils ? number_format($offer_details->basic * 12) : '-';
-            $user_employee[$key]['month_salary'] = $employeedata->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $user_employee[$key]['year_salary'] = $year;
+            $user_employee[$key]['month_salary'] = $month;
+            $dt = Carbon::create(now()->month($month)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
+            $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $user_employee[$key]['working_ours'] = $employeedata->offer_datils ? $month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$employeedata->id)->whereMonth('attendance_date', now()->month)->get();
+            $attendance = Attendance::where('user_id',$employeedata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $employeedata_attendance){
@@ -202,9 +211,9 @@ class UserSallery extends Controller
 
             $houyr_amount = $employeedata->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $user_employee[$key]['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $user_employee[$key]['payable_amount'] = $employeedata->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-'; 
 
-            $user_employee[$key]['deduted_amount'] = $employeedata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            $user_employee[$key]['deduted_amount'] = $employeedata->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-'  
             ; 
 
             $user_employee[$key]['active_ours'] = $this->mintoHour($active_hours);
@@ -212,7 +221,7 @@ class UserSallery extends Controller
         }
 
         $user_data = User_data::where('user_id',Auth::id())->first();
-
+        $filter_date = isset($filter) ? $filter : date("Y-m");
         return view(
             'livewire.example-laravel.user-salary.user-sallery',
             [
@@ -221,7 +230,8 @@ class UserSallery extends Controller
                 'user_manager' => $user_manager,
                 'user_teamlead' => $user_teamlead,
                 'user_employee' => $user_employee,
-                'user_data' =>$user_data
+                'user_data' =>$user_data,
+                'filter_date' => $filter_date
             ]
         );
     }
@@ -232,23 +242,31 @@ class UserSallery extends Controller
         return round($hours) ." Hour(s) ". round($min)." Mintes(s)";
     }
 
-    public function viewSalary(Request $request,$id){
+    public function viewSalary(Request $request,$id,$month){
         $filter = $request->all();
+        if(isset($month)){
+           $month1 = date("m",strtotime($month));
+           $year = date("Y",strtotime($month));
+        }else{
+            $month1 =now()->month;
+            $year = now()->year;
+        }
+        
         $data = User::where('id',$id)->first();
         $user_data = User_data::where('user_id',$id)->first();
         $offer_letter = $data->offer_datils ? json_decode($data->offer_datils): '';
         $offer_details = $data->offer_datils ? json_decode($data->offer_datils) : '';
             $data['year_salary'] = $data->offer_datils ? number_format($offer_details->basic * 12) : '-';
             $data['month_salary'] = $data->offer_datils ? number_format($offer_details->basic) : '-';
-            $dt = Carbon::create(now()->startOfMonth());
-            $dt2 = Carbon::create(now()->endOfMonth());
+            $dt = Carbon::create(now()->month($month1)->startOfMonth());
+            $dt2 = Carbon::create(now()->month($month1)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', now()->month)->whereYear('date', '=', now()->year)->count();
-            $month_working = Carbon::now()->daysInMonth - $daysForExtraCoding - $holiday;
+            $holiday = Holiday::whereMonth('date', $month1)->whereYear('date', '=', $year)->count();
+            $month_working = Carbon::now()->month($month1)->daysInMonth - $daysForExtraCoding - $holiday;
             $data['working_ours'] = $data->offer_datils ? $month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) : '-';
-            $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', now()->month)->whereYear('attendance_date', '=', now()->year)->get();
+            $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', $month1)->whereYear('attendance_date', '=', $year)->get();
             $active_hours = 0;
             if(isset($attendance)){
                 foreach($attendance as $data_attendance){
@@ -259,19 +277,20 @@ class UserSallery extends Controller
 
             $houyr_amount = $data->offer_datils ? $offer_details->basic / $month_working / intval($offer_details->days_working_hour) : 1;
 
-            $data['payable_amount'] = number_format(($active_hours/60) * $houyr_amount,'2');
+            $data['payable_amount'] = $data->offer_datils ? number_format(($active_hours/60) * $houyr_amount,'2') : '-';
 
-            $data['deduted_amount'] = $data->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : 0  
+            $data['deduted_amount'] = $data->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-' 
             ; 
 
              $data['due_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
 
             $data['EXTRA_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) < 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
 
-            $data['month']= Carbon::now()->month;  
+            $data['month']= $month1;  
+            $data['year']= $year;  
 
 
-            //echo '<pre>'; print_r($data); die();
+        //echo '<pre>'; print_r($data); die();
         return view('livewire.example-laravel.user-salary.salarymanagement',compact('user_data','data','filter','offer_letter'));
     }
 
