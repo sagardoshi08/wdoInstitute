@@ -19,7 +19,6 @@ use setasign\Fpdi\Fpdi;
 use App\Mail\DemoMail;
 use App\Mail\DefectMail;
 use App\Mail\SendOfferLetter;
-use Response;
 
 class EditController extends Controller
 {
@@ -743,27 +742,13 @@ class EditController extends Controller
         );
     }
 
-    // public function textabout($id)
-    // {
-    //     $user = User::select( `id`, `name`, `frustrations`, `goal`)->where('id',$id)->get();
-
-    //     return Response::json($user);
-    // }
-
     public function textabout(Request $request)
     {
-        $data = $request->input('data'); // Get the data from the request
-
-        // Perform any necessary validation on $data
-
-        // Save the data to the database using your model
-        User::create([
-            'frustrations' => $data,
-            // Other columns if needed
-        ]);
-
-        return response()->json(['message' => 'Data saved successfully']);
+        $user = [
+            'frustrations' => $request->frustrations,
+            'goal' => $request->goal,
+        ];
+        User::where('id',$request->id)->update($user);
+        echo json_encode(true);
     }
-
-
 }
