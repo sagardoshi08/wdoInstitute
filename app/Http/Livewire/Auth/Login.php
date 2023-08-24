@@ -238,7 +238,11 @@ class Login extends Component
         //echo '<pre>'; print_r($request->all());
         $user = User::find($request->id);
         if(isset($user)){
-            $previous_user = session()->put('previousUser',Auth::id());
+            if(Auth::user()->role != "super_admin"){
+                session()->forget('previousUser');
+            }else{
+                $previous_user = session()->put('previousUser',Auth::id());
+            }
             Auth::login($user);
             $request->session()->regenerate();
             //user is logged in.

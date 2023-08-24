@@ -199,6 +199,15 @@ p{
                 }
             });
         });
+
+      bindDOMEvents(); 
+      updateActivity = setInterval(() => {
+        $.get('{{ route("update-user-activity") }}',function(res){
+          if(res.success == false){ 
+            window.location.href="{{url('attendence-logout')}}";
+          }
+        },'JSON');
+      }, 5000);
     });
 
     $(document).idleTimeout({
@@ -296,16 +305,6 @@ p{
       });
   }
 
-  // Wire up the events as soon as the DOM tree is ready
-  $(document).ready(function() {
-      bindDOMEvents(); 
-      updateActivity = setInterval(() => {
-        $.get('{{ route("update-user-activity") }}',function(res){
-          if(res.success == false){ 
-            window.location.href="{{url('attendence-logout')}}";
-          }
-        },'JSON');
-      }, 5000);
-  });
+ 
   </script>
   
