@@ -122,8 +122,8 @@ return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
             </div>
             <div class=" add-user-form view-form">
                <div class="row">
-                  <div class="row personal-till">
-                     <div class="students-start col-lg-12 pl-4">
+                  <div class="row personal-till rial">
+                     <div class="students-start col-lg-6 pl-4">
                         <div class="row students-start-col">
                            <div class="col-sm-12 mt-1 col-lg-12">
                               <div class="form-group">
@@ -165,6 +165,34 @@ return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
                               <div class="form-group">
                                  <label for="role" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Deducted Amount</b></label><br />
                                  <p>{{$data->deduted_amount}}</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="students-start col-lg-6 pl-4">
+                        <div class="row students-start-col">
+                           <div class="col-sm-12 mt-1 col-lg-12">
+                              <div class="form-group">
+                                 <label for="userName" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Off day</b></label><br />
+                                 <p>{{ date('Y') }}</p>
+                              </div>
+                           </div>
+                           <div class="col-sm-12 mt-1 col-lg-12">
+                              <div class="form-group">
+                                 <label for="father_name" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Holiday</b></label>
+                                 <p>{{$data->month}}</p>
+                              </div>
+                           </div>
+                           <div class="col-sm-12 mt-1 col-lg-12">
+                              <div class="form-group">
+                                 <label for="mother_name" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Leave</b></label>
+                                 <p>{{ $data->working_ours}}</p>
+                              </div>
+                           </div>
+                           <div class="col-sm-12 mt-1 col-lg-12">
+                              <div class="form-group">
+                                 <label for="email" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Extra work</b></label><br />
+                                 <p>{{$data->active_ours}}</p>
                               </div>
                            </div>
                         </div>

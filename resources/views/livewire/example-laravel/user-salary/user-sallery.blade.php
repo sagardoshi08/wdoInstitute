@@ -6,7 +6,7 @@
    .month-header-btn{
       width: 20%;
       position: relative;
-      top: 79px;
+      top: 78px;
       z-index: 9;
       left: 327px;
    }
@@ -20,7 +20,7 @@
 <div>
    <!-- Navbar -->
    <!-- End Navbar -->
-   <div class="container-fluid py-4 assign-task-tab">
+   <div class="py-4 assign-task-tab">
       <!-- New Dashboard Starts -->
       <div class="main-dashboard mb-5">
          <div class="main-dashboard-inner">
@@ -76,7 +76,7 @@
                </form>
                <div class="" id="nav-tabContent">
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
-                     <div class="accordion-body">
+
                         <div class="row">
                            <div class="col-md-12">
                            </div>
@@ -104,7 +104,7 @@
                               @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
-                                    <a href="{{ route('userSallery')}}" class="ml-2 btn-primary cleri">Clear Filter</a>
+
                                     <div class="custom-container">
                                        <div class=" justify-content-between d-flex">
                                           <div class="print header-btn ms-2">
@@ -179,13 +179,13 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6> 
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
                                                        {{-- <h6 class="mb-0 text-sm">{{ date('Y') }}</h6>--}}
                                                     </div>
                                                  </td>
                                                  <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6> 
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
                                                       {{-- <h6 class="mb-0 text-sm">{{ date('m') }}</h6>--}}
                                                    </div>
                                                 </td>
@@ -234,7 +234,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+
                   @if(auth()->user()->role == 'super_admin')
                   <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
                      <div class="accordion-body">
@@ -673,7 +673,7 @@
                </div>
             </div>
             <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
-               <div class="accordion-body">
+
                   <div class="row">
                      <div class="col-md-12">
                      </div>
