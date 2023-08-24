@@ -329,15 +329,27 @@ class UserAttendence extends Component
     }
 
     public function updateUserActivity(){
-        $status = User::select('login_status')->where(['id'=>Auth::id()])->first();
-        if($status && $status->login_status == 0){
-            session()->forget('startWorkTime');
-            echo json_encode(array('success'=>false, 'message'=> "Session expire logout."));
+        if(session()->has('previousUser')){
+            $status = User::select('login_status')->where(['id'=>session()->get('previousUser')])->first();
+            if($status && $status->login_status == 0){
+                session()->forget('startWorkTime');
+                echo json_encode(array('success'=>false, 'message'=> "Session expire logout."));
+                exit();
+            } 
+            Attendance::where(['user_id'=>session()->get('previousUser')])->update(['last_activity_time'=>date("Y-m-d H:i:s")]);
+            echo json_encode(array('success'=>true));
             exit();
-        } 
-        Attendance::where(['user_id'=>Auth::id()])->update(['last_activity_time'=>date("Y-m-d H:i:s")]);
-        echo json_encode(array('success'=>true));
-        exit();
+        }else{
+            $status = User::select('login_status')->where(['id'=>Auth::id()])->first();
+            if($status && $status->login_status == 0){
+                session()->forget('startWorkTime');
+                echo json_encode(array('success'=>false, 'message'=> "Session expire logout."));
+                exit();
+            } 
+            Attendance::where(['user_id'=>Auth::id()])->update(['last_activity_time'=>date("Y-m-d H:i:s")]);
+            echo json_encode(array('success'=>true));
+            exit();
+        }
     }
 
     public function updateLoginStatus(){
