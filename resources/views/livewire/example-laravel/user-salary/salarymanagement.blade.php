@@ -3,7 +3,7 @@
 function mintoHour($minutes){
 $hours = floor($minutes / 60);
 $min = $minutes - ($hours * 60);
-return (round($hours)) ." Hour(s) ". round($min)." Mintes(s)";
+return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
 }
 @endphp
 <style>

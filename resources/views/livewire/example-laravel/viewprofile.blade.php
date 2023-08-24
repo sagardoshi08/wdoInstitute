@@ -99,9 +99,9 @@
     </div>
     <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
-        <p id="text-fres" name="text" rows="4" cols="40">{{$user->frustrations}}</P>
+        <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->frustrations}}</textarea>
         <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-        <p id="text-fres" name="text" rows="4" cols="40">{{$user->goal}}</P>
+        <textarea id="text-fres" name="text" rows="4" cols="39">{{$user->goal}}</textarea>
     </div>
  </div>
 

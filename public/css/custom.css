@@ -4251,7 +4251,7 @@ div#order-listing_wrapper {
 h4.freus-text {
     border: 1px solid #d5d4d4;
     border-radius: 10px 10px 0px 0px;
-    margin: 0px 5px;
+    margin: -1px 0px;
     /* padding: 0; */
     padding: 10px;
 
@@ -4415,6 +4415,12 @@ textarea#text-fres01 {
     position: absolute;
 } */
 
+<<<<<<< HEAD
+.personal-ils textarea#frustrations {
+    border: 1px solid #d5d4d4;
+    border-radius: 0px 0px 0px 0px;
+}
+=======
 a.ml-2.btn-primary.cleri{
     position: absolute;
     right: -85px;
@@ -4436,6 +4442,7 @@ a.ml-2.btn-primary.cleri{
     border: none;
 }
 
+<<<<<<< HEAD
 textarea#frustrations{
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #d5d4d4;
@@ -4448,3 +4455,6 @@ textarea#goal{
     width: 97%;
     margin: 0px 5px;
 }
+=======
+>>>>>>> 66637a26b797dbe48f197d27a99021e8aac054fb
+>>>>>>> d330c27ff2805f548ab18a7398eec9706ddb2413
