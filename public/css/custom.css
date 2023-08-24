@@ -4436,3 +4436,15 @@ a.ml-2.btn-primary.cleri{
     border: none;
 }
 
+textarea#frustrations{
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #d5d4d4;
+    width: 97%;
+    margin: 0px 5px;
+}
+textarea#goal{
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #d5d4d4;
+    width: 97%;
+    margin: 0px 5px;
+}
