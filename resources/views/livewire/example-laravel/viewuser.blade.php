@@ -99,9 +99,10 @@
     </div>
     <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
-        <textarea id="text-fres" name="text" rows="4" cols="40"></textarea>
+        <textarea id="saveButton" name="frustrations" rows="4" cols="40"></textarea>
+
         <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-        <textarea id="text-fres" name="text" rows="4" cols="40"></textarea>
+        <textarea id="goal" name="goal" rows="4" cols="40"></textarea>
     </div>
  </div>
 
@@ -990,4 +991,39 @@
       });
 
    });
+</script>
+<script>
+setInterval(function()
+{
+    $.ajax({
+      type:"post",
+      url:"{{ route('textabout') }}",
+      datatype:{
+                  "frustrations": $('#frustrations').val(),
+                  'gole': $('#gole').val(),
+               },,
+      success:function(data)
+      {
+          //do something with response data
+      }
+    });
+}, 10000);//time in milliseconds
+</script>
+
+<script>
+    document.getElementById('saveButton').addEventListener('click', function () {
+        // Get the data you want to save
+        var data = "Your data here";
+
+        // Make an AJAX request to the Laravel route
+        axios.post("{{ route('textabout') }}", {
+            data: data
+        })
+        .then(function (response) {
+            alert(response.data.message);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    });
 </script>
