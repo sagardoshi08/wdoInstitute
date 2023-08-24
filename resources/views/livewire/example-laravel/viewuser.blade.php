@@ -100,10 +100,12 @@
     </div>
     <div class="frustration col-lg-5 p-0">
         <h4 class="freus-text">FRUSTRATIONS</h4>
-        <textarea id="frustrations" name="frustrations" value="{{$user_data->frustrations}}" rows="4" cols="39"></textarea>
+        <textarea id="text-fres" name="text" rows="4" cols="39" readonly>{{$user->frustrations}}</textarea>
+        {{-- <textarea id="frustrations" name="frustrations" value="{{$user_data->frustrations}}" rows="4" cols="39"></textarea> --}}
 
         <h4 class="freus-text" style="margin-top: 11px;">GOAL</h4>
-        <textarea id="goal" name="goal" value="{{$user_data->goal}}" rows="4" cols="39"></textarea>
+        <textarea id="text-fres" name="text" rows="4" cols="39" readonly>{{$user->goal}}</textarea>
+        {{-- <textarea id="goal" name="goal" value="{{$user_data->goal}}" rows="4" cols="39"></textarea> --}}
     </div>
  </div>
 
@@ -993,7 +995,7 @@
 
    });
 </script>
-<script>
+{{-- <script>
 $(document).on('change', '#frustrations,#goal', function(){
     $.ajax({
       type:"post",
@@ -1013,4 +1015,4 @@ $(document).on('change', '#frustrations,#goal', function(){
       }
     });
 });
-</script>
+</script> --}}
