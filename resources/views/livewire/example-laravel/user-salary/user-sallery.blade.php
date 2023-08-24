@@ -3,11 +3,24 @@
    div.dataTables_wrapper div.dataTables_filter {
       text-align: left;
    }
+   .month-header-btn{
+      width: 20%;
+      position: relative;
+      top: 162px;
+      z-index: 9999;
+      left: 327px;
+   }
+   .clear-fil{
+      position: relative;
+      top: 129px;
+      z-index: 9999;
+      left: 616px;
+   }
 </style>
 <div>
    <!-- Navbar -->
    <!-- End Navbar -->
-   <div class="container-fluid py-4 assign-task-tab">
+   <div class="py-4 assign-task-tab">
       <!-- New Dashboard Starts -->
       <div class="main-dashboard mb-5">
          <div class="main-dashboard-inner">
@@ -53,9 +66,16 @@
                      @endif
                   </div>
                </nav>
+               <form  method="GET" action="{{ route('userSallery') }}">
+                  <div class="month-header-btn header-btn">
+                     <input type="month" name="month_salary_inp" class="form-control form-control month_salary_inp w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline " value="{{$filter_date}}">
+                  </div>
+                  <button type="submit" class="btn-primary d-none submit-btn">Submit</button>
+                  <a href="{{ route('userSallery')}}" class="ml-2 btn-primary clear-fil">Clear Filter</a>
+               </form>
                <div class="" id="nav-tabContent">
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
-                     <div class="accordion-body">
+                     {{-- <div class="accordion-body"> --}}
                         <div class="row">
                            <div class="col-md-12">
                            </div>
@@ -83,14 +103,18 @@
                               @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
+                                    <a href="{{ route('userSallery')}}" class="ml-2 btn-primary cleri">Clear Filter</a>
                                     <div class="custom-container">
+
                                        <div class=" justify-content-between d-flex">
+
                                           <div class="print header-btn ms-2">
                                              <span class="nav-link mb-0 ml-2 active " data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i class="fa fa-print" aria-hidden="true"></i></span>
                                           </div>
                                           <div class="export header-btn ms-2">
                                              <a href="{{route('export')}}"> <span class="nav-link mb-0  active" data-bs-toggle="tooltip" data-bs-placement="top" title="Export CSV"><i class="fas fa-file-export"></i></span></a>
                                           </div>
+
                                        </div>
                                     </div>
                                     <div class="table-responsive p-0">
@@ -157,14 +181,14 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       {{-- <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6> --}}
-                                                       <h6 class="mb-0 text-sm">{{ date('Y') }}</h6>
+                                                       <h6 class="mb-0 text-sm">{{ $user->year_salary}}</h6>
+                                                       {{-- <h6 class="mb-0 text-sm">{{ date('Y') }}</h6>--}}
                                                     </div>
                                                  </td>
                                                  <td>
                                                    <div class="d-flex flex-column justify-content-end">
-                                                      {{-- <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6> --}}
-                                                      <h6 class="mb-0 text-sm">{{ date('m') }}</h6>
+                                                      <h6 class="mb-0 text-sm">{{ $user->month_salary}}</h6>
+                                                      {{-- <h6 class="mb-0 text-sm">{{ date('m') }}</h6>--}}
                                                    </div>
                                                 </td>
                                                 <td>
@@ -212,7 +236,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  {{-- </div> --}}
                   @if(auth()->user()->role == 'super_admin')
                   <div class="tab-pane fade" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
                      <div class="accordion-body">
