@@ -4426,13 +4426,10 @@ textarea#text-fres01 {
 
 a.ml-2.btn-primary.cleri{
     position: absolute;
-    right: 370px;
-    top: 33px;
+    right: -85px;
+    /* top: 33px; */
     padding: 7px;
     border-radius: 5rem !important;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     color: #fff;
     font-size: 0.875rem;
 }
@@ -4447,3 +4444,4 @@ a.ml-2.btn-primary.cleri{
 .row.personal-till.add-to .students-start-col{
     border: none;
 }
+
