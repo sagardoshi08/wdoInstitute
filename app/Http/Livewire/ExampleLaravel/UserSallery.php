@@ -251,7 +251,7 @@ class UserSallery extends Controller
     public function mintoHour($minutes){
         $hours = floor($minutes / 60);
         $min = $minutes - ($hours * 60);
-        return round($hours) ." Hour(s) ". round($min)." Mintes(s)";
+        return round($hours) ." Hour(s) ". round($min)." Minute(s)";
     }
 
     public function viewSalary(Request $request,$id,$month){
@@ -275,7 +275,10 @@ class UserSallery extends Controller
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
-            $holiday = Holiday::whereMonth('date', $month1)->whereYear('date', '=', $year)->count();
+            $holiday = Holiday::whereMonth('date', $month1)->whereYear('date', '=', $year);
+            $holidayList = $holiday->get();
+            $holiday = $holiday->count();
+
             $month_working = Carbon::now()->month($month1)->daysInMonth - $daysForExtraCoding - $holiday;
             $data['working_ours'] = $data->offer_datils ? $month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) : '-';
             $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', $month1)->whereYear('attendance_date', '=', $year)->get();
@@ -298,9 +301,15 @@ class UserSallery extends Controller
 
             $data['EXTRA_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) < 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
 
+            $holidayStr = "";
+            foreach($holidayList as $holi){
+                $holidayStr .= $holidayStr == "" ? "(".$holi->holiday_name : ", ".$holi->holiday_name;
+            }
+            $holidayStr .= $holidayStr == "" ? "" : ")";
+
             $data['month']= $month1;  
-            $data['year']= $year;  
-            $data['holiday']= $holiday; 
+            $data['year']= $year;   
+            $data['holiday']= $holiday." ".$holidayStr;
             $data['off_day']= $daysForExtraCoding; 
 
         //echo '<pre>'; print_r($data); die();
