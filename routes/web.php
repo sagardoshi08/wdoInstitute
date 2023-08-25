@@ -33,6 +33,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Livewire\ExampleLaravel\UserAttendence;
 use App\Http\Livewire\ExampleLaravel\HolidayManagement;
 use App\Http\Livewire\ExampleLaravel\UserSallery;
+use App\Http\Livewire\ExampleLaravel\UserBreakTime;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,4 +181,8 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
 
     //User Salary
     Route::get('user-salary', [UserSallery::class, 'userSallery'])->name('userSallery');
+
+    //User Break Time
+    Route::get('user-break-time', [UserBreakTime::class, 'breaktime'])->name('userBreakTime');
+    Route::post('get-user-break-time', [UserBreakTime::class, 'getUserBreaktime'])->name('getUserBreaktime');
 });
