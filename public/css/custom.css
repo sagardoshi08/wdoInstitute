@@ -4456,7 +4456,7 @@ textarea#goal{
 }
 .nam-main-imag{
     display: inline-block;
-    svertical-align: top;
+    vertical-align: top;
     width: 180px;
 }
 .main-dashboard-inner .shadow-no i.fa.fa-eye {
