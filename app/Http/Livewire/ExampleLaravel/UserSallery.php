@@ -53,11 +53,22 @@ class UserSallery extends Controller
             $offer_details = $all->offer_datils ? json_decode($all->offer_datils) : '';
             $all_user[$key]['year_salary'] = $year;
             $all_user[$key]['month_salary'] = $month;
+            if(isset($all->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
                 return $date->isWeekend();
             }, $dt2);
+            //echo $daysForExtraCoding; die();
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
             $all_user[$key]['working_ours'] = $all->offer_datils ? $month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) : '-';
@@ -80,8 +91,8 @@ class UserSallery extends Controller
             $all_user[$key]['active_ours'] = $this->mintoHour($active_hours);
             $all_user[$key]['due_ours'] = $all->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
         }
-         
-        //echo '<pre>'; print_r( $attendance ); die();
+       
+        //echo '<pre>'; print_r( $daysForExtraCoding ); die();
         $user_admin = User::where('role','Admin')->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
@@ -90,6 +101,16 @@ class UserSallery extends Controller
             $offer_details = $admindata->offer_datils ? json_decode($admindata->offer_datils) : '';
             $user_admin[$key]['year_salary'] = $year;
             $user_admin[$key]['month_salary'] = $month;
+            if(isset($admindata->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
@@ -129,6 +150,16 @@ class UserSallery extends Controller
             $offer_details = $managerdata->offer_datils ? json_decode($managerdata->offer_datils) : '';
             $user_manager[$key]['year_salary'] = $year;
             $user_manager[$key]['month_salary'] = $month;
+            if(isset($managerdata->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
@@ -166,6 +197,16 @@ class UserSallery extends Controller
             $offer_details = $teamleaddata->offer_datils ? json_decode($teamleaddata->offer_datils) : '';
             $user_teamlead[$key]['year_salary'] = $year;
             $user_teamlead[$key]['month_salary'] = $month;
+            if(isset($teamleaddata->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
@@ -203,6 +244,16 @@ class UserSallery extends Controller
             $offer_details = $employeedata->offer_datils ? json_decode($employeedata->offer_datils) : '';
             $user_employee[$key]['year_salary'] = $year;
             $user_employee[$key]['month_salary'] = $month;
+            if(isset($employeedata->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
@@ -270,6 +321,16 @@ class UserSallery extends Controller
         $offer_details = $data->offer_datils ? json_decode($data->offer_datils) : '';
             $data['year_salary'] = $data->offer_datils ? number_format($offer_details->basic * 12) : '-';
             $data['month_salary'] = $data->offer_datils ? number_format($offer_details->basic) : '-';
+            if(isset($data->offer_datils) && $offer_details->Days == 'Monday to Saturday'){
+                Carbon::setWeekendDays([
+                    Carbon::SUNDAY,
+                ]);
+            }else{
+                Carbon::setWeekendDays([
+                    Carbon::SATURDAY,
+                    Carbon::SUNDAY,
+                ]);
+            }
             $dt = Carbon::create(now()->month($month1)->startOfMonth());
             $dt2 = Carbon::create(now()->month($month1)->endOfMonth());
             $daysForExtraCoding = $dt->diffInDaysFiltered(function(Carbon $date) {
