@@ -112,9 +112,11 @@ return (round($hours)) ." Hour(s) ". round($min)." Minute(s)";
                <textarea id="text-fres" name="text" rows="4" cols="39" readonly>{{$data->goal}}</textarea>
             </div>
          </div>
+         <div class="nam-main-imag">
          <h3 class="name-adm">
             <b class="img-name">{{ $data->name }}</b>
          </h3>
+         </div>
          <div class="name_line_p">
                 <h3 class="name_sk">
                 <b style="color: #fff">Salary Details</b>

@@ -2789,6 +2789,7 @@ th {
     margin: 5px;
     padding: 0;
     padding-bottom: 20px !important;
+
 }
 
 /* .add-user-form.view-form .students-text {
@@ -4361,9 +4362,8 @@ h4.freus-text{
     border-top: unset;
 }
 .name-adm{
-    position: absolute;
-    bottom: 28%;
-    left: 5%;
+    margin-top: -209px;
+    margin-left: 15px;
 }
 h3.name-adm.ministration {
     bottom: 18%;
@@ -4410,12 +4410,13 @@ textarea#text-fres01 {
     align-items: center;
     justify-content: center;
 }
-h3.name-adm b.img-name {
+/* h3.name-adm b.img-name {
     position: relative;
-}
+} */
 .row.personal-till.rial {
-    display: flex;
+    /* display: flex; */
     flex-wrap: nowrap;
+    padding: 25px;
 }
 
 
@@ -4457,3 +4458,8 @@ textarea#goal{
 }
 
 
+.nam-main-imag{
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+}
