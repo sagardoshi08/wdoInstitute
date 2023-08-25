@@ -4366,10 +4366,8 @@ h4.freus-text{
     margin-left: 15px;
 }
 h3.name-adm.ministration {
-    bottom: 18%;
-    width: 17%;
-    position: relative;
-    left: 1%;
+    margin-top: -209px;
+    margin-left: 15px;
 }
 textarea#text-fres01 {
     border-radius: 0px 0px 10px 10px;
@@ -4456,10 +4454,11 @@ textarea#goal{
     width: 100%;
     margin: 0px 0px;
 }
-
-
 .nam-main-imag{
     display: inline-block;
     vertical-align: top;
     width: 180px;
+}
+.main-dashboard-inner .shadow-no i.fa.fa-eye {
+    color: green;
 }
