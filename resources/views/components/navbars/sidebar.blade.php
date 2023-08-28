@@ -1,4 +1,4 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" id="sidenav-main">
+ <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
        <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
@@ -24,7 +24,7 @@
              <span class="nav-link-text ms-1">Assign Task</span> </a>
           </li>
           <li class="">
-             <a href="#submenu2" data-bs-toggle="collapse" class="{{  Route::currentRouteName() == 'admin-management' || Route::currentRouteName() == 'manager-management' || Route::currentRouteName() == 'teamleader-management' || Route::currentRouteName() == 'emoloyee-management' || Route::currentRouteName() == 'edit-management' || Route::currentRouteName() == 'user.allpendingUser' || Route::currentRouteName() == 'user.allrejectUser' || Route::currentRouteName() == 'user.allUser' || Route::currentRouteName() == 'user.alldefectUser' || Route::currentRouteName() == 'user.allrejectUser' ||  Route::currentRouteName() == 'user.allPendingUserData' ||  Route::currentRouteName() == 'user.allPendingadminData' || Route::currentRouteName() == 'user.allPendingmanagerData' || Route::currentRouteName() == 'user.allPendingteamleaderData' || Route::currentRouteName() == 'user.allPendingemployeeData' || Route::currentRouteName() == 'user.allrejectUserData' || Route::currentRouteName() == 'user.allrejectadminData' || Route::currentRouteName() == 'user.allrejectmanagerData' || Route::currentRouteName() == 'user.allrejectteamleaderData' || Route::currentRouteName() == 'user.allrejectemployeeData' || Route::currentRouteName() == 'user.alldefectUserData' || Route::currentRouteName() == 'user.alldefectadminData' || Route::currentRouteName() == 'user.alldefectmanagerData' || Route::currentRouteName() == 'user.alldefectteamleaderData' || Route::currentRouteName() == 'user.alldefectemployeeData'  ? 'active bg-gradient-primary' : '' }} nav-link px-0 align-middle">
+             <a href="#submenu2" id="user-drop" data-bs-toggle="collapse" class="comman-drop {{  Route::currentRouteName() == 'admin-management' || Route::currentRouteName() == 'manager-management' || Route::currentRouteName() == 'teamleader-management' || Route::currentRouteName() == 'emoloyee-management' || Route::currentRouteName() == 'edit-management' || Route::currentRouteName() == 'user.allpendingUser' || Route::currentRouteName() == 'user.allrejectUser' || Route::currentRouteName() == 'user.allUser' || Route::currentRouteName() == 'user.alldefectUser' || Route::currentRouteName() == 'user.allrejectUser' ||  Route::currentRouteName() == 'user.allPendingUserData' ||  Route::currentRouteName() == 'user.allPendingadminData' || Route::currentRouteName() == 'user.allPendingmanagerData' || Route::currentRouteName() == 'user.allPendingteamleaderData' || Route::currentRouteName() == 'user.allPendingemployeeData' || Route::currentRouteName() == 'user.allrejectUserData' || Route::currentRouteName() == 'user.allrejectadminData' || Route::currentRouteName() == 'user.allrejectmanagerData' || Route::currentRouteName() == 'user.allrejectteamleaderData' || Route::currentRouteName() == 'user.allrejectemployeeData' || Route::currentRouteName() == 'user.alldefectUserData' || Route::currentRouteName() == 'user.alldefectadminData' || Route::currentRouteName() == 'user.alldefectmanagerData' || Route::currentRouteName() == 'user.alldefectteamleaderData' || Route::currentRouteName() == 'user.alldefectemployeeData'  ? 'active bg-gradient-primary' : '' }} nav-link px-0 align-middle">
              <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center"></i>
              <span class="ms-1 d-sm-inline">User Management</span>
              </a>
@@ -63,7 +63,7 @@
           </li>
 
           <li class="">
-             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ Route::currentRouteName() == 'all-active-user' ||  Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userSallery' ||  Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userBreakTime' ? ' active bg-gradient-primary' : '' }}">
+             <a href="#submenu3" id="profile-drop" data-bs-toggle="collapse" class="comman-drop nav-link px-0 align-middle  {{ Route::currentRouteName() == 'all-active-user' ||  Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userSallery' ||  Route::currentRouteName() == 'attendance' ||  Route::currentRouteName() == 'userBreakTime' ? ' active bg-gradient-primary' : '' }}">
              <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center"></i>
              <span class="ms-1 d-sm-inline">User Profile</span>
              </a>
@@ -112,7 +112,7 @@
 
              </li> -->
           <li class="student-portal">
-             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+             <a href="#submenu1" id="student-drop" data-bs-toggle="collapse" class="nav-link px-0 align-middle comman-drop">
              <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center"></i>
              <span class="ms-1 d-sm-inline">Student Portal</span> </a>
              <ul class="collapse {{ Route::currentRouteName() == 'add' || Route::currentRouteName() == 'Student Detail' ? 'show' : '' }} nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -183,3 +183,6 @@ nav.addEventListener('toggle', function (event) {
 }, true);
 
  </script> --}}
+
+
+
