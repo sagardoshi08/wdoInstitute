@@ -21,6 +21,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
 use Auth;
+use Session;
 
 
 class UserBreakTime extends Controller
@@ -74,8 +75,29 @@ class UserBreakTime extends Controller
        //$id = explode(',',$request->id);
        //$user = User::select('name')->whereIn('id', $request->id)->get()->first();
        foreach($request->id as $data){
-            echo User::select('name')->where('id', $data)->get()->first()->name.',';
+            echo User::select('name')->where('id', $data)->get()->first()->name.', ';
        }
+    }
+
+    public function updateBreakTime(Request $request){
+  
+        $mor_tea = Carbon::createFromFormat('H:i', $request->morning_tea_end)->diffInMinutes(Carbon::createFromFormat('H:i', $request->morning_tea_start));
+        $lunch = Carbon::createFromFormat('H:i', $request->lunch_end)->diffInMinutes(Carbon::createFromFormat('H:i', $request->lunch_start));
+        $eve_tea = Carbon::createFromFormat('H:i', $request->evening_tea_end)->diffInMinutes(Carbon::createFromFormat('H:i', $request->evening_tea_start));
+
+        $data['mor_tea_start'] = $request->morning_tea_start;
+        $data['mor_tea_end'] = $request->morning_tea_end;
+        $data['mor_tea_break'] = $mor_tea;
+        $data['lunch_start'] = $request->lunch_start;
+        $data['lunch_end'] = $request->lunch_end;
+        $data['lunch_break'] = $lunch;
+        $data['eve_tea_start'] = $request->evening_tea_start;
+        $data['eve_tea_end'] = $request->evening_tea_end;
+        $data['eve_tea_break'] = $eve_tea;
+        //echo '<pre>'; print_r($request->usrs_id);
+        $ids = explode(',',$request->usrs_id);
+        User::whereIn('id',$ids)->update(['break_time' => json_encode($data)]);
+        return redirect()->route('userBreakTime')->with(session()->flash('message','Break time Updated Successfully'));
     }
 
 }

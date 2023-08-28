@@ -67,7 +67,7 @@
                   </div>
                </nav>
                   <div class="month-header-btn header-btn">
-                     <a class="ml-2 btn-primary get-user-name" all-userid="">Submit</a>
+                     <button class="ml-2 btn-primary get-user-name" all-userid="" disabled>Submit</button>
                   </div>
                <div class="" id="nav-tabContent">
                   <div class="tab-pane fade active show" id="nav-basic1" role="tabpanel" aria-labelledby="nav-basic1-tab">
@@ -127,14 +127,27 @@
                                                    Role
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                    Break details
+                                                    Morning Tea Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Lunch Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Evening Tea Break
                                                 </th>
                                              </tr>
                                           </thead>
                                           <tbody>
                                              @if ($alluser->count())
                                              @foreach($alluser as $key => $user)
-                                             @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); @endphp
+                                             @php 
+                                                $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                                if(isset($user->break_time)){
+                                                   $break_time = json_decode($user->break_time);
+                                                }else{
+                                                   $break_time = '';
+                                                }
+                                             @endphp
                                              <tr>
                                                 <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                                 <td class="w-8">
@@ -157,7 +170,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">-</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                              </tr>
@@ -214,14 +237,26 @@
                                                    Role
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                    Break details
+                                                    Morning Tea Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Lunch Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Evening Tea Break
                                                 </th>
                                              </tr>
                                           </thead>
                                           <tbody>
                                              @if ($user_admin->count())
                                              @foreach($user_admin as $key => $user)
-                                             @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); @endphp
+                                             @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first();
+                                             if(isset($user->break_time)){
+                                                   $break_time = json_decode($user->break_time);
+                                                }else{
+                                                   $break_time = '';
+                                                }
+                                             @endphp
                                              <tr>
                                              <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                                 <td class="w-8">
@@ -244,7 +279,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm"></h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                              </tr>
@@ -301,14 +346,26 @@
                                                 Role
                                              </th>
                                              <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                    Break details
+                                                    Morning Tea Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Lunch Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Evening Tea Break
                                                 </th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           @if ($user_manager->count())
                                           @foreach($user_manager as $key => $user)
-                                          @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); @endphp
+                                          @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                          if(isset($user->break_time)){
+                                                   $break_time = json_decode($user->break_time);
+                                                }else{
+                                                   $break_time = '';
+                                                }
+                                          @endphp
                                           <tr>
                                           <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                              <td class="w-8">
@@ -331,7 +388,17 @@
                                              </td>
                                              <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm"></h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                           </tr>
@@ -388,14 +455,26 @@
                                              Role
                                           </th>
                                           <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                Break details
-                                            </th>
+                                                    Morning Tea Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Lunch Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Evening Tea Break
+                                                </th>
                                        </tr>
                                     </thead>
                                     <tbody>
                                        @if ($user_teamlead->count())
                                        @foreach($user_teamlead as $key => $user)
-                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); @endphp
+                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                       if(isset($user->break_time)){
+                                                   $break_time = json_decode($user->break_time);
+                                                }else{
+                                                   $break_time = '';
+                                                }
+                                       @endphp
                                        <tr>
                                        <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                           <td class="w-8">
@@ -417,10 +496,20 @@
                                              </div>
                                           </td>
                                           <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                                <h6 class="mb-0 text-sm">-</h6>
-                                            </div>
-                                            </td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
                                                  
                                        </tr>
                                        @endforeach
@@ -475,14 +564,26 @@
                                              Role
                                           </th>
                                           <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                Break details
-                                            </th>
+                                                    Morning Tea Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                    Lunch Break
+                                                </th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder text-start">
+                                                   Evening Tea Break
+                                                </th>
                                        </tr>
                                     </thead>
                                     <tbody>
                                        @if ($user_employee->count())
                                        @foreach($user_employee as $key => $user)
-                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); @endphp
+                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                       if(isset($user->break_time)){
+                                                   $break_time = json_decode($user->break_time);
+                                                }else{
+                                                   $break_time = '';
+                                                }
+                                       @endphp
                                        <tr>
                                        <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                           <td class="w-8">
@@ -504,10 +605,20 @@
                                              </div>
                                           </td>
                                           <td>
-                                            <div class="d-flex flex-column justify-content-end">
-                                                <h6 class="mb-0 text-sm">-</h6>
-                                            </div>
-                                            </td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
+                                                 <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                    </div>
+                                                 </td>
                                                  
                                        </tr>
                                        @endforeach
@@ -539,7 +650,7 @@
                 <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="assign-form" action="" method="POST">
+            <form id="assign-form" action="{{route('updateBreakTime')}}" method="POST">
                 @csrf
             <div class="modal-body">
               <div class="task-area">
@@ -549,40 +660,40 @@
                     <div class="row">
                         <input type="hidden" name="usrs_id" value="" id="student-id">
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Morning Teabreak Start</label><br />
-                            <input type="time" name="contacts_permission" id="contacts_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Morning Tea-break Start</label><br />
+                            <input type="time" name="morning_tea_start" id="morning_tea_start" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Morning Teabreak End</label><br />
-                            <input type="time" name="aadhar_permission" id="aadhar_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Morning Tea-break End</label><br />
+                            <input type="time" name="morning_tea_end" id="morning_tea_end" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Lunch Start</label><br />
-                            <input type="time" name="application_permission" id="application_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Lunch-break Start</label><br />
+                            <input type="time" name="lunch_start" id="lunch_start" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Lunch End</label><br />
-                            <input type="time" name="bank_permission" id="bank_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Lunch-break End</label><br />
+                            <input type="time" name="lunch_end" id="lunch_end" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
                     
                     <div class="row py-2">
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Evening Teabreak Start</label><br />
-                            <input type="time" name="application_permission" id="application_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Evening Tea-break Start</label><br />
+                            <input type="time" name="evening_tea_start" id="evening_tea_start" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="col-md-6">
-                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Evening Teabreak End</label><br />
-                            <input type="time" name="bank_permission" id="bank_permission" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Evening Tea-break End</label><br />
+                            <input type="time" name="evening_tea_end" id="evening_tea_end" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-cancel close" data-dismiss="modal">Cancel</button>
-               <button type="submit" class="btn crop-btn" id="assign-save-btn">Save</button>
+               <button type="submit" class="btn crop-btn" id="break-save-btn" disabled>Save</button>
             </div>
             </form>
         </div>
@@ -596,6 +707,7 @@
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" defer="defer"></script>
 <script type="text/javascript">
    $(document).ready(function() {
+      
       $.fn.dataTable.ext.errMode = 'none';
         var dataTable = $('.sample_data').DataTable({
             "oLanguage": {
@@ -625,6 +737,14 @@
             "oLanguage": {
                 "sLengthMenu": "RESULTS PER PAGE:  _MENU_ ",
             },
+        });
+
+        $(document).on('change', '#morning_tea_start,#morning_tea_end,#lunch_start,#lunch_end,#evening_tea_start,#evening_tea_end', function() {
+            if($('#morning_tea_start').val() != '' && $('#morning_tea_end').val() != '' && $('#lunch_start').val() != '' && $('#lunch_end').val() != '' && $('#evening_tea_start').val() != '' && $('#evening_tea_end').val() != ''){
+               $('#break-save-btn').prop('disabled',false);
+            }else{
+               $('#break-save-btn').prop('disabled',true);
+            }
         });
 
         $(document).on('click', '.admin-btn-tab', function() {
@@ -707,6 +827,12 @@
         $('#allmultiselect').change(function () {
             var cells = dataTable_alluser.rows({ page: 'current' }).nodes();
             $(cells).find(':checkbox').prop('checked', $(this).is(':checked'));
+            var check_input = $(cells).find(':checked').length;
+               if(check_input > 0){
+                  $('.get-user-name').prop('disabled',false);
+               }else{
+                  $('.get-user-name').prop('disabled',true);
+               }
         });
         dataTable_alluser.on('page', function () {
             var cells = dataTable_alluser.rows({ page: 'current' }).nodes();
@@ -719,9 +845,28 @@
             }
         });
 
+        $(document).on('change', '.single-che', function() {
+         var input = $(this).parents('table').find('tbody :checkbox').length;
+         var check_input = $(this).parents('table').find('tbody :checked').length;
+         if(input != check_input){
+            $(this).parents('table').find('tr th :checkbox').prop('checked', false);
+         }
+         if(check_input > 0){
+            $('.get-user-name').prop('disabled',false);
+         }else{
+            $('.get-user-name').prop('disabled',true);
+         }
+        });
+
         $('#adminmultiselect').change(function () {
             var cells = dataTable.rows({ page: 'current' }).nodes();
             $(cells).find(':checkbox').prop('checked', $(this).is(':checked'));
+            var check_input = $(cells).find(':checked').length;
+               if(check_input > 0){
+                  $('.get-user-name').prop('disabled',false);
+               }else{
+                  $('.get-user-name').prop('disabled',true);
+               }
         });
         dataTable.on('page', function () {
             var cells = dataTable.rows({ page: 'current' }).nodes();
@@ -737,6 +882,12 @@
         $('#managermultiselect').change(function () {
             var cells = dataTable_manager.rows({ page: 'current' }).nodes();
             $(cells).find(':checkbox').prop('checked', $(this).is(':checked'));
+            var check_input = $(cells).find(':checked').length;
+               if(check_input > 0){
+                  $('.get-user-name').prop('disabled',false);
+               }else{
+                  $('.get-user-name').prop('disabled',true);
+               }
         });
         dataTable_manager.on('page', function () {
             var cells = dataTable_manager.rows({ page: 'current' }).nodes();
@@ -752,6 +903,12 @@
         $('#teamledmultiselect').change(function () {
             var cells = dataTable_teamlead.rows({ page: 'current' }).nodes();
             $(cells).find(':checkbox').prop('checked', $(this).is(':checked'));
+            var check_input = $(cells).find(':checked').length;
+               if(check_input > 0){
+                  $('.get-user-name').prop('disabled',false);
+               }else{
+                  $('.get-user-name').prop('disabled',true);
+               }
         });
         dataTable_teamlead.on('page', function () {
             var cells = dataTable_teamlead.rows({ page: 'current' }).nodes();
@@ -767,6 +924,12 @@
         $('#employeemultiselect').change(function () {
             var cells = dataTable_employee.rows({ page: 'current' }).nodes();
             $(cells).find(':checkbox').prop('checked', $(this).is(':checked'));
+            var check_input = $(cells).find(':checked').length;
+               if(check_input > 0){
+                  $('.get-user-name').prop('disabled',false);
+               }else{
+                  $('.get-user-name').prop('disabled',true);
+               }
         });
         dataTable_employee.on('page', function () {
             var cells = dataTable_employee.rows({ page: 'current' }).nodes();
@@ -814,7 +977,7 @@
                 },
                 dataType: 'html',
                 success: function(data) {
-                    $('#remarks').val(data);
+                    $('#remarks').html(data);
                 }
             });
             $('#remark-modal').modal('show');
