@@ -3347,7 +3347,7 @@ input:checked+.slider .off {
 }
 
 .table.align-items-center tbody tr td input {
-    left: 15px;
+    left: 7px;
     accent-color: #e63673;
     width: 17px;
     height: 17px;

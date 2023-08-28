@@ -4,12 +4,19 @@
       text-align: left;
    }
    .month-header-btn{
-      width: 20%;
+      width: 9%;
       position: relative;
-      top: 78px;
+      top: 118px;
       z-index: 9;
       left: 327px;
    }
+   button.ml-2.btn-primary.get-user-name {
+    padding: 7px;
+    border-radius: 5rem !important;
+
+    color: #fff;
+    font-size: 0.875rem;
+}
    /* .clear-fil{
       position: relative;
       top: 129px;
@@ -140,8 +147,8 @@
                                           <tbody>
                                              @if ($alluser->count())
                                              @foreach($alluser as $key => $user)
-                                             @php 
-                                                $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                             @php
+                                                $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first();
                                                 if(isset($user->break_time)){
                                                    $break_time = json_decode($user->break_time);
                                                 }else{
@@ -149,7 +156,7 @@
                                                 }
                                              @endphp
                                              <tr>
-                                                <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
+                                                <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}" style="width: 90px"></td>
                                                 <td class="w-8">
                                                    <div class="pe-4 ">
                                                       <div class="d-flex flex-column justify-content-center align-items-center">
@@ -359,7 +366,7 @@
                                        <tbody>
                                           @if ($user_manager->count())
                                           @foreach($user_manager as $key => $user)
-                                          @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                          @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first();
                                           if(isset($user->break_time)){
                                                    $break_time = json_decode($user->break_time);
                                                 }else{
@@ -468,7 +475,7 @@
                                     <tbody>
                                        @if ($user_teamlead->count())
                                        @foreach($user_teamlead as $key => $user)
-                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first();
                                        if(isset($user->break_time)){
                                                    $break_time = json_decode($user->break_time);
                                                 }else{
@@ -510,7 +517,7 @@
                                                        <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
-                                                 
+
                                        </tr>
                                        @endforeach
                                        @else
@@ -577,7 +584,7 @@
                                     <tbody>
                                        @if ($user_employee->count())
                                        @foreach($user_employee as $key => $user)
-                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first(); 
+                                       @php $image = DB::table('user_data')->select('profile_image')->where('user_id',$user->id)->first();
                                        if(isset($user->break_time)){
                                                    $break_time = json_decode($user->break_time);
                                                 }else{
@@ -619,7 +626,7 @@
                                                        <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
-                                                 
+
                                        </tr>
                                        @endforeach
                                        @else
@@ -678,7 +685,7 @@
                             <input type="time" name="lunch_end" id="lunch_end" class=" w-100 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
-                    
+
                     <div class="row py-2">
                         <div class="col-md-6">
                             <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start">Evening Tea-break Start</label><br />
@@ -707,7 +714,7 @@
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" defer="defer"></script>
 <script type="text/javascript">
    $(document).ready(function() {
-      
+
       $.fn.dataTable.ext.errMode = 'none';
         var dataTable = $('.sample_data').DataTable({
             "oLanguage": {
