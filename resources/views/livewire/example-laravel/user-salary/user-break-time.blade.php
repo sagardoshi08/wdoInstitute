@@ -181,17 +181,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                              </tr>
@@ -290,17 +290,17 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                              </tr>
@@ -399,17 +399,17 @@
                                              </td>
                                              <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                           </tr>
@@ -508,17 +508,17 @@
                                           </td>
                                           <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
 
@@ -617,17 +617,17 @@
                                           </td>
                                           <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
                                                  <td>
                                                     <div class="d-flex flex-column justify-content-end">
-                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}</h6>
+                                                       <h6 class="mb-0 text-sm">{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.' min)' : '-'}}</h6>
                                                     </div>
                                                  </td>
 
@@ -861,6 +861,8 @@
          var check_input = $(this).parents('table').find('tbody :checked').length;
          if(input != check_input){
             $(this).parents('table').find('tr th :checkbox').prop('checked', false);
+         }else{
+            $(this).parents('table').find('tr th :checkbox').prop('checked', true);
          }
          if(check_input > 0){
             $('.get-user-name').prop('disabled',false);
