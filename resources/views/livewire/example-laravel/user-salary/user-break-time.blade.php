@@ -13,9 +13,13 @@
    button.ml-2.btn-primary.get-user-name {
     padding: 7px;
     border-radius: 5rem !important;
-
     color: #fff;
     font-size: 0.875rem;
+}
+
+    .table.align-items-center tbody tr td input {
+    left: 49%;
+
 }
    /* .clear-fil{
       position: relative;
@@ -156,7 +160,7 @@
                                                 }
                                              @endphp
                                              <tr>
-                                                <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}" style="width: 90px"></td>
+                                                <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                                 <td class="w-8">
                                                    <div class="pe-4 ">
                                                       <div class="d-flex flex-column justify-content-center align-items-center">
