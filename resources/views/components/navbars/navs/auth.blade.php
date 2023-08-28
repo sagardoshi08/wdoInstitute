@@ -185,6 +185,11 @@ p{
   <script type="text/javascript">
     var updateActivity = null;
     $(document).ready(function() {
+        $(document).on('click', '#user-drop,#profile-drop,#student-drop', function() {
+            console.log('hello');
+            $('.comman-drop').parents('li').find('ul').removeClass('show');
+            $(this).parents('li').find('ul').addClass('show');
+        });
       $(document).on('click', '.redirect-user', function() {
             $.ajax({
                 type: 'POST',
@@ -200,10 +205,10 @@ p{
             });
         });
 
-      bindDOMEvents(); 
+      bindDOMEvents();
       updateActivity = setInterval(() => {
         $.get('{{ route("update-user-activity") }}',function(res){
-          if(res.success == false){ 
+          if(res.success == false){
             window.location.href="{{url('attendence-logout')}}";
           }
         },'JSON');
@@ -245,12 +250,12 @@ p{
   //     }
 	// 		attendence_expireSession();
 	// 	/*end track attendence working hours*/
-	// @endif  
+	// @endif
 
   if(store.get('activeTabCounts')){
       store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) + 1));
   }else{
-      store.set('activeTabCounts', 1); 
+      store.set('activeTabCounts', 1);
   }
 
   window.addEventListener('beforeunload', (event) => {
@@ -258,16 +263,16 @@ p{
       /*if (validNavigation==0){
           store.set('activeTabCounts', (parseInt(store.get('activeTabCounts')) - 1));
           console.log("activeTabCounts",parseInt(store.get('activeTabCounts')))
-          if(parseInt(store.get('activeTabCounts')) <= 0){ 
+          if(parseInt(store.get('activeTabCounts')) <= 0){
             $.ajax({
                 type: 'get',
                 url: "{{url('attendence-logout')}}",
                 success: function(data) {
                 }
-            }); 
+            });
           }
           endSession();
-      }*/ 
+      }*/
   })
 
   var validNavigation = 0;
@@ -290,10 +295,10 @@ p{
       $("a").bind("click", function(event){
         if (event.ctrlKey || event.metaKey || event.currentTarget.href.indexOf("#") > -1) {}else{
           store.set('activeTabCounts', parseInt(store.get('activeTabCounts')) - 1);
-        }  
+        }
         validNavigation = 1;
       });
- 
+
       // Attach the event submit for all forms in the page
       $("form").bind("submit", function(){
           validNavigation = 1;
@@ -305,6 +310,5 @@ p{
       });
   }
 
- 
+
   </script>
-  
