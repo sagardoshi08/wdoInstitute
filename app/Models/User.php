@@ -27,7 +27,11 @@ class User extends Authenticatable
 		'assigned',
         'status',
         'login_status',
-        'job_status'
+        'job_status',
+        'offer_datils',
+        'frustrations',
+        'goal',
+        'break_time',
 
     ];
 

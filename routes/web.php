@@ -185,4 +185,5 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     //User Break Time
     Route::get('user-break-time', [UserBreakTime::class, 'breaktime'])->name('userBreakTime');
     Route::post('get-user-break-time', [UserBreakTime::class, 'getUserBreaktime'])->name('getUserBreaktime');
+    Route::post('update-break-time', [UserBreakTime::class, 'updateBreakTime'])->name('updateBreakTime');
 });
