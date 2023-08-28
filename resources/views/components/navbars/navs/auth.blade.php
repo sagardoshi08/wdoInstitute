@@ -188,7 +188,7 @@ p{
         $(document).on('click', '#user-drop,#profile-drop,#student-drop', function() {
             console.log('hello');
             $('.comman-drop').parents('li').find('ul').removeClass('show');
-            $(this).parents('li').find('ul').addClass('show');
+            $(this).parents('li').find('ul').addClass();
         });
       $(document).on('click', '.redirect-user', function() {
             $.ajax({
