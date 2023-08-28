@@ -36,19 +36,22 @@ td.mb-0.text-sm.sorting_1 {
     text-align: center;
 }
 td.mb-0.text-sm {
-    text-align: center;
+    text-align: left;
     color: #344767;
 }
 td {
     text-align: center;
 }
 
+
 </style>
 
+<div class="col-12">
+<h2>Holiday List</h2>
 <div class="row">
     <div class="card col-12">
         <div class="students-text jgba">
-            <h4 class="card-title text-start">Holiday List</h4>
+
             <div class="me-3 my-3 text-start mt-n3">
                 @if(auth()->user()->role == 'super_admin')
                 <div class="text-end"><button wire:click="bank()" class="btn bg-dark mb-0 my-auto rounded-pill text-white add-holiday-btn"      status="Reject">Add</button>
@@ -129,6 +132,7 @@ td {
       </form>
       </div>
     </div>
+</div>
 </div>
 @include('components.include.footer')
 <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
