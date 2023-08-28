@@ -71,7 +71,12 @@ class UserSallery extends Controller
             //echo $daysForExtraCoding; die();
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
-            $all_user[$key]['working_ours'] = $all->offer_datils ? $month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+            
+            $break = $all->break_time ? json_decode($all->break_time) : '';
+            $total_break = $all->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $all_user[$key]['working_ours'] = $all->offer_datils ?  $this->mintoHour($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
+
             $attendance = Attendance::where('user_id',$all->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -89,9 +94,10 @@ class UserSallery extends Controller
             $all_user[$key]['deduted_amount'] = $all->offer_datils && $offer_details->basic - ($active_hours/60) * $houyr_amount > 0 ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-';
 
             $all_user[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $all_user[$key]['due_ours'] = $all->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+
+            $all_user[$key]['due_ours'] = $all->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)): '-';
         }
-       
+       //die();
         //echo '<pre>'; print_r( $daysForExtraCoding ); die();
         $user_admin = User::where('role','Admin')->where(function($query) {
             $query->where('job_status', Null)
@@ -118,7 +124,12 @@ class UserSallery extends Controller
             }, $dt2);
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
-            $user_admin[$key]['working_ours'] = $admindata->offer_datils ? $month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+
+            $break = $admindata->break_time ? json_decode($admindata->break_time) : '';
+            $total_break = $admindata->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $user_admin[$key]['working_ours'] = $admindata->offer_datils ?  $this->mintoHour($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
+
             $attendance = Attendance::where('user_id',$admindata->id)->whereMonth('attendance_date', $month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -139,7 +150,7 @@ class UserSallery extends Controller
             ;
 
             $user_admin[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_admin[$key]['due_ours'] = $admindata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_admin[$key]['due_ours'] = $admindata->offer_datils && ($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($admindata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)): '-';
         }
 
         $user_manager = User::where('role','Manager')->where(function($query) {
@@ -167,7 +178,10 @@ class UserSallery extends Controller
             }, $dt2);
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
-            $user_manager[$key]['working_ours'] = $managerdata->offer_datils ? $month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+            $break = $managerdata->break_time ? json_decode($managerdata->break_time) : '';
+            $total_break = $managerdata->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $user_manager[$key]['working_ours'] = $managerdata->offer_datils ?  $this->mintoHour($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
             $attendance = Attendance::where('user_id',$managerdata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -186,7 +200,7 @@ class UserSallery extends Controller
             ;
 
             $user_manager[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_manager[$key]['due_ours'] = $managerdata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_manager[$key]['due_ours'] = $managerdata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($managerdata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)): '-';
         }
 
         $user_teamlead = User::where('role','Team Leader')->where(function($query) {
@@ -214,7 +228,12 @@ class UserSallery extends Controller
             }, $dt2);
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
-            $user_teamlead[$key]['working_ours'] = $teamleaddata->offer_datils ? $month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+
+            $break = $teamleaddata->break_time ? json_decode($teamleaddata->break_time) : '';
+            $total_break = $teamleaddata->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $user_teamlead[$key]['working_ours'] = $teamleaddata->offer_datils ?  $this->mintoHour($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
+
             $attendance = Attendance::where('user_id',$teamleaddata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -233,7 +252,7 @@ class UserSallery extends Controller
             ;
 
             $user_teamlead[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_teamlead[$key]['due_ours'] = $teamleaddata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_teamlead[$key]['due_ours'] = $teamleaddata->offer_datils && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($teamleaddata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)): '-';
         }
 
         $user_employee = User::where('role','Employee')->where(function($query) {
@@ -261,7 +280,12 @@ class UserSallery extends Controller
             }, $dt2);
             $holiday = Holiday::whereMonth('date',$month)->whereYear('date', '=',$year)->count();
             $month_working = Carbon::now()->month($month)->daysInMonth - $daysForExtraCoding - $holiday;
-            $user_employee[$key]['working_ours'] = $employeedata->offer_datils ? $month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+
+            $break = $employeedata->break_time ? json_decode($employeedata->break_time) : '';
+            $total_break = $employeedata->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $user_employee[$key]['working_ours'] = $employeedata->offer_datils ?  $this->mintoHour($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
+
             $attendance = Attendance::where('user_id',$employeedata->id)->whereMonth('attendance_date',$month)->whereYear('attendance_date', '=',$year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -280,7 +304,7 @@ class UserSallery extends Controller
             ; 
 
             $user_employee[$key]['active_ours'] = $this->mintoHour($active_hours);
-            $user_employee[$key]['due_ours'] =  $employeedata->offer_datils  && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))): '-';
+            $user_employee[$key]['due_ours'] =  $employeedata->offer_datils  && ($month_working * intval($all->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($employeedata->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)): '-';
         }
 
         $user_data = User_data::where('user_id',Auth::id())->first();
@@ -341,7 +365,12 @@ class UserSallery extends Controller
             $holiday = $holiday->count();
 
             $month_working = Carbon::now()->month($month1)->daysInMonth - $daysForExtraCoding - $holiday;
-            $data['working_ours'] = $data->offer_datils ? $month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) : '-';
+
+            $break = $data->break_time ? json_decode($data->break_time) : '';
+            $total_break = $data->break_time ? intval($break->mor_tea_break + $break->lunch_break + $break->eve_tea_break) * $month_working : 0;
+
+            $data['working_ours'] = $data->offer_datils ?  $this->mintoHour($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1)* 60 - $total_break): '-';
+
             $attendance = Attendance::where('user_id',$data->id)->whereMonth('attendance_date', $month1)->whereYear('attendance_date', '=', $year)->get();
             $active_hours = 0;
             if(isset($attendance)){
@@ -358,9 +387,9 @@ class UserSallery extends Controller
             $data['deduted_amount'] = $data->offer_datils ? number_format($offer_details->basic - ($active_hours/60) * $houyr_amount,'2') : '-' 
             ; 
 
-             $data['due_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) > 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
+             $data['due_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) > 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)) : '-';
 
-            $data['EXTRA_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours))) < 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)))) : '-';
+            $data['EXTRA_ours'] = $data->offer_datils && ($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break) < 0 ? $this->mintoHour(abs($month_working * intval($data->offer_datils ? $offer_details->days_working_hour : 1) * 60 - (abs($active_hours)) - $total_break)) : '-';
 
             $holidayStr = "";
             foreach($holidayList as $holi){

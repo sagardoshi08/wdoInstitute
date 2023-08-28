@@ -3812,7 +3812,7 @@ button.rj-btn {
 }
 
 h4.card-title.text-start {
-    border: 1px solid #d5d4d4;
+    /* border: 1px solid #d5d4d4; */
     border-radius: 10px 10px 0px 0px;
     margin: 0px 5px;
     /* padding: 0; */
@@ -4306,7 +4306,7 @@ h3.name_action{
 } */
 .students-text.jgba {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     font-family: "Roboto Slab", sans-serif;
     font-weight: 600;
 }
