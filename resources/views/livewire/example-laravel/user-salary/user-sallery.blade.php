@@ -889,11 +889,12 @@
                      </div>
                   </div>
                </div>
-               <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
+
             </div>
          </div>
-         
+
          @endif
+         <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
       </div>
    </div>
 </div>
