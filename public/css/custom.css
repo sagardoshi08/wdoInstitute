@@ -4465,3 +4465,7 @@ textarea#goal{
 .shadow{
     box-shadow:unset !important;
 }
+.dataTables_filter label {
+    position: relative;
+    top: 7px;
+}
