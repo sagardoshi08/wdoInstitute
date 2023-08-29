@@ -361,7 +361,7 @@
                       @if(isset($student->aadhar_card_front))
                       @php $aadhar_card_front = explode('.',$student->aadhar_card_front)@endphp
                       @if($aadhar_card_front[1] != 'pdf')
-                      <img src="{{$aadhar_card_front ? asset('assets').'/'.$aadhar_card_front : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$aadhar_card_front ? asset('assets').'/'.$aadhar_card_front : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -377,7 +377,7 @@
                       @if(isset($student->aadhar_card_back))
                         @php $aadhar_card_back = explode('.',$student->aadhar_card_back)@endphp
                         @if($aadhar_card_back[1] != 'pdf')
-                        <img src="{{$aadhar_card_back ? asset('assets').'/'.$aadhar_card_back : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                        {{-- <img src="{{$aadhar_card_back ? asset('assets').'/'.$aadhar_card_back : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                         @else
                         <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                         @endif
@@ -393,7 +393,7 @@
                       @if(isset($student->prtc))
                         @php $prtc = explode('.',$student->prtc)@endphp
                         @if($prtc[1] != 'pdf')
-                        <img src="{{$prtc ? asset('assets').'/'.$prtc : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                        {{-- <img src="{{$prtc ? asset('assets').'/'.$prtc : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                         @else
                         <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                         @endif
@@ -409,7 +409,7 @@
                       @if(isset($student->caste_certificate))
                       @php $caste_certificate = explode('.',$student->caste_certificate)@endphp
                       @if($caste_certificate[1] != 'pdf')
-                      <img src="{{$caste_certificate ? asset('assets').'/'.$caste_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$caste_certificate ? asset('assets').'/'.$caste_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -425,7 +425,7 @@
                       @if(isset($student->bonafide_nsp))
                       @php $bonafide_nsp = explode('.',$student->bonafide_nsp)@endphp
                       @if($bonafide_nsp[1] != 'pdf')
-                      <img src="{{$bonafide_nsp ? asset('assets').'/'.$bonafide_nsp : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$bonafide_nsp ? asset('assets').'/'.$bonafide_nsp : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -441,7 +441,7 @@
                       @if(isset($student->bonafide_college))
                       @php $bonafide_college = explode('.',$student->bonafide_college)@endphp
                       @if($bonafide_college[1] != 'pdf')
-                      <img src="{{$bonafide_college ? asset('assets').'/'.$bonafide_college : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$bonafide_college ? asset('assets').'/'.$bonafide_college : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -457,7 +457,7 @@
                       @if(isset($student->pre_year_mark))
                       @php $pre_year_mark = explode('.',$student->pre_year_mark)@endphp
                       @if($pre_year_mark[1] != 'pdf')
-                      <img src="{{$pre_year_mark ? asset('assets').'/'.$pre_year_mark : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$pre_year_mark ? asset('assets').'/'.$pre_year_mark : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -473,7 +473,7 @@
                       @if(isset($student->income_certificate))
                       @php $income_certificate = explode('.',$student->income_certificate)@endphp
                       @if($income_certificate[1] != 'pdf')
-                      <img src="{{$income_certificate ? asset('assets').'/'.$income_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$income_certificate ? asset('assets').'/'.$income_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
@@ -489,7 +489,7 @@
                       @if(isset($student->signature))
                       @php $signature = explode('.',$student->signature)@endphp
                       @if($signature[1] != 'pdf')
-                      <img src="{{$signature ? asset('assets').'/'.$signature : asset('assets/img/images.png')}}" class="rounded-circle img-download">
+                      {{-- <img src="{{$signature ? asset('assets').'/'.$signature : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
