@@ -103,7 +103,11 @@
                                  </div>
                               </div>
                               @endif
-                              @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
+                              @if(auth()->user()->role == 'super_admin')
+								  <h2>{{count($alluser)}} All Users</h2>
+							  @else
+								  <h2>Salary Info</h2>
+							  @endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
 
@@ -891,11 +895,12 @@
                      </div>
                   </div>
                </div>
-               <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
+
             </div>
          </div>
 
          @endif
+         <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
       </div>
    </div>
 </div>

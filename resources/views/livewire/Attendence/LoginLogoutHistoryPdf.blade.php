@@ -65,6 +65,7 @@
                                                 <p>{{$data->mother_name}}</p>
                                             </div>
                                         </div>
+                                        @if(auth()->user()->role == 'super_admin')
                                         <div class="col-sm-12 mt-1 col-lg-12">
                                             <div class="form-group">
                                                 <label for="email" class="block text-gray-700 text-sm font-bold text-start col-lg-6"><b>Email Address</b></label><br />
@@ -83,6 +84,7 @@
                                                 <p>{{$data->phone_number}}</p>
                                             </div>
                                         </div>
+                                        @endif
                                         <div class="col-sm-12 mt-1 col-lg-12">
                                             <div class="form-group">
                                                 <label for="role" class="block text-gray-700 text-sm font-bold mb-0 text-start col-lg-6"><b>Role</b></label><br />

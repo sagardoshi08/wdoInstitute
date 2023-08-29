@@ -128,15 +128,15 @@ max-width: 100%;
                      @php  $break_time = json_decode($users->break_time); @endphp
                      <div class="mb-4 col-sm-12  col-md-4 create-edit-validation">
                         <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start qualificationon">Morning Tea Break<span class="det-alert">*</span></label><br />
-                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->mor_tea_start.'-'.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}" name="role" readonly>
+                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->mor_tea_start.' - '.$break_time->mor_tea_end.' ('.$break_time->mor_tea_break.'min)' : '-'}}" name="role" readonly>
                      </div>
                      <div class="mb-4 col-sm-12  col-md-4 create-edit-validation">
                         <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start qualificationon">Lunch Break<span class="det-alert">*</span></label><br />
-                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->lunch_start.'-'.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}" name="role" readonly>
+                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->lunch_start.' - '.$break_time->lunch_end.' ('.$break_time->lunch_break.'min)' : '-'}}" name="role" readonly>
                      </div>
                      <div class="mb-4 col-sm-12  col-md-4 create-edit-validation">
                         <label for="role" class="w-100 block text-gray-700 text-sm font-bold mb-2 text-start qualificationon">Evening Tea Break<span class="det-alert">*</span></label><br />
-                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->eve_tea_start.'-'.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}" name="role" readonly>
+                        <input type="text" class="w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{$break_time != '' ? $break_time->eve_tea_start.' - '.$break_time->eve_tea_end.' ('.$break_time->eve_tea_break.'min)' : '-'}}" name="role" readonly>
                      </div>
                      <div class="mb-4 col-sm-12 col-md-4 create-edit-validation">
                         <input type="hidden" name="crope_img" id="preview-crop-image" value="">
