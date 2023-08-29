@@ -38,7 +38,6 @@
         </div>
     </div>
 <div class="bg-white px-3 pb-2 sm:p-6 sm:pb-4">
-
 <div class="m-3 text-img">
    <img class="img-account-profile p-img" width="100px" height="100px" src="{{$user_data->profile_image ? asset('assets').'/'.$user_data->profile_image : asset('assets/img/images.png')}}" alt="">
    <div class="row personal-ils ">

@@ -462,7 +462,7 @@
       <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison">
             <h6 class="mb-5 text-uppercase">Assign Task</h6>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign" href="{{route('assignStudentList')}}">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -471,11 +471,11 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                        <h4 class="mb-0">120</h4>
+                        <h4 class="mb-0">{{DB::table('assign_task')->where('employee_id',Auth::id())->count()}}</h4>
                     </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
@@ -519,7 +519,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
         <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">TL Assigned Task Approvel</h6>

@@ -31,7 +31,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label><b>Application Number</b></label>
-                  <input  value="{{$student->application_number}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Application Number" readonly>
+                  <input  value="{{isset($student->application_permission) && $student->application_permission == 'No' ? '***********' . substr($student->application_number,-4) : $student->application_number  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Application Number" readonly>
                   @error('application_number') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
               </div>
@@ -45,7 +45,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label><b>Please Enter Aadhar Number</b></label>
-                  <input  value="{{$student->number}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Aadhar Number" readonly>
+                  <input  value="{{isset($student->aadhar_permission) && $student->aadhar_permission == 'No' ? '***********' . substr($student->number,-4) : $student->number  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Aadhar Number" readonly>
                   @error('number') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
               </div>
@@ -62,21 +62,21 @@
               <div class="col-sm-3 ">
                 <div class="form-group">
                   <label><b>Account Number</b></label>
-                  <input  value="{{$student->account_number}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Account Number" readonly>
+                  <input  value="{{isset($student->bank_permission) && $student->bank_permission == 'No' ? '***********' . substr($student->account_number,-4) : $student->account_number  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Account Number" readonly>
                   @error('account_number') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
               </div>
               <div class="col-sm-3 ">
                 <div class="form-group">
                   <label><b>IFSC Code</b></label>
-                  <input  value="{{$student->IFSC_code}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter IFSC Code" readonly>
+                  <input  value="{{isset($student->bank_permission) && $student->bank_permission == 'No' ? '***********' . substr($student->IFSC_code,-4) : $student->IFSC_code  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter IFSC Code" readonly>
                   @error('IFSC_code') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
               </div>
               <div class="col-sm-3 ">
                 <div class="form-group">
                   <label><b>Bank Name</b></label>
-                  <input  value="{{$student->bank_name}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Bank Name" readonly>
+                  <input  value="{{isset($student->bank_permission) && $student->bank_permission == 'No' ? '' : $student->bank_name  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Please Enter Bank Name" readonly>
                   @error('bank_name') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
               </div>
@@ -122,7 +122,7 @@
                 <div class="col-sm-3 mt-3">
                   <div class="form-group ">
                     <label><b>Email Address</b></label>
-                    <input value="{{$student->email_address}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" placeholder="Enter Email Address" readonly>
+                    <input value="{{isset($student->contacts_permission) && $student->contacts_permission == 'No' ? '-' : $student->email_address  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" placeholder="Enter Email Address" readonly>
                     @error('email_address') <span class="text-danger">{{ $message }}</span>@enderror
                   </div>
                 </div>
@@ -143,7 +143,7 @@
                 <div class="col-sm-3 mt-3">
                   <div class="form-group">
                     <label><b>Phone Number</b></label>
-                    <input value="{{$student->phone_number}}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="Please Enter Phone Number" readonly>
+                    <input value="{{isset($student->contacts_permission) && $student->contacts_permission == 'No' ? '***********' . substr($student->phone_number,-4) : $student->phone_number  }}" class="form-control w-100 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="Phone Number" readonly>
                     @error('phone_number') <span class="text-danger">{{ $message }}</span>@enderror
                   </div>
                 </div>

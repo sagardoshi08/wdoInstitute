@@ -84,7 +84,8 @@ class AssignUsers extends Component
     }
 
     public function assignStudentView($id){
-        $student = Student::where('id',$id)->first();
+        //$student = Student::where('id',$id)->first();
+        $student = Student::select('assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.complited_task','assign_task.panding_task','assign_task.rejected_task','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
         return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student'));
     }
 }

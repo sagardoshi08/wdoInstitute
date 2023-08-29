@@ -57,9 +57,9 @@
                                        <table class="table align-items-center mb-0 admin-table sample_data">
                                           <thead>
                                              <tr class="bg-dark">
-                                                <th class="text-uppercase text-xxs font-weight-bolder" data-orderable="false">
+                                                {{--<th class="text-uppercase text-xxs font-weight-bolder" data-orderable="false">
                                                     <input type="checkbox" id="adminmultiselect">
-                                                </th>
+                                                </th>--}}
                                                 <th class="text-uppercase text-xxs font-weight-bolder">
                                                    S.No
                                                 </th>
@@ -97,7 +97,7 @@
                                           @if ($student->count())
                                              @foreach($student as $key => $user)
                                              <tr>
-                                             <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
+                                             {{--<td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>--}}
                                                 <td class="w-8">
                                                    <div class="pe-4 ">
                                                       <div class="d-flex flex-column justify-content-center align-items-center">{{$key + 1}}
@@ -150,9 +150,9 @@
                                                    </div>
                                                 </td>
                                                 <td class="align-middle">
-                                                   <a rel="tooltip" href="" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
+                                                   {{--<a rel="tooltip" href="{{route('studentEdit',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
                                                       <i class="fa fa-pencil"></i>
-                                                   </a>
+                                                   </a>--}}
                                                    <a rel="tooltip" href="{{route('assignStudentView',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
                                                       <i class="fa fa-eye"></i>
                                                    </a>

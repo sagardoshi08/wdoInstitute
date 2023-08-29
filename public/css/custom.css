@@ -4469,3 +4469,12 @@ textarea#goal{
     position: relative;
     top: 7px;
 }
+h4.text-start {
+    border: 1px solid #d5d4d4;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0px 5px;
+    /* padding: 0; */
+    padding: 10px;
+    color: #344767;
+    font-size: 2.25rem;
+}
