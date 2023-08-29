@@ -3021,7 +3021,7 @@ h5.text-start {
 .task-table .custom-container {
     position: absolute;
     right: 20px;
-    top: 32px;
+    top: 38px;
 }
 
 .dataTables_info {
@@ -3812,7 +3812,7 @@ button.rj-btn {
 }
 
 h4.card-title.text-start {
-    /* border: 1px solid #d5d4d4; */
+    border: 1px solid #d5d4d4;
     border-radius: 10px 10px 0px 0px;
     margin: 0px 5px;
     /* padding: 0; */
@@ -3961,7 +3961,7 @@ span.det-alert {
     /* width: 9%; */
 }
 .modal-content button.btn.btn-primary {
-    border-radius: 0;
+    border-radius: 1;
 }
 /* .wizard.clearfix .content.clearfix {
     background-color: #dee2e6;
@@ -4461,4 +4461,11 @@ textarea#goal{
 }
 .main-dashboard-inner .shadow-no i.fa.fa-eye {
     color: green;
+}
+.shadow{
+    box-shadow:unset !important;
+}
+.dataTables_filter label {
+    position: relative;
+    top: 7px;
 }

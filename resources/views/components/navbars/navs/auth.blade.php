@@ -186,9 +186,18 @@ p{
     var updateActivity = null;
     $(document).ready(function() {
         $(document).on('click', '#user-drop,#profile-drop,#student-drop', function() {
-            console.log('hello');
-            $('.comman-drop').parents('li').find('ul').removeClass('show');
-            $(this).parents('li').find('ul').addClass();
+            var id= $(this).attr('id');
+            console.log(id);
+            if(id == 'user-drop'){
+                $('#profile-drop').parents('li').find('ul').removeClass('show');
+                $('#student-drop').parents('li').find('ul').removeClass('show');
+            }else if(id == 'profile-drop'){
+                $('#user-drop').parents('li').find('ul').removeClass('show');
+                $('#student-drop').parents('li').find('ul').removeClass('show');
+            }else{
+                $('#user-drop').parents('li').find('ul').removeClass('show');
+                $('#profile-drop').parents('li').find('ul').removeClass('show');
+            }
         });
       $(document).on('click', '.redirect-user', function() {
             $.ajax({

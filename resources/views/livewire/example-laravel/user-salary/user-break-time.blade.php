@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
 @include('components.include.header')
 <style>
    div.dataTables_wrapper div.dataTables_filter {
@@ -6,12 +7,12 @@
    .month-header-btn{
       width: 9%;
       position: relative;
-      top: 118px;
+      top: 125px;
       z-index: 9;
       left: 327px;
    }
    button.ml-2.btn-primary.get-user-name {
-    padding: 7px;
+    padding: 6px 12px 6px 12px;
     border-radius: 5rem !important;
     color: #fff;
     font-size: 0.875rem;
@@ -19,7 +20,6 @@
 
     .table.align-items-center tbody tr td input {
     left: 49%;
-
 }
    /* .clear-fil{
       position: relative;

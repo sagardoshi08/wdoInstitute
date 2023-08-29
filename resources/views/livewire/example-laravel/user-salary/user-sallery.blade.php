@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
 @include('components.include.header')
 <style>
    div.dataTables_wrapper div.dataTables_filter {
@@ -81,6 +82,7 @@
                            <div class="col-md-12">
                            </div>
                            <div class="col-12">
+
                               @if (session('message'))
                               <div class="row">
                                  <div class="alert alert-success alert-dismissible text-white" role="alert">
@@ -101,7 +103,11 @@
                                  </div>
                               </div>
                               @endif
-                              @if(auth()->user()->role == 'super_admin')<h2>{{count($alluser)}} All Users</h2>@endif
+                              @if(auth()->user()->role == 'super_admin')
+								  <h2>{{count($alluser)}} All Users</h2>
+							  @else
+								  <h2>Salary Info</h2>
+							  @endif
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
 
@@ -889,11 +895,12 @@
                      </div>
                   </div>
                </div>
-               <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
+
             </div>
          </div>
-         
+
          @endif
+         <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
       </div>
    </div>
 </div>
