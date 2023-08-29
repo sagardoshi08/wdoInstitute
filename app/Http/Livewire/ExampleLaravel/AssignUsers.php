@@ -13,7 +13,7 @@ use Livewire\WithFileUploads;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Auth ;
 
 
 class AssignUsers extends Component
@@ -38,7 +38,7 @@ class AssignUsers extends Component
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $user_data = User_data::where('user_id',FacadesAuth::id())->first();
+        $user_data = User_data::where('user_id',Auth::id())->first();
         $assign = AssignTask::select('student_id')->get()->toArray();
         $students = Student::whereIn('id',$assign)->get();
         $admin = User::where('role','Admin')->where(function($query) {
@@ -73,5 +73,18 @@ class AssignUsers extends Component
                 'employee' => $employee
             ]
         );
+    }
+
+    public function assignStudentList(){
+        $student = AssignTask::select('assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.complited_task','assign_task.panding_task','assign_task.rejected_task','students.*')->leftjoin('students','students.id','=','assign_task.student_id')->where('assign_task.employee_id',Auth::id())->get();
+
+        //echo '<pre>'; print_r($student); die();
+
+        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student'));
+    }
+
+    public function assignStudentView($id){
+        $student = Student::where('id',$id)->first();
+        return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student'));
     }
 }

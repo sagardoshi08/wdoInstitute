@@ -186,4 +186,9 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     Route::get('user-break-time', [UserBreakTime::class, 'breaktime'])->name('userBreakTime');
     Route::post('get-user-break-time', [UserBreakTime::class, 'getUserBreaktime'])->name('getUserBreaktime');
     Route::post('update-break-time', [UserBreakTime::class, 'updateBreakTime'])->name('updateBreakTime');
+
+    //assign task
+    Route::get('assign-student', [AssignUsers::class, 'assignStudentList'])->name('assignStudentList');
+    Route::get('student-view/{id}', [AssignUsers::class, 'assignStudentView'])->name('assignStudentView');
+
 });
