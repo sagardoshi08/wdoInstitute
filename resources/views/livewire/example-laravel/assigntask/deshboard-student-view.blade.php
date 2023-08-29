@@ -351,15 +351,6 @@
                 <div class="mb-4 col-sm-12 col-md-3 ">
                   <div class="text-center ghijk ">
                       <h6>Self Image</h6>
-                      {{-- @if(isset($student->self_image))
-                        @php $self_img = explode('.',$student->self_image)@endphp
-                        @if($self_img[1] != 'pdf')
-                        <img src="{{$self_image ? asset('assets').'/'.$self_image : asset('assets/img/images.png')}}" class="rounded-circle img-download">
-                        @else
-                        <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
-                        @endif
-                        <button wire:click.prevent="download('{{ $self_image }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
-                        @endif --}}
 
                   </div>
                 </div>
