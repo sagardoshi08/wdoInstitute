@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
 @include('components.include.header')
 <style>
    div.dataTables_wrapper div.dataTables_filter {
@@ -81,6 +82,7 @@
                            <div class="col-md-12">
                            </div>
                            <div class="col-12">
+
                               @if (session('message'))
                               <div class="row">
                                  <div class="alert alert-success alert-dismissible text-white" role="alert">
@@ -892,7 +894,7 @@
                <span style="color: red">Note: Break Time is deducted  from "Working Hours" data.</span>
             </div>
          </div>
-         
+
          @endif
       </div>
    </div>
