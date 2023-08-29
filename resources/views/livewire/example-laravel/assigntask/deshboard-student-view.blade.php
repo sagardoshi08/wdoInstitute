@@ -351,7 +351,7 @@
                 <div class="mb-4 col-sm-12 col-md-3 ">
                   <div class="text-center ghijk ">
                       <h6>Self Image</h6>
-                      @if(isset($student->self_image))
+                      {{-- @if(isset($student->self_image))
                         @php $self_img = explode('.',$student->self_image)@endphp
                         @if($self_img[1] != 'pdf')
                         <img src="{{$self_image ? asset('assets').'/'.$self_image : asset('assets/img/images.png')}}" class="rounded-circle img-download">
@@ -359,7 +359,7 @@
                         <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                         @endif
                         <button wire:click.prevent="download('{{ $self_image }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
-                        @endif
+                        @endif --}}
 
                   </div>
                 </div>
@@ -511,7 +511,7 @@
             </div>
           </div>
         </div>
-          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse pty-01" style="text-align: end;">
+          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse pty-01 d-none" style="text-align: end;">
             <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto" >
               <a href="{{route('studentEdit',$student->id)}}" class=" edit-rounded rounded-pill inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 cancel-btn btn-04" >
                 Edit
