@@ -351,7 +351,15 @@
                 <div class="mb-4 col-sm-12 col-md-3 ">
                   <div class="text-center ghijk ">
                       <h6>Self Image</h6>
-
+                      @if(isset($student->self_image))
+                      @php $self_image = explode('.',$student->self_image)@endphp
+                      @if($self_image[1] != 'pdf')
+                       <img src="{{$student->self_image ? asset('assets').'/'.$student->self_image : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
+                      @else
+                      <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
+                      @endif
+                      <a href="{{asset('assets').'/'.$student->self_image}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
+                      @endif
                   </div>
                 </div>
                 <div class="mb-4 col-sm-12 col-md-3">
@@ -361,11 +369,11 @@
                       @if(isset($student->aadhar_card_front))
                       @php $aadhar_card_front = explode('.',$student->aadhar_card_front)@endphp
                       @if($aadhar_card_front[1] != 'pdf')
-                      {{-- <img src="{{$aadhar_card_front ? asset('assets').'/'.$aadhar_card_front : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                       <img src="{{$student->aadhar_card_front ? asset('assets').'/'.$student->aadhar_card_front : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $aadhar_card_front }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->aadhar_card_front}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -377,11 +385,11 @@
                       @if(isset($student->aadhar_card_back))
                         @php $aadhar_card_back = explode('.',$student->aadhar_card_back)@endphp
                         @if($aadhar_card_back[1] != 'pdf')
-                        {{-- <img src="{{$aadhar_card_back ? asset('assets').'/'.$aadhar_card_back : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                        <img src="{{$student->aadhar_card_back ? asset('assets').'/'.$student->aadhar_card_back : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
                         @else
                         <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                         @endif
-                        <button wire:click.prevent="download('{{ $aadhar_card_back }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                        <a href="{{asset('assets').'/'.$student->aadhar_card_back}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                         @endif
 
                   </div>
@@ -393,11 +401,11 @@
                       @if(isset($student->prtc))
                         @php $prtc = explode('.',$student->prtc)@endphp
                         @if($prtc[1] != 'pdf')
-                        {{-- <img src="{{$prtc ? asset('assets').'/'.$prtc : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                        <img src="{{$student->prtc ? asset('assets').'/'.$student->prtc : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
                         @else
                         <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                         @endif
-                        <button wire:click.prevent="download('{{ $prtc }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                        <a href="{{asset('assets').'/'.$student->prtc}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                         @endif
 
                   </div>
@@ -409,11 +417,11 @@
                       @if(isset($student->caste_certificate))
                       @php $caste_certificate = explode('.',$student->caste_certificate)@endphp
                       @if($caste_certificate[1] != 'pdf')
-                      {{-- <img src="{{$caste_certificate ? asset('assets').'/'.$caste_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
-                      @else
+                     <img src="{{$student->caste_certificate ? asset('assets').'/'.$student->caste_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
+                     @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $caste_certificate }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->caste_certificate}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -425,11 +433,11 @@
                       @if(isset($student->bonafide_nsp))
                       @php $bonafide_nsp = explode('.',$student->bonafide_nsp)@endphp
                       @if($bonafide_nsp[1] != 'pdf')
-                      {{-- <img src="{{$bonafide_nsp ? asset('assets').'/'.$bonafide_nsp : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                     <img src="{{$student->bonafide_nsp ? asset('assets').'/'.$student->bonafide_nsp : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $bonafide_nsp }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->bonafide_nsp}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -441,11 +449,11 @@
                       @if(isset($student->bonafide_college))
                       @php $bonafide_college = explode('.',$student->bonafide_college)@endphp
                       @if($bonafide_college[1] != 'pdf')
-                      {{-- <img src="{{$bonafide_college ? asset('assets').'/'.$bonafide_college : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                      <img src="{{$student->bonafide_college ? asset('assets').'/'.$student->bonafide_college : asset('assets/img/images.png')}}" class="rounded-circle img-download">
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $bonafide_college }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->bonafide_college}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -457,11 +465,11 @@
                       @if(isset($student->pre_year_mark))
                       @php $pre_year_mark = explode('.',$student->pre_year_mark)@endphp
                       @if($pre_year_mark[1] != 'pdf')
-                      {{-- <img src="{{$pre_year_mark ? asset('assets').'/'.$pre_year_mark : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                      <img src="{{$student->pre_year_mark ? asset('assets').'/'.$student->pre_year_mark : asset('assets/img/images.png')}}" class="rounded-circle img-download">
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $pre_year_mark }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->pre_year_mark}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -473,11 +481,11 @@
                       @if(isset($student->income_certificate))
                       @php $income_certificate = explode('.',$student->income_certificate)@endphp
                       @if($income_certificate[1] != 'pdf')
-                      {{-- <img src="{{$income_certificate ? asset('assets').'/'.$income_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                      <img src="{{$student->income_certificate ? asset('assets').'/'.$student->income_certificate : asset('assets/img/images.png')}}" class="rounded-circle img-download">
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $income_certificate }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->income_certificate}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
@@ -489,11 +497,11 @@
                       @if(isset($student->signature))
                       @php $signature = explode('.',$student->signature)@endphp
                       @if($signature[1] != 'pdf')
-                      {{-- <img src="{{$signature ? asset('assets').'/'.$signature : asset('assets/img/images.png')}}" class="rounded-circle img-download"> --}}
+                     <img src="{{$student->signature ? asset('assets').'/'.$student->signature : asset('assets/img/images.png')}}" class="rounded-circle img-download"> 
                       @else
                       <img src="{{asset('assets/img/pdf_icon.png')}}" class="rounded-circle img-download">
                       @endif
-                      <button wire:click.prevent="download('{{ $signature }}')" type="button" class="btn btn-success mb-0 text-white mt-3 ">Download</button>
+                      <a href="{{asset('assets').'/'.$student->signature}}" class="btn btn-success mb-0 text-white mt-3 " download>Download</a>
                       @endif
 
                   </div>
