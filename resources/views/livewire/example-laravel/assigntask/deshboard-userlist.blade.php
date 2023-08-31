@@ -40,7 +40,7 @@
                                  </div>
                               </div>
                               @endif
-                              <h2> TOTAL ASSIGN TASK</h2>
+                              <h2> {{$title}}</h2>
                               <input type="hidden" value="Admin" id="employee_role">
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
@@ -65,10 +65,13 @@
                                                    S.No
                                                 </th>
                                                 <th class="text-uppercase  text-xxs font-weight-bolder " style="width: 10%;">
+                                                   Assigner
+                                                </th>
+                                                <th class="text-uppercase  text-xxs font-weight-bolder " style="width: 10%;">
                                                    Application No
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
-                                                   NAME
+                                                   Student NAME
                                                 </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder text-start">
                                                    Date Of Birth
@@ -103,6 +106,11 @@
                                                    <div class="pe-4 ">
                                                       <div class="d-flex flex-column justify-content-center align-items-center">{{$key + 1}}
                                                       </div>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                   <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">{{$user->name}}</h6>
                                                    </div>
                                                 </td>
                                                 <td>

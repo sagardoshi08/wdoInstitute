@@ -13,6 +13,7 @@ class AssignTask extends Model
 
     protected $fillable = [
         'id',
+        'assigner_id',
         'employee_id',
         'student_id',
         'remarks',

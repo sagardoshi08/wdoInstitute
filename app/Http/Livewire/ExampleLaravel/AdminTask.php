@@ -560,6 +560,7 @@ class AdminTask extends Component
         $employee = $request->employee_id;
         foreach($student_id as $key=>$data){
             AssignTask::create([
+                'assigner_id' => FacadesAuth::id(),
                 'employee_id' => $request->employee_id,
                 'student_id' => $data,
                 'remarks' => $request->remarks,
