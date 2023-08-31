@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
 @include('components.include.header')
 <style>
     div.dataTables_wrapper div.dataTables_filter {
@@ -39,7 +40,7 @@
                                  </div>
                               </div>
                               @endif
-                              <h2> Admin</h2>
+                              <h2> TOTAL ASSIGN TASK</h2>
                               <input type="hidden" value="Admin" id="employee_role">
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
                                  <div class="row1">
