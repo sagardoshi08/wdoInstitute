@@ -76,15 +76,19 @@ class AssignUsers extends Component
     }
 
     public function assignStudentList($status){
-        $student = AssignTask::select('assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.complited_task','assign_task.panding_task','assign_task.rejected_task','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.assigner_id')->where('assign_task.employee_id',Auth::id());
+        $student = AssignTask::select('assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.assigner_id')->where('assign_task.employee_id',Auth::id());
         $title = '';
         if($status == 'Completed'){
-            $student = $student->where('assign_task.complited_task','1');
+            $student = $student->where('assign_task.task_status',1);
             $title = 'TOTAL COMPLETED TASK';
         }
         if($status == 'Pending'){
-            $student = $student->where('assign_task.panding_task','1');
+            $student = $student->where('assign_task.task_status',0);
             $title = 'TOTAL PENDING TASK';
+        }
+        if($status == 'Rejected'){
+            $student = $student->where('assign_task.task_status',2);
+            $title = 'TOTAL REJECTED TASK';
         }
 
         if($status == 'all'){
@@ -100,7 +104,7 @@ class AssignUsers extends Component
 
     public function assignStudentView($id){
         //$student = Student::where('id',$id)->first();
-        $student = Student::select('assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.complited_task','assign_task.panding_task','assign_task.rejected_task','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
+        $student = Student::select('assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
         return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student'));
     }
 }

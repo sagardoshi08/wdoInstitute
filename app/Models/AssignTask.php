@@ -21,8 +21,6 @@ class AssignTask extends Model
         'aadhar_permission',
         'application_permission',
         'bank_permission',
-        'complited_task',
-        'panding_task',
-        'rejected_task',
+        'task_status',
     ];
 }

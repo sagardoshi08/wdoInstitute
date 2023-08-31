@@ -586,7 +586,7 @@ class AdminTask extends Component
     }
 
     public function getassignstudentid(Request $request){
-        $id = AssignTask::select('student_id')->where('employee_id',$request->employee_id)->get()->toArray();
+        $id = AssignTask::select('student_id')->where('employee_id',$request->employee_id)->where('task_status',0)->get()->toArray();
         $students = Student::select('*')->whereIn('id',$id);
 
         if ($request->input("search")["value"] && $request->input("value") == '') {
@@ -638,7 +638,7 @@ class AdminTask extends Component
         $employee = User::select('id','name')->where('role',$request->role)->where('id','!=',$request->id)->get();
         echo '<option value="">Select Employee</option>';
         foreach($employee as $data){
-            echo '<option value="'.$data->id.'">'.$data->name.' ('.AssignTask::where(['employee_id'=>$data->id,'panding_task'=>1])->count().' Pending)</option>';
+            echo '<option value="'.$data->id.'">'.$data->name.' ('.AssignTask::where(['employee_id'=>$data->id,'task_status'=>0])->count().' Pending)</option>';
         }
     }
 

@@ -504,7 +504,7 @@
                     </div>
                 </div>
             </a>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="{{route('assignStudentList','Rejected')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header4">
                     <div
@@ -512,12 +512,12 @@
                         <i class="fa fa-step-forward" aria-hidden="true"></i>
                     </div>
                     <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">skipped Task</h6>
+                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
                         <h4 class="mb-0">0</h4>
                     </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     @if(auth()->user()->role == 'super_admin' || auth()->user()->role == 'Admin')

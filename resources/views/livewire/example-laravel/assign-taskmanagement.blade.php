@@ -158,17 +158,17 @@
                                                    </div>
                                                 </td>
                                                 <td class="align-middle completed-task text-sm" emplotee-id="{{$user->id}}">
-                                                   <p class="text-xs text-secondary mb-0"><b>0</b>
+                                                   <p class="text-xs text-secondary mb-0"><b>{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',1)->count()}}</b>
                                                    </p>
                                                 </td>
                                                 <td class="align-middle assign-list" emplotee-id="{{$user->id}}">
-                                                   <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
+                                                   <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',0)->count()}}</span>
                                                 </td>
                                                 <td class="align-middle assigntask-list" emplotee-id="{{$user->id}}">
                                                    <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
                                                 </td>
                                                 <td class="align-middle" emplotee-id="{{$user->id}}">
-                                                   <span class="text-secondary text-xs font-weight-bold">0</span>
+                                                   <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',2)->count()}}</span>
                                                 </td>
                                                 <td class="align-middle">
                                                    <a rel="tooltip" href="{{route('students',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
@@ -281,17 +281,17 @@
                                                 </div>
                                              </td>
                                              <td class="align-middle completed-task text-sm" emplotee-id="{{$user->id}}">
-                                                <p class="text-xs text-secondary mb-0"><b>0</b>
+                                                <p class="text-xs text-secondary mb-0"><b>{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',1)->count()}}</b>
                                                 </p>
                                              </td>
                                              <td class="align-middle assign-list" emplotee-id="{{$user->id}}">
-                                                <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
+                                                <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',0)->count()}}</span>
                                              </td>
                                              <td class="align-middle assigntask-list" emplotee-id="{{$user->id}}">
                                                 <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
                                              </td>
                                              <td class="align-middle" emplotee-id="{{$user->id}}">
-                                                <span class="text-secondary text-xs font-weight-bold">0</span>
+                                                <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',2)->count()}}</span>
                                              </td>
                                              <td class="align-middle">
                                                 <a rel="tooltip" href="{{route('students',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
@@ -418,17 +418,17 @@
                                              </div>
                                           </td>
                                           <td class="align-middle completed-task text-sm" emplotee-id="{{$user->id}}">
-                                             <p class="text-xs text-secondary mb-0"><b>0</b>
+                                             <p class="text-xs text-secondary mb-0"><b>{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',1)->count()}}</b>
                                              </p>
                                           </td>
                                           <td class="align-middle assign-list" emplotee-id="{{$user->id}}">
-                                             <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
+                                             <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',0)->count()}}</span>
                                           </td>
                                           <td class="align-middle assigntask-list" emplotee-id="{{$user->id}}">
                                              <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
                                           </td>
                                           <td class="align-middle" emplotee-id="{{$user->id}}">
-                                             <span class="text-secondary text-xs font-weight-bold">0</span>
+                                             <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',2)->count()}}</span>
                                           </td>
                                           <td class="align-middle">
                                              <a rel="tooltip" href="{{route('students',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
@@ -555,17 +555,17 @@
                                           </div>
                                        </td>
                                        <td class="align-middle completed-task text-sm" emplotee-id="{{$user->id}}">
-                                          <p class="text-xs text-secondary mb-0"><b>0</b>
+                                          <p class="text-xs text-secondary mb-0"><b>{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',1)->count()}}</b>
                                           </p>
                                        </td>
                                        <td class="align-middle assign-list" emplotee-id="{{$user->id}}">
-                                          <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
+                                          <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',0)->count()}}</span>
                                        </td>
                                        <td class="align-middle assigntask-list" emplotee-id="{{$user->id}}">
                                           <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->count()}}</span>
                                        </td>
                                        <td class="align-middle" emplotee-id="{{$user->id}}">
-                                          <span class="text-secondary text-xs font-weight-bold">0</span>
+                                          <span class="text-secondary text-xs font-weight-bold">{{DB::table('assign_task')->where('employee_id',$user->id)->where('task_status',2)->count()}}</span>
                                        </td>
                                        <td class="align-middle">
                                           <a rel="tooltip" href="{{route('students',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
