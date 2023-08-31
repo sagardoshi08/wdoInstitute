@@ -524,7 +524,7 @@
     <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Manager Assigned Task Approvel</h6>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="{{route('assignRoleStudentList',['Approved','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -537,8 +537,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Pending','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -551,8 +551,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Rejected','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -565,7 +565,7 @@
                     </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     @endif
@@ -573,7 +573,7 @@
     <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Team Leader Assigned Task Approvel</h6>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="{{route('assignRoleStudentList',['Approved','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -586,8 +586,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Pending','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -600,8 +600,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Rejected','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -614,7 +614,7 @@
                     </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     @endif
@@ -622,7 +622,7 @@
         <div class="container-fluid py-4 line rejected">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Employee Assigned Task Approvel</h6>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="{{route('assignRoleStudentList',['Approved','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -635,8 +635,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Pending','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -649,8 +649,8 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            </a>
+            <a href="{{route('assignRoleStudentList',['Rejected','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -663,7 +663,7 @@
                     </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         </div>
         @endif
