@@ -380,7 +380,7 @@
                   </div>
                   <div class="text-end pt-1">
                      <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                     <h4 class="mb-0">138</h4>
+                     <h4 class="mb-0">{{sa_total_task(Auth::id())}}</h4>
                   </div>
                </div>
             </div>
@@ -394,7 +394,7 @@
                   </div>
                   <div class="text-end pt-1">
                      <h6 class="text-sm mb-0 text-capitalize">Approved Task</h6>
-                     <h4 class="mb-0">0</h4>
+                     <h4 class="mb-0">{{sp_approved_task(Auth::id())}}</h4>
                   </div>
                </div>
             </div>
@@ -408,7 +408,7 @@
                   </div>
                   <div class="text-end pt-1">
                      <h6 class="text-sm mb-0 text-capitalize">Completed Task</h6>
-                     <h4 class="mb-0">3</h4>
+                     <h4 class="mb-0">{{sa_comp_task(Auth::id())}}</h4>
                   </div>
                </div>
             </div>
@@ -422,7 +422,7 @@
                   </div>
                   <div class="text-end pt-1">
                      <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                     <h4 class="mb-0">20</h4>
+                     <h4 class="mb-0">{{sa_pen_task(Auth::id())}}</h4>
                   </div>
                </div>
             </div>
@@ -436,7 +436,7 @@
                   </div>
                   <div class="text-end pt-1">
                      <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                     <h4 class="mb-0">25</h4>
+                     <h4 class="mb-0">{{sa_rej_task(Auth::id())}}</h4>
                   </div>
                </div>
             </div>
@@ -471,7 +471,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                        <h4 class="mb-0">{{DB::table('assign_task')->where('employee_id',Auth::id())->count()}}</h4>
+                        <h4 class="mb-0">{{all_assign_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -485,7 +485,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Completed Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{all_com_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -499,7 +499,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{DB::table('assign_task')->where('employee_id',Auth::id())->count()}}</h4>
+                        <h4 class="mb-0">{{all_pen_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -513,7 +513,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{all_rej_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -533,7 +533,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{man_approved_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -547,7 +547,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{DB::table('assign_task')->where('employee_id',Auth::id())->count()}}</h4>
+                        <h4 class="mb-0">{{man_pen_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -561,7 +561,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{man_rej_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -582,7 +582,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{teamleader_approved_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -596,7 +596,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{DB::table('assign_task')->where('employee_id',Auth::id())->count()}}</h4>
+                        <h4 class="mb-0">{{teamleade_pen_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -610,7 +610,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{teamleade_rej_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -631,7 +631,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{emp_approved_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -645,7 +645,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{emp_pen_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
@@ -659,7 +659,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">0</h4>
+                        <h4 class="mb-0">{{emp_rej_task(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
