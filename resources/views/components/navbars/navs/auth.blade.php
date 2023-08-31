@@ -186,17 +186,33 @@ p{
     var updateActivity = null;
     $(document).ready(function() {
         $(document).on('click', '#user-drop,#profile-drop,#student-drop', function() {
+          debugger
             var id= $(this).attr('id');
             console.log(id);
             if(id == 'user-drop'){
                 $('#profile-drop').parents('li').find('ul').removeClass('show');
                 $('#student-drop').parents('li').find('ul').removeClass('show');
+
+                $('#user-drop').parents('li').find('a').removeClass("hide-menu");
+
+                $('#student-drop').parents('li').find('a').addClass("hide-menu");
+                $('#profile-drop').parents('li').find('a').addClass("hide-menu");
             }else if(id == 'profile-drop'){
                 $('#user-drop').parents('li').find('ul').removeClass('show');
                 $('#student-drop').parents('li').find('ul').removeClass('show');
+
+                $('#profile-drop').parents('li').find('a').removeClass("hide-menu");
+
+                $('#student-drop').parents('li').find('a').addClass("hide-menu");
+                $('#user-drop').parents('li').find('a').addClass("hide-menu");
             }else{
                 $('#user-drop').parents('li').find('ul').removeClass('show');
                 $('#profile-drop').parents('li').find('ul').removeClass('show');
+
+                $('#student-drop').parents('li').find('a').removeClass("hide-menu");
+
+                $('#profile-drop').parents('li').find('a').addClass("hide-menu");
+                $('#user-drop').parents('li').find('a').addClass("hide-menu");
             }
         });
       $(document).on('click', '.redirect-user', function() {
