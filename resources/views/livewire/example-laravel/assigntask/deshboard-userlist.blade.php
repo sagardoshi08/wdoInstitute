@@ -65,7 +65,11 @@
                                                    S.No
                                                 </th>
                                                 <th class="text-uppercase  text-xxs font-weight-bolder " style="width: 10%;">
-                                                   Assigner
+                                                   @if(auth()->user()->role == 'super_admin')
+                                                      Assigned
+                                                   @else
+                                                      Assigner
+                                                   @endif
                                                 </th>
                                                 <th class="text-uppercase  text-xxs font-weight-bolder " style="width: 10%;">
                                                    Application No
@@ -93,6 +97,9 @@
                                                 </th>
                                                 <th class="text-start text-uppercase  text-xxs font-weight-bolder">
                                                   Course
+                                                </th>
+                                                <th class="text-start text-uppercase  text-xxs font-weight-bolder">
+                                                  Status
                                                 </th>
                                                 <th class="text-start text-uppercase text-xxs font-weight-bolder"> ACTION</th>
                                              </tr>
@@ -156,6 +163,21 @@
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">{{$user->course_details}}</h6>
+                                                   </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-end">
+                                                      <h6 class="mb-0 text-sm">
+                                                         @if($user->task_status == 0)
+                                                            Pending
+                                                         @elseif($user->task_status == 1)
+                                                            Completed
+                                                         @elseif($user->task_status == 2)
+                                                            Rejected
+                                                         @else
+                                                            Approved
+                                                         @endif
+                                                      </h6>
                                                    </div>
                                                 </td>
                                                 <td class="align-middle">

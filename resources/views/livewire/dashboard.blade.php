@@ -371,7 +371,7 @@
       </div>
       <div class="row student-task student-task2">
          <h6 class="mb-5 text-uppercase">Assign Task</h6>
-         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+         <a href="{{route('assignSuperAdminStudentList','all')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                <div class="card-header p-3 pt-2 card-header1">
                   <div
@@ -384,8 +384,8 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+         </a>
+         <a href="{{route('assignSuperAdminStudentList','Approved')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                <div class="card-header p-3 pt-2 card-header2">
                   <div
@@ -398,8 +398,8 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+         </a>
+         <a href="{{route('assignSuperAdminStudentList','Completed')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                <div class="card-header p-3 pt-2 card-header3">
                   <div
@@ -412,8 +412,8 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+         </a>
+         <a href="{{route('assignSuperAdminStudentList','Pending')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                <div class="card-header p-3 pt-2 card-header4">
                   <div
@@ -426,8 +426,8 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+         </a>
+         <a href="{{route('assignSuperAdminStudentList','Rejected')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                <div class="card-header p-3 pt-2 card-header1">
                   <div
@@ -440,7 +440,7 @@
                   </div>
                </div>
             </div>
-         </div>
+         </a>
       </div>
       <div class="container-fluid px-3">
          <div class="row mt-4 justify-content-between">

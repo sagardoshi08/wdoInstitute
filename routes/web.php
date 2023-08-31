@@ -190,6 +190,7 @@ Route::get('update-login-status', [UserAttendence::class, 'updateLoginStatus'])-
     //assign task
     Route::get('assign-student/{status}', [AssignUsers::class, 'assignStudentList'])->name('assignStudentList');
     Route::get('assigned-student/{status}/{role}', [AssignUsers::class, 'assignRoleStudentList'])->name('assignRoleStudentList');
+    Route::get('superAdmin-assigned/{status}', [AssignUsers::class, 'assignSuperAdminStudentList'])->name('assignSuperAdminStudentList');
     Route::get('student-view/{id}', [AssignUsers::class, 'assignStudentView'])->name('assignStudentView');
 
 });
