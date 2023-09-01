@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AssignTask;
+use App\Models\Student;
 
 
 function all_assign_task($id){
@@ -73,4 +74,28 @@ function sa_rej_task($id){
 
 function sa_total_task($id){
     return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->count();
+}
+
+function all_student(){
+    return Student::count();
+}
+
+function student_2021(){
+    return Student::where('year',2021)->count();
+}
+
+function student_2022(){
+    return Student::where('year',2022)->count();
+}
+
+function student_2023(){
+    return Student::where('year',2023)->count();
+}
+
+function student_2024(){
+    return Student::where('year',2024)->count();
+}
+
+function student_2025(){
+    return Student::where('year',2025)->count();
 }
