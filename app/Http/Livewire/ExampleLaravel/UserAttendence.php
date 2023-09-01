@@ -136,7 +136,7 @@ class UserAttendence extends Component
     public function mintoHour($minutes){
         $hours = floor($minutes / 60);
         $min = $minutes - ($hours * 60);
-        return round($hours) ." Hour(s) ". round($min)." Mintes(s)";
+        return round($hours) ." Hour(s) ". round($min)." Minte(s)";
     }
 
     public function filterAttendanceHistory(Request $request){
