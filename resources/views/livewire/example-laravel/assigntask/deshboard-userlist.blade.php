@@ -106,7 +106,7 @@
                                           </thead>
                                           <tbody>
                                           @if ($student->count())
-                                             @foreach($student as $key => $user)
+                                             @foreach($student as $key=>$user)
                                              <tr>
                                              {{--<td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>--}}
                                                 <td class="w-8">
@@ -184,9 +184,9 @@
                                                    {{--<a rel="tooltip" href="{{route('studentEdit',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
                                                       <i class="fa fa-pencil"></i>
                                                    </a>--}}
-                                                   <a rel="tooltip" href="{{route('assignStudentView',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
-                                                      <i class="fa fa-eye"></i>
-                                                   </a>
+                                                <a href="{{route('assignStudentView',[$user->id,$user->task_id])}}" class="btn mb-0 btn-success btn-link bg-dark">
+                                                   <i class="fa fa-eye"></i>
+                                                </a>
                                                 </td>
                                              </tr>
                                              @endforeach

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\User_data;
 use App\Models\Student;
+use Illuminate\Http\Request;
 use App\Models\AssignTask;
 use Livewire\WithFileUploads;
 use Spatie\SimpleExcel\SimpleExcelWriter;
@@ -76,7 +77,7 @@ class AssignUsers extends Component
     }
 
     public function assignStudentList($status){
-        $student = AssignTask::select('assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.assigner_id')->where('assign_task.employee_id',Auth::id());
+        $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.assigner_id')->where('assign_task.employee_id',Auth::id());
         $title = '';
         if($status == 'Completed'){
             $student = $student->where('assign_task.task_status',1);
@@ -101,7 +102,7 @@ class AssignUsers extends Component
     }
 
     public function assignRoleStudentList($status,$role){
-        $student = AssignTask::select('assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name','users.role')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role',$role)->where('assign_task.assigner_id',Auth::id());
+        $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name','users.role')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role',$role)->where('assign_task.assigner_id',Auth::id());
 
         //echo '<pre>'; print_r($student->get()->toArray()); die();
         $title = '';
@@ -131,7 +132,7 @@ class AssignUsers extends Component
     }
 
     public function assignSuperAdminStudentList($status){ 
-        $student = AssignTask::select('assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('assign_task.assigner_id',Auth::id());
+        $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('assign_task.assigner_id',Auth::id());
         $title = '';
         if($status == 'Completed'){
             $student = $student->where('assign_task.task_status',1);
@@ -159,9 +160,22 @@ class AssignUsers extends Component
         return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
     }
 
-    public function assignStudentView($id){
+    public function assignStudentView($id,$taskid){
         //$student = Student::where('id',$id)->first();
-        $student = Student::select('assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
-        return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student'));
+        $student = Student::select('assign_task.id as task_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
+        if(AssignTask::where('id',$taskid)->where('assigner_id',Auth::id())->count() == 0){
+            $assign_role = 'Assignee';
+        }else{
+            $assign_role = 'Assinger';
+        }
+        //echo $assign_role; die();
+        return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student','assign_role'));
+    }
+
+    public function updateTaskStatus(Request $request){
+        AssignTask::where('id',$request->taskid)->where('student_id',$request->student_id)->update([
+            'task_status' => $request->status
+        ]);
+        return redirect('/dashboard')->with('status', 'Task Status Updated Sucessfully');
     }
 }

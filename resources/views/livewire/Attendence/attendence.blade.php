@@ -2,7 +2,7 @@
     function mintoHour($minutes){
         $hours = floor($minutes / 60);
         $min = $minutes - ($hours * 60);
-        return abs($hours) ." Hour(s) ". $min." Mintes(s)";
+        return abs($hours) ." Hour(s) ". $min." Minte(s)";
     }
 @endphp
 
@@ -160,8 +160,10 @@
                              <td class="align-middle  text-sm">
                                 <p class="text-xs text-secondary mb-0">
                                     @if($attend->status == 0)
+                                    <img src="{{asset('assets/img/absent.png')}}" width="20" height="20">
                                        {{"Absent"}}
                                     @elseif($attend->status == 1)
+                                    <img src="{{asset('assets/img/presents.jpg')}}" width="30" height="30">
                                        {{"Present"}}
                                     @elseif($attend->status == 2)
                                        {{"Off Day"}}
