@@ -99,3 +99,15 @@ function student_2024(){
 function student_2025(){
     return Student::where('year',2025)->count();
 }
+
+function admin_approved_task($id){
+    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',3)->count();
+}
+
+function admin_pen_task($id){
+    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',0)->count();
+}
+
+function admin_rej_task($id){
+    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
+}
