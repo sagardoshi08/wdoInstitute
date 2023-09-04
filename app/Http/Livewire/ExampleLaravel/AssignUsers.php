@@ -23,38 +23,38 @@ class AssignUsers extends Component
     public function render()
     {
 
-        $user_admin = User::where('role','Admin')->where(function($query) {
+        $user_admin = User::where('role','Admin')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $user_manager = User::where('role','Manager')->where(function($query) {
+        $user_manager = User::where('role','Manager')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $user_teamlead = User::where('role','Team Leader')->where(function($query) {
+        $user_teamlead = User::where('role','Team Leader')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $user_employee = User::where('role','Employee')->where(function($query) {
+        $user_employee = User::where('role','Employee')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
         $user_data = User_data::where('user_id',Auth::id())->first();
         $assign = AssignTask::select('student_id')->get()->toArray();
         $students = Student::whereIn('id',$assign)->get();
-        $admin = User::where('role','Admin')->where(function($query) {
+        $admin = User::where('role','Admin')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $manager = User::where('role','Manager')->where(function($query) {
+        $manager = User::where('role','Manager')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $team_leader = User::where('role','Team Leader')->where(function($query) {
+        $team_leader = User::where('role','Team Leader')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
-        $employee = User::where('role','Employee')->where(function($query) {
+        $employee = User::where('role','Employee')->where('assigned',Auth::user()->uuid)->where(function($query) {
             $query->where('job_status', Null)
                   ->orWhere('job_status','Approved');
         })->get();
@@ -95,7 +95,7 @@ class AssignUsers extends Component
         if($status == 'all'){
             $title = 'TOTAL ASSIGN TASK';
         }
-        
+
         $student = $student->get();
 
         return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
@@ -122,7 +122,7 @@ class AssignUsers extends Component
         if($status == 'all'){
             $title = 'TOTAL ASSIGN TASK';
         }
-        
+
         $student = $student->get();
         foreach($student as $key=>$data){
             $student[$key]['name'] = Auth::user()->name;
@@ -131,7 +131,7 @@ class AssignUsers extends Component
         return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
     }
 
-    public function assignSuperAdminStudentList($status){ 
+    public function assignSuperAdminStudentList($status){
         $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('assign_task.assigner_id',Auth::id());
         $title = '';
         if($status == 'Completed'){
@@ -154,7 +154,7 @@ class AssignUsers extends Component
         if($status == 'all'){
             $title = 'TOTAL ASSIGN TASK';
         }
-        
+
         $student = $student->get();
 
         return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
