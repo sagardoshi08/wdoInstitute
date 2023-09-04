@@ -163,7 +163,7 @@
                                     <img src="{{asset('assets/img/absent.png')}}" width="20" height="20">
                                        {{"Absent"}}
                                     @elseif($attend->status == 1)
-                                    <img src="{{asset('assets/img/presents.jpg')}}" width="30" height="30">
+                                    <img src="{{asset('assets/img/presents.png')}}" width="20" height="20">
                                        {{"Present"}}
                                     @elseif($attend->status == 2)
                                        {{"Off Day"}}
