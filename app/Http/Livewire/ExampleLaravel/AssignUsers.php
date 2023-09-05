@@ -95,43 +95,45 @@ class AssignUsers extends Component
         if($status == 'all'){
             $title = 'TOTAL ASSIGN TASK';
         }
-
+        
         $student = $student->get();
 
-        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
+        $moduleType = 'deshboard-assigned';
+
+        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title','moduleType'));
     }
 
     public function assignRoleStudentList($status,$role){
-        $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name','users.role')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role',$role)->where('assign_task.assigner_id',Auth::id());
+        $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.assigner_task_status','students.*','users.name','users.role')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('assign_task.assigner_id',Auth::id());
 
         //echo '<pre>'; print_r($student->get()->toArray()); die();
         $title = '';
-        if($status == 'Approved'){
-            $student = $student->where('assign_task.task_status',3);
-            $title = $role.' Total Approved Task';
-        }
-        if($status == 'Pending'){
-            $student = $student->where('assign_task.task_status',0);
-            $title = $role.' Total Pending Task';
+        if($status == 'all-pending'){
+            $student = $student->where('assign_task.task_status',0)->where('assign_task.assigner_task_status',0);
+            $title = ' Total Pending Task';
         }
         if($status == 'Rejected'){
-            $student = $student->where('assign_task.task_status',2);
-            $title = $role.' Total Rejected Task';
+            $student = $student->where('assign_task.task_status',0)->where('assign_task.assigner_task_status',2);
+            $title =' Total Rejected Task';
         }
-
-        if($status == 'all'){
-            $title = 'TOTAL ASSIGN TASK';
+        if($status == 'waiting-approval'){
+            $student = $student->where('assign_task.task_status',1)->where('assign_task.assigner_task_status',0);
+            $title = ' Total Waiting for Approval Task';
         }
-
+        if($status == 'Completed'){
+            $student = $student->where('assign_task.assigner_task_status',1);
+            $title = ' Total Completed Task';
+        }
+        
         $student = $student->get();
         foreach($student as $key=>$data){
             $student[$key]['name'] = Auth::user()->name;
         }
-
-        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
+        $moduleType = 'assigntask-assigner';
+        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title','moduleType'));
     }
 
-    public function assignSuperAdminStudentList($status){
+    public function assignSuperAdminStudentList($status){ 
         $student = AssignTask::select('assign_task.id as task_id','assign_task.assigner_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*','users.name')->leftjoin('students','students.id','=','assign_task.student_id')->leftjoin('users','users.id','=','assign_task.employee_id')->where('assign_task.assigner_id',Auth::id());
         $title = '';
         if($status == 'Completed'){
@@ -154,28 +156,49 @@ class AssignUsers extends Component
         if($status == 'all'){
             $title = 'TOTAL ASSIGN TASK';
         }
-
+        
         $student = $student->get();
-
-        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title'));
+        $moduleType = 'assigntask-assigner';
+        return view('livewire.example-laravel.assigntask.deshboard-userlist',compact('student','title','moduleType'));
     }
 
-    public function assignStudentView($id,$taskid){
+    public function assignStudentView($id){
         //$student = Student::where('id',$id)->first();
         $student = Student::select('assign_task.id as task_id','assign_task.employee_id','assign_task.student_id','assign_task.contacts_permission','assign_task.aadhar_permission','assign_task.application_permission','assign_task.bank_permission','assign_task.task_status','students.*')->leftjoin('assign_task','assign_task.student_id','=','students.id')->where('students.id',$id)->first();
-        if(AssignTask::where('id',$taskid)->where('assigner_id',Auth::id())->count() == 0){
-            $assign_role = 'Assignee';
-        }else{
-            $assign_role = 'Assinger';
-        }
         //echo $assign_role; die();
-        return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student','assign_role'));
+        return view('livewire.example-laravel.assigntask.deshboard-student-view',compact('student'));
     }
 
     public function updateTaskStatus(Request $request){
-        AssignTask::where('id',$request->taskid)->where('student_id',$request->student_id)->update([
-            'task_status' => $request->status
-        ]);
+        if($request->user_task_status == 'assign-complete'){
+            $data = [
+                'task_status' => 3,
+                'assigner_task_status' => 1
+            ];
+        }elseif($request->user_task_status == 'assign-reject'){
+            $data = [
+                'task_status' => 0,
+                'assigner_task_status' => 2
+            ];
+        }elseif($request->user_task_status == 'employee-complete'){
+            $data = [
+                'task_status' => 1,
+                'assigner_task_status' => 0
+            ];
+        }else{
+            $data = [
+                'task_status' => 0,
+                'assigner_task_status' => 0
+            ];
+        }
+
+        //echo '<pre>'; print_r($request->all()); die();
+
+        $ids = explode(',',$request->student_id);
+        foreach($ids as $id){
+            AssignTask::where('student_id',$id)->update($data);
+        }
+       //die();
         return redirect('/dashboard')->with('status', 'Task Status Updated Sucessfully');
     }
 }

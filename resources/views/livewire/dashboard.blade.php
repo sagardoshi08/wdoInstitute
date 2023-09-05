@@ -459,8 +459,7 @@
          </div>
       </div>
       @else
-      @if(auth()->user()->role == 'Admin')
-
+      
       <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison">
             <h6 class="mb-5 text-uppercase">Assign Task</h6>
@@ -526,7 +525,7 @@
     <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Super Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignSuperAdminStudentList',['Approved'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -535,12 +534,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{sp_approved_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{sup_to_emp_approvtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignSuperAdminStudentList',['Pending'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -549,12 +548,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{sa_pen_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{sup_to_emp_pendingtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignSuperAdminStudentList',['Rejected'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -563,81 +562,18 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{sa_rej_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{sup_to_emp_rejecttask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-    @endif
-    @if(auth()->user()->role == 'Manager')
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison">
-            <h6 class="mb-5 text-uppercase">Assign Task</h6>
-            <a class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign" href="{{route('assignStudentList','all')}}">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                        <h4 class="mb-0">{{all_assign_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Completed')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Completed Task</h6>
-                        <h4 class="mb-0">{{all_com_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Pending')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{all_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Rejected')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header4">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-step-forward" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{all_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
+    @if(auth()->user()->role == 'Manager' || auth()->user()->role == 'Team Leader' || auth()->user()->role == 'Employee')
     <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -646,12 +582,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{admin_approved_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{admin_to_emp_approvtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -660,12 +596,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{admin_pen_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{admin_to_emp_pendingtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -674,131 +610,19 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{admin_rej_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{admin_to_emp_rejecttask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Super Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignSuperAdminStudentList',['Approved'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{sp_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Pending'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{sa_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Rejected'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{sa_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
     @endif
-    @if(auth()->user()->role == 'Team Leader')
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison">
-            <h6 class="mb-5 text-uppercase">Assign Task</h6>
-            <a class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign" href="{{route('assignStudentList','all')}}">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                        <h4 class="mb-0">{{all_assign_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Completed')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Completed Task</h6>
-                        <h4 class="mb-0">{{all_com_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Pending')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{all_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Rejected')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header4">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-step-forward" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{all_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
+    @if(auth()->user()->role == 'Team Leader' || auth()->user()->role == 'Employee')
     <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Manager Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -807,12 +631,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{man_approved_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{teamled_to_emp_approvtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -821,12 +645,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{man_pen_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{manager_to_emp_pendingtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -835,182 +659,19 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{man_rej_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{manager_to_emp_rejecttask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{admin_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{admin_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{admin_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Super Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignSuperAdminStudentList',['Approved','Super Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{sp_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Pending','Super Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{sa_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Rejected','Super Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{sa_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-
-
-
-
     @endif
     @if(auth()->user()->role == 'Employee')
     <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison">
-            <h6 class="mb-5 text-uppercase">Assign Task</h6>
-            <a class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign" href="{{route('assignStudentList','all')}}">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Total Task</h6>
-                        <h4 class="mb-0">{{all_assign_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Completed')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Completed Task</h6>
-                        <h4 class="mb-0">{{all_com_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Pending')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{all_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignStudentList','Rejected')}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header4">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-step-forward" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{all_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="container-fluid py-4 line">
         <div class="row student-task student-task2 comparison abcd">
             <h6 class="mb-5 text-uppercase low ">Team Leader Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header1">
                     <div
@@ -1019,12 +680,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{teamleader_approved_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{teamled_to_emp_approvtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header2">
                     <div
@@ -1033,12 +694,12 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{teamleade_pen_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{teamled_to_emp_pendingtask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Team Leader'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
+            <a href="#" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
                 <div class="card">
                     <div class="card-header p-3 pt-2 card-header3">
                     <div
@@ -1047,207 +708,13 @@
                     </div>
                     <div class="text-end pt-1">
                         <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{teamleade_rej_task(Auth::id())}}</h4>
+                        <h4 class="mb-0">{{teamled_to_emp_rejecttask(Auth::id())}}</h4>
                     </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Manager Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{man_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{man_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{man_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{admin_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{admin_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Admin'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{admin_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="container-fluid py-4 line">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Super Admin Assigned Task Approvel</h6>
-            <a href="{{route('assignSuperAdminStudentList',['Approved','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{sp_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Pending','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{sa_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignSuperAdminStudentList',['Rejected','Manager'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{sa_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-
-    {{-- <div class="container-fluid py-4 line rejected">
-        <div class="row student-task student-task2 comparison abcd">
-            <h6 class="mb-5 text-uppercase low ">Employee Assigned Task Approvel</h6>
-            <a href="{{route('assignRoleStudentList',['Approved','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header1">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Approved</h6>
-                        <h4 class="mb-0">{{emp_approved_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Pending','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Pending Task</h6>
-                        <h4 class="mb-0">{{emp_pen_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('assignRoleStudentList',['Rejected','Employee'])}}" class="col-xl-2 col-sm-6 mb-xl-0 mb-4 assign">
-                <div class="card">
-                    <div class="card-header p-3 pt-2 card-header3">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <h6 class="text-sm mb-0 text-capitalize">Rejected Task</h6>
-                        <h4 class="mb-0">{{emp_rej_task(Auth::id())}}</h4>
-                    </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div> --}}
-
     @endif
     @endif
    </div>

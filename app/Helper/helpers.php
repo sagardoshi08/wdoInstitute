@@ -20,60 +20,24 @@ function all_rej_task($id){
     return AssignTask::where('employee_id',$id)->where('task_status',2)->count();
 }
 
-function man_approved_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Manager')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',3)->count();
-}
-
-function man_pen_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Manager')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',0)->count();
-}
-
-function man_rej_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Manager')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
-}
-
-function teamleader_approved_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Team Leader')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',3)->count();
-}
-
-function teamleade_pen_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Team Leader')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',0)->count();
-}
-
-function teamleade_rej_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Team Leader')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
-}
-
-function emp_approved_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Employee')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',3)->count();
-}
-
-function emp_pen_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Employee')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',0)->count();
-}
-
-function emp_rej_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Employee')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
-}
-
 function sp_approved_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',3)->count();
+    return AssignTask::where('assigner_id',$id)->where('task_status',3)->count();
 }
 
 function sa_pen_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',0)->count();
+    return AssignTask::where('assigner_id',$id)->where('task_status',0)->count();
 }
 
 function sa_comp_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',1)->count();
+    return AssignTask::where('assigner_id',$id)->where('task_status',1)->count();
 }
 
 function sa_rej_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
+    return AssignTask::where('assigner_id',$id)->where('task_status',2)->count();
 }
 
 function sa_total_task($id){
-    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.assigner_id',$id)->count();
+    return AssignTask::where('assigner_id',$id)->count();
 }
 
 function all_student(){
@@ -110,4 +74,70 @@ function admin_pen_task($id){
 
 function admin_rej_task($id){
     return AssignTask::leftjoin('users','users.id','=','assign_task.employee_id')->where('users.role','Admin')->where('assign_task.assigner_id',$id)->where('assign_task.task_status',2)->count();
+}
+function assigner_alltask($id){
+    return AssignTask::where('assigner_id',$id)->where('task_status',0)->where('assigner_task_status',0)->count();
+}
+function assigner_pendingtask($id){
+    return AssignTask::where('assigner_id',$id)->where('task_status',1)->where('assigner_task_status',0)->count();
+}
+function assigner_compltedtask($id){
+    return AssignTask::where('assigner_id',$id)->where('assigner_task_status',1)->count();
+}
+function assigner_rejecttask($id){
+    return AssignTask::where('assigner_id',$id)->where('assigner_task_status',2)->count();
+}
+function sup_to_emp_approvtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.employee_id',$id)->where('assign_task.task_status',3)->where('assign_task.assigner_task_status',1)->count();
+}
+function sup_to_emp_pendingtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.employee_id',$id)->where('assign_task.task_status',1)->where('assign_task.assigner_task_status',0)->count();
+}
+
+function sup_to_emp_rejecttask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','super_admin')->where('assign_task.employee_id',$id)->where('assign_task.assigner_task_status',2)->count();
+}
+function admin_to_emp_approvtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Admin')->where('assign_task.employee_id',$id)->where('assign_task.task_status',3)->where('assign_task.assigner_task_status',1)->count();
+}
+function admin_to_emp_pendingtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Admin')->where('assign_task.employee_id',$id)->where('assign_task.task_status',1)->where('assign_task.assigner_task_status',0)->count();
+}
+
+function admin_to_emp_rejecttask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Admin')->where('assign_task.employee_id',$id)->where('assign_task.assigner_task_status',2)->count();
+}
+
+function manager_to_emp_approvtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Manager')->where('assign_task.employee_id',$id)->where('assign_task.task_status',3)->where('assign_task.assigner_task_status',1)->count();
+}
+function manager_to_emp_pendingtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Manager')->where('assign_task.employee_id',$id)->where('assign_task.task_status',1)->where('assign_task.assigner_task_status',0)->count();
+}
+
+function manager_to_emp_rejecttask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Manager')->where('assign_task.employee_id',$id)->where('assign_task.assigner_task_status',2)->count();
+}
+
+function teamled_to_emp_approvtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Team Leader')->where('assign_task.employee_id',$id)->where('assign_task.task_status',3)->where('assign_task.assigner_task_status',1)->count();
+}
+function teamled_to_emp_pendingtask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Team Leader')->where('assign_task.employee_id',$id)->where('assign_task.task_status',1)->where('assign_task.assigner_task_status',0)->count();
+}
+
+function teamled_to_emp_rejecttask($id){
+
+    return AssignTask::leftjoin('users','users.id','=','assign_task.assigner_id')->where('users.role','Team Leader')->where('assign_task.employee_id',$id)->where('assign_task.assigner_task_status',2)->count();
 }

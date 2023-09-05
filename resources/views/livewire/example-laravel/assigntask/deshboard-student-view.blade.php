@@ -503,7 +503,7 @@
                </span>
             </div>
          </div>
-         <div>
+         {{--<div>
             <div class="row">
                <div class="students-start">
                   <div class="students-text">
@@ -542,7 +542,7 @@
                   </div>
                </div>
             </div>
-         </div>
+         </div>--}}
       </div>
    </div>
 </div>

@@ -22,5 +22,6 @@ class AssignTask extends Model
         'application_permission',
         'bank_permission',
         'task_status',
+        'assigner_task_status',
     ];
 }

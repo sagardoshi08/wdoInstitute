@@ -4,6 +4,22 @@
     div.dataTables_wrapper div.dataTables_filter {
       text-align: left;
    }
+   .row1 select.form-control {
+   
+      position: absolute;
+    left: 30%;
+    top: 6%;
+
+}
+button.ml-2.btn-primary.cleri{
+   position: absolute;
+    top: 41px;
+    padding: 7px;
+    border-radius: 5rem !important;
+    color: #fff;
+    font-size: 0.875rem;
+    right: 41%;
+}
 </style>
 <div>
    <!-- Navbar -->
@@ -40,6 +56,7 @@
                                  </div>
                               </div>
                               @endif
+               
                               <h2> {{$title}}</h2>
                               <input type="hidden" value="Admin" id="employee_role">
                               <div class="card-body px-0 pb-2 task-table" style="background-color: #fff; border-radius: 8px;">
@@ -55,12 +72,30 @@
                                        </div>
                                     </div>
                                     <div class="table-responsive p-0">
+                                    <form  method="POST" action="{{ route('updateTaskStatus') }}">
+                                       @csrf
+                                             <div class="month-header-btn header-btn">
+                                                <input type="hidden" name="student_id" value="" id="student_id">
+                                                <select name="user_task_status" class="form-control form-control month_salary_inp w-20 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ">
+                                                <option>Select Status</option>
+                                                @if($moduleType == 'assigntask-assigner')
+                                                   <option value="assign-complete">Approved</option>
+                                                   <option value="assign-reject">Rejected</option>
+                                                @else
+                                                   <option value="employee-complete">Completed</option>
+                                                   <option value="employee-Pending">Pending</option>
+                                                @endif
+                                                </select>
+                                                <button type="submit" class="ml-2 btn-primary cleri">Submit</button>
+                                             </div>
+                                          </form>
                                        <table class="table align-items-center mb-0 admin-table sample_data">
+                                         
                                           <thead>
                                              <tr class="bg-dark">
-                                                {{--<th class="text-uppercase text-xxs font-weight-bolder" data-orderable="false">
+                                                <th class="text-uppercase text-xxs font-weight-bolder" data-orderable="false">
                                                     <input type="checkbox" id="adminmultiselect">
-                                                </th>--}}
+                                                </th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder">
                                                    S.No
                                                 </th>
@@ -108,7 +143,7 @@
                                           @if ($student->count())
                                              @foreach($student as $key=>$user)
                                              <tr>
-                                             {{--<td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>--}}
+                                           <td><input type="checkbox" class="single-che" name="single_checkbox" value="{{$user->id}}"></td>
                                                 <td class="w-8">
                                                    <div class="pe-4 ">
                                                       <div class="d-flex flex-column justify-content-center align-items-center">{{$key + 1}}
@@ -168,14 +203,28 @@
                                                 <td>
                                                     <div class="d-flex flex-column justify-content-end">
                                                       <h6 class="mb-0 text-sm">
-                                                         @if($user->task_status == 0)
-                                                            Pending
-                                                         @elseif($user->task_status == 1)
-                                                            Completed
-                                                         @elseif($user->task_status == 2)
-                                                            Rejected
+                                                         @if($moduleType == 'deshboard-assigned')
+                                                            @if($user->task_status == 0)
+                                                               Pending
+                                                            @elseif($user->task_status == 1)
+                                                               Completed
+                                                            @elseif($user->task_status == 2)
+                                                               Rejected
+                                                            @else
+                                                               Approved
+                                                            @endif
                                                          @else
-                                                            Approved
+                                                            @if($user->assigner_task_status == 0)
+                                                               @if(Request::segment(2) == 'all-pending')
+                                                                  Pending
+                                                               @else
+                                                                  waiting for Approval
+                                                               @endif
+                                                            @elseif($user->assigner_task_status == 1)
+                                                               Completed
+                                                            @else
+                                                               Rejected
+                                                            @endif
                                                          @endif
                                                       </h6>
                                                    </div>
@@ -184,7 +233,7 @@
                                                    {{--<a rel="tooltip" href="{{route('studentEdit',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark" data-original-title="" title="">
                                                       <i class="fa fa-pencil"></i>
                                                    </a>--}}
-                                                <a href="{{route('assignStudentView',[$user->id,$user->task_id])}}" class="btn mb-0 btn-success btn-link bg-dark">
+                                                <a href="{{route('assignStudentView',$user->id)}}" class="btn mb-0 btn-success btn-link bg-dark">
                                                    <i class="fa fa-eye"></i>
                                                 </a>
                                                 </td>
@@ -228,11 +277,22 @@
                }else{
                   $('.get-user-name').prop('disabled',true);
                }
+               var sele_val = new Array();
+               dataTable.$('.single-che:checked').each(function() {
+                  sele_val.push($(this).val());
+               });
+               $('#student_id').val(sele_val);
+               
         });
         dataTable.on('page', function () {
             var cells = dataTable.rows({ page: 'current' }).nodes();
             var input = $(cells).find(':checkbox').length;
             var check_input = $(cells).find(':checked').length;
+            var sele_val = new Array();
+            dataTable.$('.single-che:checked').each(function() {
+               sele_val.push($(this).val());
+            });
+            $('#student_id').val(sele_val);
             if(input == check_input){
                 $('#adminmultiselect').prop('checked', true);
             }else{
@@ -253,6 +313,11 @@
          }else{
             $('.get-user-name').prop('disabled',true);
          }
+         var checkboxValues = [];
+         dataTable.$('.single-che:checked').map(function() {
+                checkboxValues.push($(this).val());
+            });
+            $('#student_id').val(checkboxValues);
         });
    });
 </script>
